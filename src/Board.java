@@ -167,7 +167,7 @@ public class Board
     public Position moveNorth(Position p, int x)
     {
 	// calculate the new position after moving North on board by x
-	Position newPos = new Position(p.getI() - 1, p.getJ());
+	Position newPos = new Position(p.getI() - x, p.getJ());
 	return newPos;
     }
 
@@ -183,7 +183,7 @@ public class Board
     public Position moveEast(Position p, int x)
     {
 	// calculate the new position after moving East on board by x
-	Position newPos = new Position(p.getI(), p.getJ() + 1);
+	Position newPos = new Position(p.getI(), p.getJ() + x);
 	return newPos;
     }
 
@@ -199,7 +199,7 @@ public class Board
     public Position moveSouth(Position p, int x)
     {
 	// calculate the new position after moving South on board by x
-	Position newPos = new Position(p.getI() + 1, p.getJ());
+	Position newPos = new Position(p.getI() + x, p.getJ());
 	return newPos;
     }
 
@@ -215,7 +215,7 @@ public class Board
     public Position moveWest(Position p, int x)
     {
 	// calculate the new position after moving West on board by x
-	Position newPos = new Position(p.getI(), p.getJ() - 1);
+	Position newPos = new Position(p.getI(), p.getJ() - x);
 	return newPos;
     }
 }
