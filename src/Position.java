@@ -2,8 +2,8 @@
 public class Position
 {
 
-    int i;
-    int j;
+    private int i;
+    private int j;
 
     public Position(int i, int j)
     {

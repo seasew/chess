@@ -2,15 +2,22 @@
 public class Piece
 {
 
-    Color color;
+    private Color color;
+    private boolean empty;
 
-    public Piece(Color color)
+    public Piece(Color color, boolean empty)
     {
 	this.color = color;
+	this.empty = empty;
     }
 
-    public boolean canMove(Position p1, Position p2)
+    public boolean canMove(Board board, Position p1, Position p2)
     {
 	return false;
+    }
+
+    public boolean isEmpty()
+    {
+	return empty;
     }
 }
