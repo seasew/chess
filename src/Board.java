@@ -3,14 +3,16 @@ public class Board
 {
     public static final int SIZE = 8;
 
-    private Piece[][] board;
+    private Piece[][] pieceboard;
+    private Color[][] colorboard;
 
     /**
      * Constructs a new Board object with set colors and empty Pieces.
      */
     public Board()
     {
-	// initialize empty board with Piece objects
+	// initialize empty color board with alternating colors
+	// initalize empty piece board with null elements
 	for (int i = 0; i < SIZE; i++)
 	{
 	    Color c;
@@ -25,10 +27,13 @@ public class Board
 
 	    for (int j = 0; j < SIZE; j++)
 	    {
-		board[i][j] = new Piece(c, true);
+		colorboard[i][j] = c;
 		c = swapColor(c);
+
+		pieceboard[i][j] = null;
 	    }
 	}
+
     }
 
     /**
@@ -49,12 +54,31 @@ public class Board
 	if (isEmpty(pos))
 	{
 	    // assign the piece at this position
-	    board[pos.getI()][pos.getJ()] = piece;
+	    pieceboard[pos.getI()][pos.getJ()] = piece;
 	    return true;
 	}
 
 	// otherwise
 	return false;
+    }
+
+    /**
+     * Returns the Piece at the given position on the board. <br>
+     * Position must be a valid place.
+     * 
+     * @param pos
+     *            a valid position
+     * @return the piece that pos refers to
+     */
+    public Piece pieceAtPos(Position pos)
+    {
+	// if pos is valid
+	if (isValid(pos))
+	{
+	    return pieceboard[pos.getI()][pos.getJ()];
+	}
+
+	return null;
     }
 
     /**
@@ -66,8 +90,7 @@ public class Board
      */
     public boolean isEmpty(Position pos)
     {
-	if (pos.getI() > 0 && pos.getI() < SIZE && pos.getJ() > 0 && pos.getJ() < SIZE
-		&& board[pos.getI()][pos.getJ()].isEmpty())
+	if (isValid(pos) && pieceAtPos(pos) == null)
 	{
 	    return true;
 	}
@@ -75,20 +98,54 @@ public class Board
     }
 
     /**
-     * Moves
+     * Returns if the position is on the board.
+     * 
+     * @param pos
+     *            the Position to check
+     * @return true if the position is on the board, false if not
+     */
+    public boolean isValid(Position pos)
+    {
+	if (pos.getI() > 0 && pos.getI() < SIZE && pos.getJ() > 0 && pos.getJ() < SIZE)
+	{
+	    return true;
+	}
+	return false;
+    }
+
+    /**
+     * Moves a piece at the first position to the second. <br>
+     * Only if both positions are valid and p2 is empty.
      * 
      * @param p1
+     *            the Position corresponding to Piece to move
      * @param p2
+     *            the new Position of the Piece
      */
     public void movePiece(Position p1, Position p2)
     {
 	// check that the positions are on the board
+	// check that p2 is empty
+	if (isValid(p1) && !isEmpty(p1) && isEmpty(p2))
+	{
+	    // if the move is valid (according to the piece at p1)
+	    if ((pieceAtPos(p1)).canMove(this, p1, p2))
+	    {
+		// moves the piece at p1 to p2
+		putPiece(pieceAtPos(p1), p2);
+		putPiece(null, p1);
+	    }
 
-	// if the move is valid (according to the piece at p1)
-
-	// moves the piece at p1 to p2
+	}
     }
 
+    /**
+     * Swaps the given color.
+     * 
+     * @param c
+     *            the color to change
+     * @return the new color
+     */
     public Color swapColor(Color c)
     {
 	if (c == Color.WHITE)
@@ -98,31 +155,67 @@ public class Board
 	return Color.WHITE;
     }
 
-    public boolean moveNorth(Position p, int x)
+    /**
+     * Returns the new Position if the given position was moved North by x.
+     * 
+     * @param p
+     *            the position to move
+     * @param x
+     *            the amount to move
+     * @return the new position after moving north by x
+     */
+    public Position moveNorth(Position p, int x)
     {
 	// calculate the new position after moving North on board by x
 	Position newPos = new Position(p.getI() - 1, p.getJ());
-	return isEmpty(newPos);
+	return newPos;
     }
 
-    public boolean moveEast(Position p, int x)
+    /**
+     * Returns the new Position if the given position was moved East by x.
+     * 
+     * @param p
+     *            the position to move
+     * @param x
+     *            the amount to move
+     * @return the new position after moving east by x
+     */
+    public Position moveEast(Position p, int x)
     {
 	// calculate the new position after moving East on board by x
 	Position newPos = new Position(p.getI(), p.getJ() + 1);
-	return isEmpty(newPos);
+	return newPos;
     }
 
-    public boolean moveSouth(Position p, int x)
+    /**
+     * Returns the new Position if the given position was moved South by x.
+     * 
+     * @param p
+     *            the position to move
+     * @param x
+     *            the amount to move
+     * @return the new position after moving south by x
+     */
+    public Position moveSouth(Position p, int x)
     {
 	// calculate the new position after moving South on board by x
 	Position newPos = new Position(p.getI() + 1, p.getJ());
-	return isEmpty(newPos);
+	return newPos;
     }
 
-    public boolean moveWest(Position p, int x)
+    /**
+     * Returns the new Position if the given position was moved West by x.
+     * 
+     * @param p
+     *            the position to move
+     * @param x
+     *            the amount to move
+     * @return the new position after moving west by x
+     */
+    public Position moveWest(Position p, int x)
     {
 	// calculate the new position after moving West on board by x
 	Position newPos = new Position(p.getI(), p.getJ() - 1);
-	return isEmpty(newPos);
+	return newPos;
     }
 }

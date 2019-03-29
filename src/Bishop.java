@@ -4,7 +4,7 @@ public class Bishop extends Piece
 
     public Bishop(Color color)
     {
-	super(color, false);
+	super(color);
 	// TODO Auto-generated constructor stub
     }
 

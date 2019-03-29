@@ -4,7 +4,7 @@ public class Pawn extends Piece
 
     public Pawn(Color color)
     {
-	super(color, false);
+	super(color);
 	// TODO Auto-generated constructor stub
     }
 
