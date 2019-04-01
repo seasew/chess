@@ -11,6 +11,8 @@ public class Board
      */
     public Board()
     {
+	colorboard = new Color[SIZE][SIZE];
+	pieceboard = new Piece[SIZE][SIZE];
 	// initialize empty color board with alternating colors
 	// initalize empty piece board with null elements
 	for (int i = 0; i < SIZE; i++)
@@ -217,5 +219,57 @@ public class Board
 	// calculate the new position after moving West on board by x
 	Position newPos = new Position(p.getI(), p.getJ() - x);
 	return newPos;
+    }
+
+    @Override
+    public String toString()
+    {
+	String spacer = "  +-----+-----+-----+-----+-----+-----+-----+-----+\n";
+	String out = "";
+
+	// add the numbers for the col
+	for (int i = 0; i < SIZE; i++)
+	{
+	    out += "     " + i;
+	}
+	out += "\n";
+
+	// add the first line
+	out += spacer;
+
+	for (int i = 0; i < SIZE; i++)
+	{
+	    // add the row label
+	    out += i + " |";
+	    for (int j = 0; j < SIZE; j++)
+	    {
+		// add each square
+		String id = "";
+		String buffer = "     ";
+		if (pieceboard[i][j] != null)
+		{
+		    id = pieceboard[i][j].getID();
+		    // calculate the amount of extra space needed
+		    // if the id is too long, shorten it
+		    if (id.length() > 5)
+		    {
+			id = id.substring(0, 5);
+		    }
+
+		    buffer = "";
+		    for (int a = id.length(); a < 5; a++)
+		    {
+			buffer += " ";
+		    }
+		}
+
+		out += id + buffer + "|";
+	    }
+
+	    // add a line
+	    out += "\n" + spacer;
+	}
+
+	return out;
     }
 }

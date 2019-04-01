@@ -41,6 +41,11 @@ public abstract class Piece
 	return color;
     }
 
+    public String getID()
+    {
+	return id;
+    }
+
     /**
      * Returns if the move from p1 to p2 is a valid move.<br>
      * For general use by Piece subclasses. <br>

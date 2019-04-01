@@ -94,11 +94,26 @@ public class ChessGame
     /**
      * Moves the piece at p1 to p2 if it meets the requirements.<br>
      * If the current color is not in check: <br>
-     * The move has to be allowed by the piece's specific requirements.
+     * - The move has to be allowed by the piece's specific requirements.<br>
+     * - The move either is to an empty spot or captures a piece (cannot capture
+     * king). <br>
+     * - The move can be promotion, passant, or castling. <br>
+     * If the current color is in check: <br>
+     * - The king moves to a square that is not in check. <br>
+     * - The move(must be a valid move for that specific piece) blocks or
+     * captures the piece that is checking the king.<br>
+     * <br>
+     * Return Value: <br>
+     * - moving to an empty spot<br>
+     * - capturing an opponent's piece (cannot be the king)<br>
+     * - game is over (checkmating the opponent)<br>
+     * - draw
      * 
      * @param p1
+     *            the position of the piece to move
      * @param p2
-     * @return
+     *            the position that the piece will move to
+     * @return a String describing the outcome of the move
      */
     public String movePiece(Position p1, Position p2)
     {
