@@ -27,16 +27,20 @@ public class Pawn extends Piece
 	// this part is for moving into an empty spot
 	if (board.isValid(p1) && board.isEmpty(p2) && !board.isEmpty(p1))
 	{
-	    // if it is a white pawn and p2 equals one move north
-	    if ((getColor() == Color.WHITE) && p2.equals(board.moveNorth(p1, 1)))
+	    // if it is a white pawn and A. p2 equals one move north
+	    // or B. p2 equals 2 moves north and the move is the first one
+	    if ((getColor() == Color.WHITE)
+		    && (p2.equals(board.moveNorth(p1, 1)) || (p2.equals(board.moveNorth(p1, 2)) && isFirst)))
 	    {
 		if (isValidMove(board, p1, p2))
 		{
 		    return true;
 		}
 	    }
-	    // if it is a black pawn and p2 equals one move north
-	    if ((getColor() == Color.BLACK) && p2.equals(board.moveSouth(p1, 1)))
+	    // if it is a black pawn and A. p2 equals one move north
+	    // or B. p2 equals 2 moves north and the move is the first one
+	    if ((getColor() == Color.BLACK)
+		    && (p2.equals(board.moveSouth(p1, 1)) || (p2.equals(board.moveSouth(p1, 1)) && isFirst)))
 	    {
 		if (isValidMove(board, p1, p2))
 		{
