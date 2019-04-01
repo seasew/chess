@@ -1,12 +1,17 @@
 
 public class Pawn extends Piece
 {
+    private boolean isFirst;
 
     /**
      * Constructs a Pawn. <br>
      * Moving Requirements: <br>
      * for white pawns --> 1 move North; capture NE, NW <br>
-     * for black pawns --> 1 move South; capture SE, SW
+     * for black pawns --> 1 move South; capture SE, SW<br>
+     * <br>
+     * The pawn also records whether or not the pawn has done the first move.
+     * The value starts at true.<br>
+     * If it still is on the first move, the pawn can move two squares forward.
      * 
      * @param color
      *            the color of the pawn
@@ -14,7 +19,7 @@ public class Pawn extends Piece
     public Pawn(Color color)
     {
 	super(color);
-	// TODO Auto-generated constructor stub
+	isFirst = true;
     }
 
     public boolean canMove(Board board, Position p1, Position p2)
@@ -65,5 +70,13 @@ public class Pawn extends Piece
 	}
 
 	return false;
+    }
+
+    /**
+     * Changes the value of isFirst.
+     */
+    public void toggleFirst()
+    {
+	isFirst = !isFirst;
     }
 }
