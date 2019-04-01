@@ -7,9 +7,11 @@ public class ChessGame
     private Piece[] white;
     private Piece[] black;
 
+    private Color curColor;
+
     /**
      * Constructs a new ChessGame. <br>
-     * <br>
+     * The starting color is White. <br>
      * Initialize both sides with 16 pieces (8 pawns, 2 rooks, 2 knights, 2
      * bishops, 1 queen, 1 king).<br>
      * The ids for the pieces are as follows: ColorFirstletterofpieceNumber<br>
@@ -27,6 +29,7 @@ public class ChessGame
      */
     public ChessGame()
     {
+	curColor = Color.WHITE;
 	// initalize a default board
 	board = new Board();
 
@@ -86,5 +89,25 @@ public class ChessGame
 		curBRow--;
 	    }
 	}
+    }
+
+    /**
+     * Moves the piece at p1 to p2 if it meets the requirements.<br>
+     * If the current color is not in check: <br>
+     * The move has to be allowed by the piece's specific requirements.
+     * 
+     * @param p1
+     * @param p2
+     * @return
+     */
+    public String movePiece(Position p1, Position p2)
+    {
+	// First, check the default move method for the piece
+	return "";
+    }
+
+    public boolean inCheck()
+    {
+
     }
 }
