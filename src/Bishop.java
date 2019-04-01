@@ -4,7 +4,8 @@ public class Bishop extends Piece
 
     /**
      * Constructs a new Bishop. <br>
-     * Moving Requirements: In any diagonal direction.
+     * Moving Requirements: In any diagonal direction.<br>
+     * The entire path must be empty
      * 
      * @param color
      *            the color of the bishop

@@ -4,7 +4,8 @@ public class Rook extends Piece
 
     /**
      * Constructs a new Rook. <br>
-     * Moving Requirements: It can move up, down, left, or right
+     * Moving Requirements: It can move up, down, left, or right<br>
+     * The entire path must be empty
      * 
      * @param color
      *            the color of the rook
