@@ -46,7 +46,10 @@ public class Bishop extends Piece
 		if ((p2.equals(ne) && nepath) || (p2.equals(nw) && nwpath) || (p2.equals(se) && sepath)
 			|| (p2.equals(sw) && swpath))
 		{
-		    return true;
+		    if (isValidMove(board, p1, p2))
+		    {
+			return true;
+		    }
 		}
 
 		// if the current NE position is filled

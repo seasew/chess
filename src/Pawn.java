@@ -25,12 +25,18 @@ public class Pawn extends Piece
 	    // if it is a white pawn and p2 equals one move north
 	    if ((getColor() == Color.WHITE) && p2.equals(board.moveNorth(p1, 1)))
 	    {
-		return true;
+		if (isValidMove(board, p1, p2))
+		{
+		    return true;
+		}
 	    }
 	    // if it is a black pawn and p2 equals one move north
 	    if ((getColor() == Color.BLACK) && p2.equals(board.moveSouth(p1, 1)))
 	    {
-		return true;
+		if (isValidMove(board, p1, p2))
+		{
+		    return true;
+		}
 	    }
 	}
 
@@ -41,14 +47,20 @@ public class Pawn extends Piece
 	    if ((getColor() == Color.WHITE) && (p2.equals(board.moveNorth(board.moveEast(p1, 1), 1))
 		    || p2.equals(board.moveNorth(board.moveWest(p1, 1), 1))))
 	    {
-		return true;
+		if (isValidMove(board, p1, p2))
+		{
+		    return true;
+		}
 	    }
 
 	    // if it is a black pawn and p2 equals 1 move SE or 1 move SW
 	    if ((getColor() == Color.BLACK) && (p2.equals(board.moveSouth(board.moveEast(p1, 1), 1))
 		    || p2.equals(board.moveSouth(board.moveWest(p1, 1), 1))))
 	    {
-		return true;
+		if (isValidMove(board, p1, p2))
+		{
+		    return true;
+		}
 	    }
 	}
 

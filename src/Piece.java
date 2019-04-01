@@ -40,33 +40,47 @@ public abstract class Piece
     }
 
     /**
-     * Returns if the move from p1 to p2 is a valid Capture.<br>
-     * Both positions must be occupied, and the pieces at each position must
-     * have opposite colors.<br>
-     * For pieces except for the Knight, the path to p2 must be an unoccupied
-     * path. However, this method will assume that the path is valid.<br>
+     * Returns if the move from p1 to p2 is a valid move.<br>
+     * For general use by Piece subclasses. <br>
      * <br>
-     * For use by the subclasses of Piece, as they have similar implementations.
+     * Conditions: <br>
+     * If p2 is occupied: the colors in p1 and p2 must be opposite colors <br>
+     * If p2 is unoccupied: returns true automatically<br>
+     * <br>
+     * This method assumes that the path from p1 to p2 is a valid path given the
+     * specific requirements for the Piece at p2. <br>
      * 
      * @param board
      *            the Board the piece is on
      * @param p1
      *            the first position refering to the piece to move
      * @param p2
-     *            the second poisiton refering to the place to move to
+     *            the second position refering to the place to move to
      * @return true if the above requirements are met, false if not
      */
-    private boolean canCapture(Board board, Position p1, Position p2)
+    protected boolean isValidMove(Board board, Position p1, Position p2)
     {
 	// it can capture when...
 	// p1 is occupied and p2 is occupied
 	// p2 has a piece with an opposite color
 	// move has an empty path (except for Knight) --> this won't be included
-	if (!board.isEmpty(p1) && !board.isEmpty(p2)
-		&& (board.pieceAtPos(p1).getColor() == board.swapColor(board.pieceAtPos(p2).getColor())))
+
+	// if this particular move is a capture, check with
+	// canCapture method
+	if (!board.isEmpty(p2))
+	{
+	    // if the colors are opposite
+	    if (board.pieceAtPos(p1).getColor() == board.swapColor(board.pieceAtPos(p2).getColor()))
+	    {
+		return true;
+	    }
+	}
+	// if this move is into an empty spot, then return true
+	else
 	{
 	    return true;
 	}
+
 	return false;
     }
 }

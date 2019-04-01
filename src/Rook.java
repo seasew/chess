@@ -38,11 +38,14 @@ public class Rook extends Piece
 		Position south = board.moveSouth(p1, x);
 		Position west = board.moveWest(p1, x);
 
-		// if the position matches and the selected path is empty
+		// if the position matches and the selec ted path is empty
 		if ((p2.equals(north) && npath) || (p2.equals(east) && epath) || (p2.equals(south) && spath)
 			|| (p2.equals(west) && wpath))
 		{
-		    return true;
+		    if (isValidMove(board, p1, p2))
+		    {
+			return true;
+		    }
 		}
 
 		// if the current north position is filled
