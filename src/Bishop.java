@@ -23,9 +23,14 @@ public class Bishop extends Piece
 	{
 	    // bishop can move diagonally
 	    // North and East
-	    // East and South
+	    boolean nepath = true;
+	    // North and West
+	    boolean nwpath = true;
+	    // South and East
+	    boolean sepath = true;
 	    // South and West
-	    // West and North
+	    boolean swpath = true;
+
 	    int x = 1;
 	    while (x < Board.SIZE)
 	    {
@@ -34,7 +39,37 @@ public class Bishop extends Piece
 		Position se = board.moveSouth(board.moveEast(p1, x), x);
 		Position sw = board.moveSouth(board.moveWest(p1, x), x);
 
-		if (p2.equals(ne) || p2.equals(nw) || p2.equals(se) || p2.equals(sw))
+		// if the current NE position is filled
+		if (!board.isEmpty(ne))
+		{
+		    // then this path is invalid
+		    nepath = false;
+		}
+
+		// if the current NW position is filled
+		if (!board.isEmpty(nw))
+		{
+		    // then this path is invalid
+		    nwpath = false;
+		}
+
+		// if the current SE position is filled
+		if (!board.isEmpty(se))
+		{
+		    // then this path is invalid
+		    sepath = false;
+		}
+
+		// if the current SW position is filled
+		if (!board.isEmpty(sw))
+		{
+		    // then this path is invalid
+		    swpath = false;
+		}
+
+		// if the position matches a path and the selected path is empty
+		if ((p2.equals(ne) && nepath) || (p2.equals(nw) && nwpath) || (p2.equals(se) && sepath)
+			|| (p2.equals(sw) && swpath))
 		{
 		    return true;
 		}
