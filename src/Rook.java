@@ -76,6 +76,8 @@ public class Rook extends Piece
 		    wpath = false;
 		}
 
+		x++;
+
 	    }
 	}
 	return false;
