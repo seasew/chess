@@ -41,7 +41,7 @@ public class Board
     /**
      * Puts a piece on the board (not moving it) --> used at the beginning of
      * the game. <br>
-     * Preconditions: the new position must be on the board and empty <br>
+     * Preconditions: the new position must be on the board <br>
      * Returns true if the piece was successfully placed, false otherwise.
      * 
      * @param piece
@@ -52,8 +52,8 @@ public class Board
      */
     public boolean putPiece(Piece piece, Position pos)
     {
-	// if the position is empty
-	if (isEmpty(pos))
+	// if the position is valid
+	if (isValid(pos))
 	{
 	    // assign the piece at this position
 	    pieceboard[pos.getI()][pos.getJ()] = piece;
