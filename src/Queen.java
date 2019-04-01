@@ -21,8 +21,8 @@ public class Queen extends Piece
 	// empty
 	if (board.isValid(p1) && board.isEmpty(p2) && !board.isEmpty(p1))
 	{
-	    Rook lateral = new Rook(this.getColor());
-	    Bishop diagonal = new Bishop(this.getColor());
+	    Rook lateral = new Rook(getColor());
+	    Bishop diagonal = new Bishop(getColor());
 
 	    // if this move is valid for a Rook or a Bishop
 	    // then it is valid for a queen
