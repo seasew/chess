@@ -14,9 +14,9 @@ public class Knight extends Piece
      * @param color
      *            the color of the knight
      */
-    public Knight(Color color)
+    public Knight(Color color, String id)
     {
-	super(color);
+	super(color, id);
 	// TODO Auto-generated constructor stub
     }
 

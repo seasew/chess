@@ -10,9 +10,9 @@ public class Bishop extends Piece
      * @param color
      *            the color of the bishop
      */
-    public Bishop(Color color)
+    public Bishop(Color color, String id)
     {
-	super(color);
+	super(color, id);
 	// TODO Auto-generated constructor stub
     }
 

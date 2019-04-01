@@ -3,6 +3,7 @@ public abstract class Piece
 {
 
     private Color color;
+    private String id;
 
     /**
      * Constructs a new Piece object.
@@ -10,9 +11,10 @@ public abstract class Piece
      * @param color
      *            the Color of the piece
      */
-    public Piece(Color color)
+    public Piece(Color color, String id)
     {
 	this.color = color;
+	this.id = id;
     }
 
     /**
@@ -82,5 +84,11 @@ public abstract class Piece
 	}
 
 	return false;
+    }
+
+    @Override
+    public String toString()
+    {
+	return id;
     }
 }

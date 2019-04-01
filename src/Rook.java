@@ -10,9 +10,9 @@ public class Rook extends Piece
      * @param color
      *            the color of the rook
      */
-    public Rook(Color color)
+    public Rook(Color color, String id)
     {
-	super(color);
+	super(color, id);
 	// TODO Auto-generated constructor stub
     }
 

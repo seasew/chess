@@ -115,7 +115,7 @@ public class Board
 
     /**
      * Moves a piece at the first position to the second. <br>
-     * Only if both positions are valid and p2 is empty.
+     * Only if both positions are valid and p1 has a piece.
      * 
      * @param p1
      *            the Position corresponding to Piece to move
@@ -125,8 +125,8 @@ public class Board
     public void movePiece(Position p1, Position p2)
     {
 	// check that the positions are on the board
-	// check that p2 is empty
-	if (isValid(p1) && !isEmpty(p1) && isEmpty(p2))
+	// check that p1 has a piece on it
+	if (isValid(p1) && !isEmpty(p1))
 	{
 	    // if the move is valid (according to the piece at p1)
 	    if ((pieceAtPos(p1)).canMove(this, p1, p2))

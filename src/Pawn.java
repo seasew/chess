@@ -16,9 +16,9 @@ public class Pawn extends Piece
      * @param color
      *            the color of the pawn
      */
-    public Pawn(Color color)
+    public Pawn(Color color, String id)
     {
-	super(color);
+	super(color, id);
 	isFirst = true;
     }
 

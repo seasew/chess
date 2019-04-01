@@ -10,9 +10,9 @@ public class King extends Piece
      * @param color
      *            the color of the king
      */
-    public King(Color color)
+    public King(Color color, String id)
     {
-	super(color);
+	super(color, id);
 	// TODO Auto-generated constructor stub
     }
 
