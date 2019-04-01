@@ -18,8 +18,8 @@ public class Rook extends Piece
 
     public boolean canMove(Board board, Position p1, Position p2)
     {
-	// check that p2 is empty, p1 has a piece on it and both positions are
-	// empty
+	// for moving to an empty spot or an occupied spot
+	// check that p1 has a piece on it
 	if (board.isValid(p1) && board.isEmpty(p2) && !board.isEmpty(p1))
 	{
 	    // true if the path is empty
@@ -32,38 +32,11 @@ public class Rook extends Piece
 	    int x = 1;
 	    while (x < Board.SIZE)
 	    {
+		// current positions for all 4 directions
 		Position north = board.moveNorth(p1, x);
 		Position east = board.moveEast(p1, x);
 		Position south = board.moveSouth(p1, x);
 		Position west = board.moveWest(p1, x);
-
-		// if the current north position is filled
-		if (!board.isEmpty(north))
-		{
-		    // then npath does not work
-		    npath = false;
-		}
-
-		// if the current north position is filled
-		if (!board.isEmpty(east))
-		{
-		    // then npath does not work
-		    epath = false;
-		}
-
-		// if the current north position is filled
-		if (!board.isEmpty(south))
-		{
-		    // then npath does not work
-		    spath = false;
-		}
-
-		// if the current north position is filled
-		if (!board.isEmpty(west))
-		{
-		    // then npath does not work
-		    wpath = false;
-		}
 
 		// if the position matches and the selected path is empty
 		if ((p2.equals(north) && npath) || (p2.equals(east) && epath) || (p2.equals(south) && spath)
@@ -71,9 +44,36 @@ public class Rook extends Piece
 		{
 		    return true;
 		}
+
+		// if the current north position is filled
+		if (!board.isEmpty(north))
+		{
+		    // then npath does not work for the next x value
+		    npath = false;
+		}
+
+		// if the current north position is filled
+		if (!board.isEmpty(east))
+		{
+		    // then npath does not work for the next x value
+		    epath = false;
+		}
+
+		// if the current north position is filled
+		if (!board.isEmpty(south))
+		{
+		    // then npath does not work for the next x value
+		    spath = false;
+		}
+
+		// if the current north position is filled
+		if (!board.isEmpty(west))
+		{
+		    // then npath does not work for the next x value
+		    wpath = false;
+		}
 	    }
 	}
-
 	return false;
     }
 }
