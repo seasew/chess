@@ -19,8 +19,8 @@ public class Rook extends Piece
     public boolean canMove(Board board, Position p1, Position p2)
     {
 	// for moving to an empty spot or an occupied spot
-	// check that p1 has a piece on it
-	if (board.isValid(p1) && board.isEmpty(p2) && !board.isEmpty(p1))
+	// check that p1 has a piece on it & both positions are valid
+	if (board.isValid(p1) && board.isValid(p2) && !board.isEmpty(p1))
 	{
 	    // true if the path is empty
 	    boolean npath = true;
