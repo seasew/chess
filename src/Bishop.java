@@ -80,6 +80,7 @@ public class Bishop extends Piece
 		    swpath = false;
 		}
 
+		x++;
 	    }
 	}
 

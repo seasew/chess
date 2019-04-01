@@ -75,6 +75,7 @@ public class Rook extends Piece
 		    // then npath does not work for the next x value
 		    wpath = false;
 		}
+
 	    }
 	}
 	return false;

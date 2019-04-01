@@ -6,17 +6,20 @@ public class Tester
     {
 	Board board = new Board();
 
-	Position p1 = new Position(6, 6);
-	Position p2 = new Position(4, 6);
+	Position p1 = new Position(5, 5);
+	Position p2 = new Position(0, 5);
 
-	Pawn pawn = new Pawn(Color.WHITE, "WPawn");
-	board.putPiece(pawn, p1);
+	Piece piece1 = new Rook(Color.WHITE, "P1");
+	board.putPiece(piece1, p1);
 	System.out.println(board);
 
-	if (pawn.canMove(board, p1, p2))
+	Piece piece2 = new Pawn(Color.WHITE, "P2");
+	// board.putPiece(piece2, p2);
+
+	if (piece1.canMove(board, p1, p2))
 	{
 	    board.movePiece(p1, p2);
-	    System.out.println("Pawn was able to move");
+	    System.out.println(piece1 + " was able to move");
 	    System.out.println(board);
 	}
     }

@@ -108,7 +108,7 @@ public class Board
      */
     public boolean isValid(Position pos)
     {
-	if (pos.getI() > 0 && pos.getI() < SIZE && pos.getJ() > 0 && pos.getJ() < SIZE)
+	if (pos.getI() >= 0 && pos.getI() < SIZE && pos.getJ() >= 0 && pos.getJ() < SIZE)
 	{
 	    return true;
 	}
