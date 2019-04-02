@@ -2,6 +2,8 @@
 public abstract class Piece
 {
 
+    public static final String ID = "Piece";
+
     private Color color;
     private String id;
 

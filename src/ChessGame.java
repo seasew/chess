@@ -121,12 +121,16 @@ public class ChessGame
     public String movePiece(Position p1, Position p2)
     {
 	String out = "ERROR: Blank String for movePiece(p1, p2)";
+
+	Piece piece1 = board.pieceAtPos(p1);
+	Piece piece2 = board.pieceAtPos(p2);
+
 	// find the position of the current color's king
 	Position kingPos = board.getPos(new King(curColor, curColor + "K"));
 
 	// Is it a valid move?
 	// First, check the default move method for the piece
-	boolean valid = board.pieceAtPos(p1).canMove(board, p1, p2);
+	boolean valid = piece1.canMove(board, p1, p2);
 
 	// is the move castling?
 
@@ -153,9 +157,20 @@ public class ChessGame
 	    // Option 2: The move blocks or captures the piece that is checking
 	    // the king
 	}
+	// If not in check...
+	else
+	{
+	    // move the piece if the move is valid
+	    if (valid)
+	    {
+		board.movePiece(p1, p2);
+		out = piece1.getID() + " moved from " + p1 + " to " + p2;
+	    }
+	}
 
 	// Promotion?
-	if (board.pieceAtPos(p1))
+	// if the piece moved was a pawn
+	if ((piece1.ID == Pawn.ID))
 	{
 
 	}

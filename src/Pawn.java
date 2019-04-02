@@ -85,4 +85,5 @@ public class Pawn extends Piece
     {
 	isFirst = !isFirst;
     }
+
 }

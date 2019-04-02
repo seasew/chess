@@ -57,4 +57,10 @@ public class Position
     {
 	return j;
     }
+
+    @Override
+    public String toString()
+    {
+	return "(" + i + ", " + j + ")";
+    }
 }
