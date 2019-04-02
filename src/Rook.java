@@ -12,7 +12,7 @@ public class Rook extends Piece
      * @param color
      *            the color of the rook
      */
-    public Rook(Color color, String id)
+    public Rook(ChessColor color, String id)
     {
 	super(color, id);
 	// TODO Auto-generated constructor stub
@@ -22,7 +22,7 @@ public class Rook extends Piece
     {
 	// for moving to an empty spot or an occupied spot
 	// check that p1 has a piece on it & both positions are valid
-	if (board.isValid(p1) && board.isValid(p2) && !board.isEmpty(p1))
+	if (Board.isValid(p1) && Board.isValid(p2) && !board.isEmpty(p1))
 	{
 	    // true if the path is empty
 	    boolean npath = true;

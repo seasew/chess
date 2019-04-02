@@ -16,7 +16,7 @@ public class Knight extends Piece
      * @param color
      *            the color of the knight
      */
-    public Knight(Color color, String id)
+    public Knight(ChessColor color, String id)
     {
 	super(color, id);
 	// TODO Auto-generated constructor stub
@@ -26,7 +26,7 @@ public class Knight extends Piece
     {
 	// for moving to an empty spot or an occupied spot
 	// check that p1 has a piece on it & both positions are valid
-	if (board.isValid(p1) && board.isValid(p2) && !board.isEmpty(p1))
+	if (Board.isValid(p1) && Board.isValid(p2) && !board.isEmpty(p1))
 	{
 	    Position twoMoves = board.moveNorth(p1, 2);
 	    // check 1W and 1E for North

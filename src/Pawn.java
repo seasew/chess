@@ -1,4 +1,3 @@
-
 public class Pawn extends Piece
 {
 
@@ -18,7 +17,7 @@ public class Pawn extends Piece
      * @param color
      *            the color of the pawn
      */
-    public Pawn(Color color, String id)
+    public Pawn(ChessColor color, String id)
     {
 	super(color, id);
 	isFirst = true;
@@ -27,11 +26,11 @@ public class Pawn extends Piece
     public boolean canMove(Board board, Position p1, Position p2)
     {
 	// this part is for moving into an empty spot
-	if (board.isValid(p1) && board.isEmpty(p2) && !board.isEmpty(p1))
+	if (Board.isValid(p1) && board.isEmpty(p2) && !board.isEmpty(p1))
 	{
 	    // if it is a white pawn and A. p2 equals one move north
 	    // or B. p2 equals 2 moves north and the move is the first one
-	    if ((getColor() == Color.WHITE)
+	    if ((getChessColor() == ChessColor.WHITE)
 		    && (p2.equals(board.moveNorth(p1, 1)) || (p2.equals(board.moveNorth(p1, 2)) && isFirst)))
 	    {
 		if (isValidMove(board, p1, p2))
@@ -41,7 +40,7 @@ public class Pawn extends Piece
 	    }
 	    // if it is a black pawn and A. p2 equals one move north
 	    // or B. p2 equals 2 moves north and the move is the first one
-	    if ((getColor() == Color.BLACK)
+	    if ((getChessColor() == ChessColor.BLACK)
 		    && (p2.equals(board.moveSouth(p1, 1)) || (p2.equals(board.moveSouth(p1, 1)) && isFirst)))
 	    {
 		if (isValidMove(board, p1, p2))
@@ -52,10 +51,10 @@ public class Pawn extends Piece
 	}
 
 	// this part is for killing an opponent in a diagonal spot
-	if (board.isValid(p1) && !board.isEmpty(p2) && !board.isEmpty(p1))
+	if (Board.isValid(p1) && !board.isEmpty(p2) && !board.isEmpty(p1))
 	{
 	    // if it is a white pawn and p2 equals 1 move NE or 1 move NW
-	    if ((getColor() == Color.WHITE) && (p2.equals(board.moveNorth(board.moveEast(p1, 1), 1))
+	    if ((getChessColor() == ChessColor.WHITE) && (p2.equals(board.moveNorth(board.moveEast(p1, 1), 1))
 		    || p2.equals(board.moveNorth(board.moveWest(p1, 1), 1))))
 	    {
 		if (isValidMove(board, p1, p2))
@@ -65,7 +64,7 @@ public class Pawn extends Piece
 	    }
 
 	    // if it is a black pawn and p2 equals 1 move SE or 1 move SW
-	    if ((getColor() == Color.BLACK) && (p2.equals(board.moveSouth(board.moveEast(p1, 1), 1))
+	    if ((getChessColor() == ChessColor.BLACK) && (p2.equals(board.moveSouth(board.moveEast(p1, 1), 1))
 		    || p2.equals(board.moveSouth(board.moveWest(p1, 1), 1))))
 	    {
 		if (isValidMove(board, p1, p2))

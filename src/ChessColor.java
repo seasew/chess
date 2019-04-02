@@ -1,18 +1,18 @@
 
-public enum Color
+public enum ChessColor
 {
     BLACK("B"), WHITE("W");
 
     private String id;
 
-    private Color(String id)
+    private ChessColor(String id)
     {
 	this.id = id;
     }
 
-    @Override
-    public String toString()
+    public String getID()
     {
 	return id;
     }
+
 }

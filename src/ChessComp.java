@@ -1,10 +1,14 @@
+import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
+import java.awt.geom.Rectangle2D;
 
 import javax.swing.JComponent;
 
 public class ChessComp extends JComponent
 {
+
+    private static final long serialVersionUID = 1L;
 
     // the size (in pixels) of the squares of the board
     public static final int SQUARE_SIZE = 100;
@@ -30,9 +34,41 @@ public class ChessComp extends JComponent
     {
 	Graphics2D g2 = (Graphics2D) g;
 	// print text at the (0, 0)
+	g2.drawString("Welcome to Chess! Click on a " + game.getCurChessColor()
+		+ " piece to move it. Then, click on the desired location.", 10, 40);
+	g2.drawString(game.getCurChessColor() + " to move.", 10, 70);
 
 	// print the coordinates
+
 	// print the chessboard & pieces images
+	int y = Y;
+	for (int i = 0; i < ChessGame.getBoardSize(); i++)
+	{
+	    int x = X;
+	    for (int j = 0; j < ChessGame.getBoardSize(); j++)
+	    {
+		Position cur = new Position(i, j);
+		// get the color and piece
+		Rectangle2D.Double square = new Rectangle2D.Double(x, y, SQUARE_SIZE, SQUARE_SIZE);
+
+		if (game.colorAtPos(cur) == ChessColor.BLACK)
+		{
+		    g2.setColor(Color.black);
+		} else
+		{
+		    g2.setColor(Color.WHITE);
+		}
+
+		g2.fill(square);
+		g2.draw(square);
+		g2.drawString(game.pieceAtPos(cur).getID(), x + 20, y + 40);
+
+		// update x value
+		x += SQUARE_SIZE;
+	    }
+
+	    y += SQUARE_SIZE;
+	}
     }
 
     /**
@@ -50,7 +86,8 @@ public class ChessComp extends JComponent
      *            the amount of pixels in the x direction of the ending position
      * @param pixelY2
      *            the amount of pixels in the y direction of the ending position
-     * @return
+     * @return a description of the actions taken, or why the action could not
+     *         be done
      */
     public String movePiece(int pixelX1, int pixelY1, int pixelX2, int pixelY2)
     {

@@ -9,14 +9,15 @@ public class ChessGame
     private Piece[] black;
 
     private boolean check;
-    private Color curColor;
+    private ChessColor curChessColor;
 
     /**
      * Constructs a new ChessGame. <br>
      * The starting color is White. <br>
      * Initialize both sides with 16 pieces (8 pawns, 2 rooks, 2 knights, 2
      * bishops, 1 queen, 1 king).<br>
-     * The ids for the pieces are as follows: ColorFirstletterofpieceNumber<br>
+     * The ids for the pieces are as follows:
+     * ChessColorFirstletterofpieceNumber<br>
      * --> WP1 (White Pawn 1) or BQ (Black Queen) <br>
      * <br>
      * The pieces are placed in set locations (row, col)-id: <br>
@@ -32,47 +33,47 @@ public class ChessGame
     public ChessGame()
     {
 	check = false;
-	curColor = Color.WHITE;
+	curChessColor = ChessColor.WHITE;
 	// initalize a default board
 	board = new Board();
 
 	white = new Piece[NPIECES];
 	// initalize white pieces
-	white[0] = new Pawn(Color.WHITE, "WP1");
-	white[1] = new Pawn(Color.WHITE, "WP2");
-	white[2] = new Pawn(Color.WHITE, "WP3");
-	white[3] = new Pawn(Color.WHITE, "WP4");
-	white[4] = new Pawn(Color.WHITE, "WP5");
-	white[5] = new Pawn(Color.WHITE, "WP6");
-	white[6] = new Pawn(Color.WHITE, "WP7");
-	white[7] = new Pawn(Color.WHITE, "WP8");
-	white[8] = new Rook(Color.WHITE, "WR1");
-	white[9] = new Knight(Color.WHITE, "WK1");
-	white[10] = new Bishop(Color.WHITE, "WB1");
-	white[11] = new Queen(Color.WHITE, "WQ");
-	white[12] = new King(Color.WHITE, "WK");
-	white[13] = new Bishop(Color.WHITE, "WB2");
-	white[14] = new Knight(Color.WHITE, "WK2");
-	white[15] = new Rook(Color.WHITE, "WR2");
+	white[0] = new Pawn(ChessColor.WHITE, "WP1");
+	white[1] = new Pawn(ChessColor.WHITE, "WP2");
+	white[2] = new Pawn(ChessColor.WHITE, "WP3");
+	white[3] = new Pawn(ChessColor.WHITE, "WP4");
+	white[4] = new Pawn(ChessColor.WHITE, "WP5");
+	white[5] = new Pawn(ChessColor.WHITE, "WP6");
+	white[6] = new Pawn(ChessColor.WHITE, "WP7");
+	white[7] = new Pawn(ChessColor.WHITE, "WP8");
+	white[8] = new Rook(ChessColor.WHITE, "WR1");
+	white[9] = new Knight(ChessColor.WHITE, "WN1");
+	white[10] = new Bishop(ChessColor.WHITE, "WB1");
+	white[11] = new Queen(ChessColor.WHITE, "WQ");
+	white[12] = new King(ChessColor.WHITE, "WK");
+	white[13] = new Bishop(ChessColor.WHITE, "WB2");
+	white[14] = new Knight(ChessColor.WHITE, "WN2");
+	white[15] = new Rook(ChessColor.WHITE, "WR2");
 
 	black = new Piece[NPIECES];
 	// initalize black pieces
-	black[0] = new Pawn(Color.BLACK, "BP1");
-	black[1] = new Pawn(Color.BLACK, "BP2");
-	black[2] = new Pawn(Color.BLACK, "BP3");
-	black[3] = new Pawn(Color.BLACK, "BP4");
-	black[4] = new Pawn(Color.BLACK, "BP5");
-	black[5] = new Pawn(Color.BLACK, "BP6");
-	black[6] = new Pawn(Color.BLACK, "BP7");
-	black[7] = new Pawn(Color.BLACK, "BP8");
-	black[8] = new Rook(Color.BLACK, "BR1");
-	black[9] = new Knight(Color.BLACK, "BK1");
-	black[10] = new Bishop(Color.BLACK, "BB1");
-	black[11] = new Queen(Color.BLACK, "BQ");
-	black[12] = new King(Color.BLACK, "BK");
-	black[13] = new Bishop(Color.BLACK, "BB2");
-	black[14] = new Knight(Color.BLACK, "BK2");
-	black[15] = new Rook(Color.BLACK, "BR2");
+	black[0] = new Pawn(ChessColor.BLACK, "BP1");
+	black[1] = new Pawn(ChessColor.BLACK, "BP2");
+	black[2] = new Pawn(ChessColor.BLACK, "BP3");
+	black[3] = new Pawn(ChessColor.BLACK, "BP4");
+	black[4] = new Pawn(ChessColor.BLACK, "BP5");
+	black[5] = new Pawn(ChessColor.BLACK, "BP6");
+	black[6] = new Pawn(ChessColor.BLACK, "BP7");
+	black[7] = new Pawn(ChessColor.BLACK, "BP8");
+	black[8] = new Rook(ChessColor.BLACK, "BR1");
+	black[9] = new Knight(ChessColor.BLACK, "BN1");
+	black[10] = new Bishop(ChessColor.BLACK, "BB1");
+	black[11] = new Queen(ChessColor.BLACK, "BQ");
+	black[12] = new King(ChessColor.BLACK, "BK");
+	black[13] = new Bishop(ChessColor.BLACK, "BB2");
+	black[14] = new Knight(ChessColor.BLACK, "BN2");
+	black[15] = new Rook(ChessColor.BLACK, "BR2");
 
 	// put pieces on the board
 	int curWRow = 6;
@@ -126,7 +127,7 @@ public class ChessGame
 	Piece piece2 = board.pieceAtPos(p2);
 
 	// find the position of the current color's king
-	Position kingPos = board.getPos(new King(curColor, curColor + "K"));
+	Position kingPos = board.getPos(new King(curChessColor, curChessColor + "K"));
 
 	// Is it a valid move?
 	// First, check the default move method for the piece
@@ -136,8 +137,8 @@ public class ChessGame
 
 	// is the move en passant?
 
-	// if the curColor king is being checked right now
-	Piece[] checks = inCheck(kingPos, board.swapColor(curColor));
+	// if the curChessColor king is being checked right now
+	Piece[] checks = inCheck(kingPos, board.swapChessColor(curChessColor));
 	if (checks.length > 0)
 	{
 	    // Option 1: The king moves to a position that is not 'checked'
@@ -147,7 +148,7 @@ public class ChessGame
 	    if (p1.equals(kingPos))
 	    {
 		// then, see if p2 is a position that is not checked
-		if (inCheck(p2, board.swapColor(curColor)).length == 0)
+		if (inCheck(p2, board.swapChessColor(curChessColor)).length == 0)
 		{
 		    // king is allowed to move there
 		    board.movePiece(p1, p2);
@@ -179,7 +180,7 @@ public class ChessGame
 	// Is there a checkmate after this move?
 
 	// change color
-	curColor = board.swapColor(curColor);
+	curChessColor = board.swapChessColor(curChessColor);
 
     }
 
@@ -193,11 +194,11 @@ public class ChessGame
      * @param pos
      *            the Position to check
      * @param opponent
-     *            the Color that the position may be attacked by
+     *            the ChessColor that the position may be attacked by
      * @return an array of Pieces that are currently checking the position, or
      *         an empty array
      */
-    public Piece[] inCheck(Position pos, Color opponent)
+    public Piece[] inCheck(Position pos, ChessColor opponent)
     {
 	Piece[] out = new Piece[0];
 	if (!Board.isValid(pos))
@@ -208,7 +209,7 @@ public class ChessGame
 	// check every piece on the opponent's side that might be attacking the
 	// position
 	Piece[] pieces;
-	if (opponent == Color.WHITE)
+	if (opponent == ChessColor.WHITE)
 	{
 	    pieces = white;
 	} else
@@ -239,14 +240,14 @@ public class ChessGame
 
     /**
      * Returns the current color/side of the game.<br>
-     * After the side/color makes a move, curColor changes.<br>
-     * The first curColor is White.
+     * After the side/color makes a move, curChessColor changes.<br>
+     * The first curChessColor is White.
      * 
      * @return the current color
      */
-    public Color getCurColor()
+    public ChessColor getCurChessColor()
     {
-	return curColor;
+	return curChessColor;
     }
 
     /**
@@ -257,7 +258,7 @@ public class ChessGame
      *            the position
      * @return the color
      */
-    public Color colorAtPos(Position pos)
+    public ChessColor colorAtPos(Position pos)
     {
 	return board.colorAtPos(pos);
     }
@@ -273,5 +274,16 @@ public class ChessGame
     public Piece pieceAtPos(Position pos)
     {
 	return board.pieceAtPos(pos);
+    }
+
+    /**
+     * Returns the board size from Board.<br>
+     * This is so that ChessComp will not have depend on Board.
+     * 
+     * @return the size of Board
+     */
+    public static int getBoardSize()
+    {
+	return Board.SIZE;
     }
 }

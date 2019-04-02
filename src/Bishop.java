@@ -12,7 +12,7 @@ public class Bishop extends Piece
      * @param color
      *            the color of the bishop
      */
-    public Bishop(Color color, String id)
+    public Bishop(ChessColor color, String id)
     {
 	super(color, id);
 	// TODO Auto-generated constructor stub
@@ -22,7 +22,7 @@ public class Bishop extends Piece
     {
 	// for moving to an empty spot or an occupied spot
 	// p1 has a piece on it and both positions are valid
-	if (board.isValid(p1) && board.isValid(p2) && !board.isEmpty(p1))
+	if (Board.isValid(p1) && Board.isValid(p2) && !board.isEmpty(p1))
 	{
 	    // bishop can move diagonally
 	    // North and East

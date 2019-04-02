@@ -1,19 +1,18 @@
-
 public abstract class Piece
 {
 
     public static final String ID = "Piece";
 
-    private Color color;
+    private ChessColor color;
     private String id;
 
     /**
      * Constructs a new Piece object.
      * 
      * @param color
-     *            the Color of the piece
+     *            the ChessColor of the piece
      */
-    public Piece(Color color, String id)
+    public Piece(ChessColor color, String id)
     {
 	this.color = color;
 	this.id = id;
@@ -38,7 +37,7 @@ public abstract class Piece
      * 
      * @return the color of the piece
      */
-    public Color getColor()
+    public ChessColor getChessColor()
     {
 	return color;
     }
@@ -79,7 +78,7 @@ public abstract class Piece
 	if (!board.isEmpty(p2))
 	{
 	    // if the colors are opposite
-	    if (board.pieceAtPos(p1).getColor() == board.swapColor(board.pieceAtPos(p2).getColor()))
+	    if (board.pieceAtPos(p1).getChessColor() == board.swapChessColor(board.pieceAtPos(p2).getChessColor()))
 	    {
 		return true;
 	    }

@@ -4,33 +4,33 @@ public class Board
     public static final int SIZE = 8;
 
     private Piece[][] pieceboard;
-    private Color[][] colorboard;
+    private ChessColor[][] colorboard;
 
     /**
      * Constructs a new Board object with set colors and empty Pieces.
      */
     public Board()
     {
-	colorboard = new Color[SIZE][SIZE];
+	colorboard = new ChessColor[SIZE][SIZE];
 	pieceboard = new Piece[SIZE][SIZE];
 	// initialize empty color board with alternating colors
 	// initalize empty piece board with null elements
 	for (int i = 0; i < SIZE; i++)
 	{
-	    Color c;
+	    ChessColor c;
 	    // if it is an even row
 	    if (i % 2 == 0)
 	    {
-		c = Color.WHITE;
+		c = ChessColor.WHITE;
 	    } else
 	    {
-		c = Color.BLACK;
+		c = ChessColor.BLACK;
 	    }
 
 	    for (int j = 0; j < SIZE; j++)
 	    {
 		colorboard[i][j] = c;
-		c = swapColor(c);
+		c = swapChessColor(c);
 
 		pieceboard[i][j] = null;
 	    }
@@ -90,7 +90,7 @@ public class Board
      *            the given position
      * @return the color
      */
-    public Color colorAtPos(Position pos)
+    public ChessColor colorAtPos(Position pos)
     {
 	if (isValid(pos))
 	{
@@ -186,13 +186,13 @@ public class Board
      *            the color to change
      * @return the new color
      */
-    public Color swapColor(Color c)
+    public ChessColor swapChessColor(ChessColor c)
     {
-	if (c == Color.WHITE)
+	if (c == ChessColor.WHITE)
 	{
-	    return Color.BLACK;
+	    return ChessColor.BLACK;
 	}
-	return Color.WHITE;
+	return ChessColor.WHITE;
     }
 
     /**

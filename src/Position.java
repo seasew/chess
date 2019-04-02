@@ -61,6 +61,6 @@ public class Position
     @Override
     public String toString()
     {
-	return "(" + i + ", " + j + ")";
+	return ((char) (j + 97)) + "" + (i + 1);
     }
 }

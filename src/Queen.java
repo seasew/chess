@@ -12,7 +12,7 @@ public class Queen extends Piece
      * @param color
      *            the color of the queen
      */
-    public Queen(Color color, String id)
+    public Queen(ChessColor color, String id)
     {
 	super(color, id);
     }
@@ -21,10 +21,10 @@ public class Queen extends Piece
     {
 	// for moving to an empty spot or an occupied spot
 	// check that p1 has a piece on it & both positions are valid
-	if (board.isValid(p1) && board.isValid(p2) && !board.isEmpty(p1))
+	if (Board.isValid(p1) && Board.isValid(p2) && !board.isEmpty(p1))
 	{
-	    Rook lateral = new Rook(getColor(), "rook used for queen");
-	    Bishop diagonal = new Bishop(getColor(), "bishop used for queen");
+	    Rook lateral = new Rook(getChessColor(), "rook used for queen");
+	    Bishop diagonal = new Bishop(getChessColor(), "bishop used for queen");
 
 	    // if this move is valid for a Rook or a Bishop
 	    // then it is valid for a queen
