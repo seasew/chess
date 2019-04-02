@@ -84,6 +84,23 @@ public class Board
     }
 
     /**
+     * Returns the color at the given position.
+     * 
+     * @param pos
+     *            the given position
+     * @return the color
+     */
+    public Color colorAtPos(Position pos)
+    {
+	if (isValid(pos))
+	{
+	    return colorboard[pos.getI()][pos.getJ()];
+	}
+
+	return null;
+    }
+
+    /**
      * Returns the Position of the given Piece.<br>
      * It finds a matching id. If the Piece is not found, it returns (-1, -1).
      * 
@@ -97,7 +114,8 @@ public class Board
 	{
 	    for (int j = 0; j < SIZE; j++)
 	    {
-		if (pieceboard[i][j].getID().equals(piece.getID()))
+		Position cur = new Position(i, j);
+		if ((pieceAtPos(cur)).getID().equals(piece.getID()))
 		{
 		    return new Position(i, j);
 		}
@@ -130,7 +148,7 @@ public class Board
      *            the Position to check
      * @return true if the position is on the board, false if not
      */
-    public boolean isValid(Position pos)
+    public static boolean isValid(Position pos)
     {
 	if (pos.getI() >= 0 && pos.getI() < SIZE && pos.getJ() >= 0 && pos.getJ() < SIZE)
 	{
@@ -263,12 +281,13 @@ public class Board
 	    out += i + " |";
 	    for (int j = 0; j < SIZE; j++)
 	    {
+		Position cur = new Position(i, j);
 		// add each square
 		String id = "";
 		String buffer = "     ";
 		if (pieceboard[i][j] != null)
 		{
-		    id = pieceboard[i][j].getID();
+		    id = pieceAtPos(cur).getID();
 		    // calculate the amount of extra space needed
 		    // if the id is too long, shorten it
 		    if (id.length() > 5)

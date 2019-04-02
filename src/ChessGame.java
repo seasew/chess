@@ -200,7 +200,7 @@ public class ChessGame
     public Piece[] inCheck(Position pos, Color opponent)
     {
 	Piece[] out = new Piece[0];
-	if (!board.isValid(pos))
+	if (!Board.isValid(pos))
 	{
 	    return out;
 	}
@@ -235,5 +235,43 @@ public class ChessGame
 	}
 
 	return out;
+    }
+
+    /**
+     * Returns the current color/side of the game.<br>
+     * After the side/color makes a move, curColor changes.<br>
+     * The first curColor is White.
+     * 
+     * @return the current color
+     */
+    public Color getCurColor()
+    {
+	return curColor;
+    }
+
+    /**
+     * Returns the board's color at the given position. <br>
+     * The Position must be valid.
+     * 
+     * @param pos
+     *            the position
+     * @return the color
+     */
+    public Color colorAtPos(Position pos)
+    {
+	return board.colorAtPos(pos);
+    }
+
+    /**
+     * Returns the board's piece at the given position.<br>
+     * The Position must be valid.
+     * 
+     * @param pos
+     *            the position
+     * @return the color
+     */
+    public Piece pieceAtPos(Position pos)
+    {
+	return board.pieceAtPos(pos);
     }
 }
