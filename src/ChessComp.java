@@ -11,11 +11,11 @@ public class ChessComp extends JComponent
     private static final long serialVersionUID = 1L;
 
     // the size (in pixels) of the squares of the board
-    public static final double SQUARE_SIZE = 100;
+    public static final double SQUARE_SIZE = 80;
 
     // the pixel coordinates of the top left corner of the chessboard
-    public static final double X = 200;
-    public static final double Y = 200;
+    public static final double X = 50;
+    public static final double Y = 100;
 
     private ChessGame game;
 
@@ -39,14 +39,18 @@ public class ChessComp extends JComponent
 	g2.drawString(game.getCurChessColor() + " to move.", 10, 70);
 
 	// print the coordinates
-	double xRanks = X - 80;
+	double xRanks = X / 2;
 	double yRanks = Y + SQUARE_SIZE / 2;
 	double xFiles = X + SQUARE_SIZE / 2;
-	double yFiles = Y + 100;
-	for (int i = 0; i < ChessGame.getBoardSize(); i++)
+	double yFiles = Y + SQUARE_SIZE * ChessGame.getBoardSize() + 30;
+	for (int a = 0; a < ChessGame.getBoardSize(); a++)
 	{
 	    // draw the ranks' number
-	    g2.drawString((i + 1) + "", (int) xRanks, (int) yRanks);
+	    g2.drawString((new Position(a, 0)).iToString(), (int) xRanks, (int) yRanks);
+	    yRanks += SQUARE_SIZE;
+	    // draw files letter
+	    g2.drawString((new Position(0, a)).jToString(), (int) xFiles, (int) yFiles);
+	    xFiles += SQUARE_SIZE;
 	}
 
 	// print the chessboard & pieces images
@@ -70,7 +74,11 @@ public class ChessComp extends JComponent
 
 		g2.fill(square);
 		g2.draw(square);
-		g2.drawString(game.pieceAtPos(cur).getID(), (int) x + 20, (int) y + 40);
+		Piece curPiece = game.pieceAtPos(cur);
+		if (curPiece != null)
+		{
+		    g2.drawString(curPiece.getID(), (int) x + 20, (int) y + 40);
+		}
 
 		// update x value
 		x += SQUARE_SIZE;
@@ -101,8 +109,8 @@ public class ChessComp extends JComponent
     public String movePiece(int pixelX1, int pixelY1, int pixelX2, int pixelY2)
     {
 	// converts the pixels to i and j (row and col)
-	Position p1 = new Position((pixelX1 - X) / SQUARE_SIZE, (pixelY1 - Y) / SQUARE_SIZE);
-	Position p2 = new Position((pixelX2 - X) / SQUARE_SIZE, (pixelY2 - Y) / SQUARE_SIZE);
+	Position p1 = new Position((int) ((pixelX1 - X) / SQUARE_SIZE), (int) ((pixelY1 - Y) / SQUARE_SIZE));
+	Position p2 = new Position((int) ((pixelX2 - X) / SQUARE_SIZE), (int) ((pixelY2 - Y) / SQUARE_SIZE));
 
 	// if both positions are valid
 	if (Board.isValid(p1) && Board.isValid(p2))

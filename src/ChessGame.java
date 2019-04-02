@@ -182,6 +182,7 @@ public class ChessGame
 	// change color
 	curChessColor = board.swapChessColor(curChessColor);
 
+	return null;
     }
 
     /**
