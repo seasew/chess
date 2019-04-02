@@ -2,6 +2,8 @@
 public class Bishop extends Piece
 {
 
+    public static final String ID = "Bishop";
+
     /**
      * Constructs a new Bishop. <br>
      * Moving Requirements: In any diagonal direction.<br>

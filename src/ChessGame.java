@@ -1,3 +1,4 @@
+import java.util.ArrayList;
 
 public class ChessGame
 {
@@ -7,6 +8,7 @@ public class ChessGame
     private Piece[] white;
     private Piece[] black;
 
+    private boolean check;
     private Color curColor;
 
     /**
@@ -29,6 +31,7 @@ public class ChessGame
      */
     public ChessGame()
     {
+	check = false;
 	curColor = Color.WHITE;
 	// initalize a default board
 	board = new Board();
@@ -117,14 +120,58 @@ public class ChessGame
      */
     public String movePiece(Position p1, Position p2)
     {
+	String out = "ERROR: Blank String for movePiece(p1, p2)";
+	// find the position of the current color's king
+	Position kingPos = board.getPos(new King(curColor, curColor + "K"));
+
+	// Is it a valid move?
 	// First, check the default move method for the piece
-	return "";
+	boolean valid = board.pieceAtPos(p1).canMove(board, p1, p2);
+
+	// is the move castling?
+
+	// is the move en passant?
+
+	// if the curColor king is being checked right now
+	Piece[] checks = inCheck(kingPos, board.swapColor(curColor));
+	if (checks.length > 0)
+	{
+	    // Option 1: The king moves to a position that is not 'checked'
+	    // by moving into an empty spot
+	    // or capturing a piece that is checking it
+	    // if the starting position refers to the current king
+	    if (p1.equals(kingPos))
+	    {
+		// then, see if p2 is a position that is not checked
+		if (inCheck(p2, board.swapColor(curColor)).length == 0)
+		{
+		    // king is allowed to move there
+		    board.movePiece(p1, p2);
+		}
+	    }
+
+	    // Option 2: The move blocks or captures the piece that is checking
+	    // the king
+	}
+
+	// Promotion?
+	if (board.pieceAtPos(p1))
+	{
+
+	}
+
+	// Is there check after this move?
+	// Is there a checkmate after this move?
+
+	// change color
+	curColor = board.swapColor(curColor);
+
     }
 
     /**
      * Returns whether the given position is in check. <br>
-     * If the given color's side has pieces that are attacking 'pos', return
-     * true.<br>
+     * If the given color's side has pieces that are attacking 'pos', return an
+     * array containing all the pieces that are checking it.<br>
      * A piece is considered attacking a position if the piece can legally move
      * to that position.
      * 
@@ -132,13 +179,15 @@ public class ChessGame
      *            the Position to check
      * @param opponent
      *            the Color that the position may be attacked by
-     * @return true if the position is in check, false if not
+     * @return an array of Pieces that are currently checking the position, or
+     *         an empty array
      */
-    public boolean inCheck(Position pos, Color opponent)
+    public Piece[] inCheck(Position pos, Color opponent)
     {
+	Piece[] out = new Piece[0];
 	if (!board.isValid(pos))
 	{
-	    return false;
+	    return out;
 	}
 
 	// check every piece on the opponent's side that might be attacking the
@@ -152,16 +201,24 @@ public class ChessGame
 	    pieces = black;
 	}
 
+	ArrayList<Piece> list = new ArrayList<Piece>();
+
 	// for each piece
 	for (int i = 0; i < NPIECES; i++)
 	{
 	    // if it can move to pos, then the position is in check
 	    if (pieces[i].canMove(board, board.getPos(pieces[i]), pos))
 	    {
-		return true;
+		list.add(pieces[i]);
 	    }
 	}
 
-	return false;
+	out = new Piece[list.size()];
+	for (int i = 0; i < list.size(); i++)
+	{
+	    out[i] = list.get(i);
+	}
+
+	return out;
     }
 }

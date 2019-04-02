@@ -2,6 +2,8 @@
 public class Queen extends Piece
 {
 
+    public static final String ID = "Queen";
+
     /**
      * Constructs a new Queen.<br>
      * Moving Requirements: A queen can move anywhere diagonally, up, down,

@@ -2,6 +2,8 @@
 public class King extends Piece
 {
 
+    public static final String ID = "King";
+
     /**
      * Constructs a new King. <br>
      * Moving Requirements: It can only move north, east, south, and west by 1

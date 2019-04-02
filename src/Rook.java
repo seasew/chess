@@ -2,6 +2,8 @@
 public class Rook extends Piece
 {
 
+    public static final String ID = "Rook";
+
     /**
      * Constructs a new Rook. <br>
      * Moving Requirements: It can move up, down, left, or right<br>

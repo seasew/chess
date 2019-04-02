@@ -1,6 +1,8 @@
 
 public class Pawn extends Piece
 {
+
+    public static final String ID = "Pawn";
     private boolean isFirst;
 
     /**

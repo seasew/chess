@@ -2,6 +2,8 @@
 public class Knight extends Piece
 {
 
+    public static final String ID = "Knight";
+
     /**
      * Constructs a Knight.<br>
      * Moving requirements: <br>
