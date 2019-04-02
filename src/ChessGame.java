@@ -121,8 +121,47 @@ public class ChessGame
 	return "";
     }
 
-    public boolean inCheck()
+    /**
+     * Returns whether the given position is in check. <br>
+     * If the given color's side has pieces that are attacking 'pos', return
+     * true.<br>
+     * A piece is considered attacking a position if the piece can legally move
+     * to that position.
+     * 
+     * @param pos
+     *            the Position to check
+     * @param opponent
+     *            the Color that the position may be attacked by
+     * @return true if the position is in check, false if not
+     */
+    public boolean inCheck(Position pos, Color opponent)
     {
+	if (!board.isValid(pos))
+	{
+	    return false;
+	}
 
+	// check every piece on the opponent's side that might be attacking the
+	// position
+	Piece[] pieces;
+	if (opponent == Color.WHITE)
+	{
+	    pieces = white;
+	} else
+	{
+	    pieces = black;
+	}
+
+	// for each piece
+	for (int i = 0; i < NPIECES; i++)
+	{
+	    // if it can move to pos, then the position is in check
+	    if (pieces[i].canMove(board, board.getPos(pieces[i]), pos))
+	    {
+		return true;
+	    }
+	}
+
+	return false;
     }
 }

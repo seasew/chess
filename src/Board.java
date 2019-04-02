@@ -84,6 +84,30 @@ public class Board
     }
 
     /**
+     * Returns the Position of the given Piece.<br>
+     * It finds a matching id. If the Piece is not found, it returns (-1, -1).
+     * 
+     * @param piece
+     *            the Piece to find
+     * @return the Position of the piece
+     */
+    public Position getPos(Piece piece)
+    {
+	for (int i = 0; i < SIZE; i++)
+	{
+	    for (int j = 0; j < SIZE; j++)
+	    {
+		if (pieceboard[i][j].getID().equals(piece.getID()))
+		{
+		    return new Position(i, j);
+		}
+	    }
+	}
+
+	return new Position(-1, -1);
+    }
+
+    /**
      * Returns if the position is empty and in range.
      * 
      * @param pos
