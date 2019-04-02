@@ -58,9 +58,32 @@ public class Position
 	return j;
     }
 
+    /**
+     * Returns the string representation of i (row number).<br>
+     * 1 to 8
+     * 
+     * @return the string representation of i
+     */
+    public String iToString()
+    {
+	return (8 - i) + "";
+    }
+
+    /**
+     * Returns the string representation of j (col number). <br>
+     * a to h
+     * 
+     * @return the string representation of j
+     */
+    public String jToString()
+    {
+	return ((char) (j + 97) + "");
+
+    }
+
     @Override
     public String toString()
     {
-	return ((char) (j + 97)) + "" + (i + 1);
+	return jToString() + iToString();
     }
 }

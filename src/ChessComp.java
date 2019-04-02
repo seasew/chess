@@ -11,11 +11,11 @@ public class ChessComp extends JComponent
     private static final long serialVersionUID = 1L;
 
     // the size (in pixels) of the squares of the board
-    public static final int SQUARE_SIZE = 100;
+    public static final double SQUARE_SIZE = 100;
 
     // the pixel coordinates of the top left corner of the chessboard
-    public static final int X = 200;
-    public static final int Y = 200;
+    public static final double X = 200;
+    public static final double Y = 200;
 
     private ChessGame game;
 
@@ -39,12 +39,21 @@ public class ChessComp extends JComponent
 	g2.drawString(game.getCurChessColor() + " to move.", 10, 70);
 
 	// print the coordinates
-
-	// print the chessboard & pieces images
-	int y = Y;
+	double xRanks = X - 80;
+	double yRanks = Y + SQUARE_SIZE / 2;
+	double xFiles = X + SQUARE_SIZE / 2;
+	double yFiles = Y + 100;
 	for (int i = 0; i < ChessGame.getBoardSize(); i++)
 	{
-	    int x = X;
+	    // draw the ranks' number
+	    g2.drawString((i + 1) + "", (int) xRanks, (int) yRanks);
+	}
+
+	// print the chessboard & pieces images
+	double y = Y;
+	for (int i = 0; i < ChessGame.getBoardSize(); i++)
+	{
+	    double x = X;
 	    for (int j = 0; j < ChessGame.getBoardSize(); j++)
 	    {
 		Position cur = new Position(i, j);
@@ -61,7 +70,7 @@ public class ChessComp extends JComponent
 
 		g2.fill(square);
 		g2.draw(square);
-		g2.drawString(game.pieceAtPos(cur).getID(), x + 20, y + 40);
+		g2.drawString(game.pieceAtPos(cur).getID(), (int) x + 20, (int) y + 40);
 
 		// update x value
 		x += SQUARE_SIZE;
