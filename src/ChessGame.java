@@ -43,29 +43,29 @@ public class ChessGame
 	// pawns
 	for (int i = 0; i < 8; i++)
 	{
-	    white[i] = new Pawn(ChessColor.WHITE, ChessColor.WHITE + Pawn.ABBREV + (i + 1));
-	    black[i] = new Pawn(ChessColor.BLACK, ChessColor.BLACK + Pawn.ABBREV + (i + 1));
+	    white[i] = new Pawn(ChessColor.WHITE, ChessColor.WHITE.getAbbrev() + Pawn.ABBREV + (i + 1));
+	    black[i] = new Pawn(ChessColor.BLACK, ChessColor.BLACK.getAbbrev() + Pawn.ABBREV + (i + 1));
 	}
 
 	// initalize white pieces
-	white[8] = new Rook(ChessColor.WHITE, ChessColor.WHITE + Rook.ABBREV + 1);
-	white[9] = new Knight(ChessColor.WHITE, ChessColor.WHITE + Knight.ABBREV + 1);
-	white[10] = new Bishop(ChessColor.WHITE, ChessColor.WHITE + Bishop.ABBREV + 1);
-	white[11] = new Queen(ChessColor.WHITE, ChessColor.WHITE + Queen.ABBREV);
-	white[12] = new King(ChessColor.WHITE, ChessColor.WHITE + King.ABBREV);
-	white[13] = new Bishop(ChessColor.WHITE, ChessColor.WHITE + Bishop.ABBREV + 2);
-	white[14] = new Knight(ChessColor.WHITE, ChessColor.WHITE + Knight.ABBREV + 2);
-	white[15] = new Rook(ChessColor.WHITE, ChessColor.WHITE + Rook.ABBREV + 2);
+	white[8] = new Rook(ChessColor.WHITE, ChessColor.WHITE.getAbbrev() + Rook.ABBREV + 1);
+	white[9] = new Knight(ChessColor.WHITE, ChessColor.WHITE.getAbbrev() + Knight.ABBREV + 1);
+	white[10] = new Bishop(ChessColor.WHITE, ChessColor.WHITE.getAbbrev() + Bishop.ABBREV + 1);
+	white[11] = new Queen(ChessColor.WHITE, ChessColor.WHITE.getAbbrev() + Queen.ABBREV);
+	white[12] = new King(ChessColor.WHITE, ChessColor.WHITE.getAbbrev() + King.ABBREV);
+	white[13] = new Bishop(ChessColor.WHITE, ChessColor.WHITE.getAbbrev() + Bishop.ABBREV + 2);
+	white[14] = new Knight(ChessColor.WHITE, ChessColor.WHITE.getAbbrev() + Knight.ABBREV + 2);
+	white[15] = new Rook(ChessColor.WHITE, ChessColor.WHITE.getAbbrev() + Rook.ABBREV + 2);
 
 	// initalize black pieces
-	black[8] = new Rook(ChessColor.BLACK, ChessColor.BLACK + Rook.ABBREV + 1);
-	black[9] = new Knight(ChessColor.BLACK, ChessColor.BLACK + Knight.ABBREV + 1);
-	black[10] = new Bishop(ChessColor.BLACK, ChessColor.BLACK + Bishop.ABBREV + 1);
-	black[11] = new Queen(ChessColor.BLACK, ChessColor.BLACK + Queen.ABBREV);
-	black[12] = new King(ChessColor.BLACK, ChessColor.BLACK + King.ABBREV);
-	black[13] = new Bishop(ChessColor.BLACK, ChessColor.BLACK + Bishop.ABBREV + 2);
-	black[14] = new Knight(ChessColor.BLACK, ChessColor.BLACK + Knight.ABBREV + 2);
-	black[15] = new Rook(ChessColor.BLACK, ChessColor.BLACK + Rook.ABBREV + 2);
+	black[8] = new Rook(ChessColor.BLACK, ChessColor.BLACK.getAbbrev() + Rook.ABBREV + 1);
+	black[9] = new Knight(ChessColor.BLACK, ChessColor.BLACK.getAbbrev() + Knight.ABBREV + 1);
+	black[10] = new Bishop(ChessColor.BLACK, ChessColor.BLACK.getAbbrev() + Bishop.ABBREV + 1);
+	black[11] = new Queen(ChessColor.BLACK, ChessColor.BLACK.getAbbrev() + Queen.ABBREV);
+	black[12] = new King(ChessColor.BLACK, ChessColor.BLACK.getAbbrev() + King.ABBREV);
+	black[13] = new Bishop(ChessColor.BLACK, ChessColor.BLACK.getAbbrev() + Bishop.ABBREV + 2);
+	black[14] = new Knight(ChessColor.BLACK, ChessColor.BLACK.getAbbrev() + Knight.ABBREV + 2);
+	black[15] = new Rook(ChessColor.BLACK, ChessColor.BLACK.getAbbrev() + Rook.ABBREV + 2);
 
 	// put pieces on the board
 	int curWRow = 6;
@@ -73,15 +73,17 @@ public class ChessGame
 	int curCol = 0;
 	for (int i = 0; i < NPIECES; i++)
 	{
-
 	    // when it is the second row
-	    if (i >= NPIECES / 2)
+	    if (i == NPIECES / 2)
 	    {
 		curWRow++;
 		curBRow--;
 	    }
 	    board.putPiece(white[i], new Position(curWRow, curCol));
+
+	    System.out.println(new Position(curWRow, curCol));
 	    board.putPiece(black[i], new Position(curBRow, curCol));
+	    System.out.println(new Position(curBRow, curCol));
 
 	    curCol = (curCol + 1) % 8;
 

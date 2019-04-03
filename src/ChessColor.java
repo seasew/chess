@@ -3,16 +3,16 @@ public enum ChessColor
 {
     BLACK("B"), WHITE("W");
 
-    private String id;
+    private String abbrev;
 
-    private ChessColor(String id)
+    private ChessColor(String abbrev)
     {
-	this.id = id;
+	this.abbrev = abbrev;
     }
 
-    public String getID()
+    public String getAbbrev()
     {
-	return id;
+	return abbrev;
     }
 
 }
