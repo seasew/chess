@@ -44,35 +44,28 @@ public class ChessGame
 	for (int i = 0; i < 8; i++)
 	{
 	    white[i] = new Pawn(ChessColor.WHITE, ChessColor.WHITE + Pawn.ABBREV + (i + 1));
-	    black[i] = new Pawn(ChessColor.BLACK, ChessColor.BLACK + "P" + (i + 1));
-	}
-
-	// Rooks, knights, bishops
-	for (int i = 0; i < 2; i++)
-	{
-	    white[8] = new Rook(ChessColor.WHITE, ChessColor.WHITE + "R" + (i + 1));
-	    white[9] = new Knight(ChessColor.WHITE, ChessColor.WHITE + "N" )
+	    black[i] = new Pawn(ChessColor.BLACK, ChessColor.BLACK + Pawn.ABBREV + (i + 1));
 	}
 
 	// initalize white pieces
-	white[8] = new Rook(ChessColor.WHITE, "WR1");
-	white[9] = new Knight(ChessColor.WHITE, "WN1");
-	white[10] = new Bishop(ChessColor.WHITE, "WB1");
-	white[11] = new Queen(ChessColor.WHITE, "WQ");
-	white[12] = new King(ChessColor.WHITE, "WK");
-	white[13] = new Bishop(ChessColor.WHITE, "WB2");
-	white[14] = new Knight(ChessColor.WHITE, "WN2");
-	white[15] = new Rook(ChessColor.WHITE, "WR2");
+	white[8] = new Rook(ChessColor.WHITE, ChessColor.WHITE + Rook.ABBREV + 1);
+	white[9] = new Knight(ChessColor.WHITE, ChessColor.WHITE + Knight.ABBREV + 1);
+	white[10] = new Bishop(ChessColor.WHITE, ChessColor.WHITE + Bishop.ABBREV + 1);
+	white[11] = new Queen(ChessColor.WHITE, ChessColor.WHITE + Queen.ABBREV);
+	white[12] = new King(ChessColor.WHITE, ChessColor.WHITE + King.ABBREV);
+	white[13] = new Bishop(ChessColor.WHITE, ChessColor.WHITE + Bishop.ABBREV + 2);
+	white[14] = new Knight(ChessColor.WHITE, ChessColor.WHITE + Knight.ABBREV + 2);
+	white[15] = new Rook(ChessColor.WHITE, ChessColor.WHITE + Rook.ABBREV + 2);
 
 	// initalize black pieces
-	black[8] = new Rook(ChessColor.BLACK, "BR1");
-	black[9] = new Knight(ChessColor.BLACK, "BN1");
-	black[10] = new Bishop(ChessColor.BLACK, "BB1");
-	black[11] = new Queen(ChessColor.BLACK, "BQ");
-	black[12] = new King(ChessColor.BLACK, "BK");
-	black[13] = new Bishop(ChessColor.BLACK, "BB2");
-	black[14] = new Knight(ChessColor.BLACK, "BN2");
-	black[15] = new Rook(ChessColor.BLACK, "BR2");
+	black[8] = new Rook(ChessColor.BLACK, ChessColor.BLACK + Rook.ABBREV + 1);
+	black[9] = new Knight(ChessColor.BLACK, ChessColor.BLACK + Knight.ABBREV + 1);
+	black[10] = new Bishop(ChessColor.BLACK, ChessColor.BLACK + Bishop.ABBREV + 1);
+	black[11] = new Queen(ChessColor.BLACK, ChessColor.BLACK + Queen.ABBREV);
+	black[12] = new King(ChessColor.BLACK, ChessColor.BLACK + King.ABBREV);
+	black[13] = new Bishop(ChessColor.BLACK, ChessColor.BLACK + Bishop.ABBREV + 2);
+	black[14] = new Knight(ChessColor.BLACK, ChessColor.BLACK + Knight.ABBREV + 2);
+	black[15] = new Rook(ChessColor.BLACK, ChessColor.BLACK + Rook.ABBREV + 2);
 
 	// put pieces on the board
 	int curWRow = 6;
