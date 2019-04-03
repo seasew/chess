@@ -61,22 +61,19 @@ public class ChessComp extends JComponent
 	    for (int j = 0; j < ChessGame.getBoardSize(); j++)
 	    {
 		Position cur = new Position(i, j);
+		ChessColor color = game.colorAtPos(cur);
+
 		// get the color and piece
 		Rectangle2D.Double square = new Rectangle2D.Double(x, y, SQUARE_SIZE, SQUARE_SIZE);
 
-		if (game.colorAtPos(cur) == ChessColor.BLACK)
-		{
-		    g2.setColor(Color.black);
-		} else
-		{
-		    g2.setColor(Color.WHITE);
-		}
+		g2.setColor(getGraphicsColor(color));
 
 		g2.fill(square);
 		g2.draw(square);
 		Piece curPiece = game.pieceAtPos(cur);
 		if (curPiece != null)
 		{
+		    g2.setColor(swapGraphicsColor(color));
 		    g2.drawString(curPiece.getID(), (int) x + 20, (int) y + 40);
 		}
 
@@ -119,5 +116,24 @@ public class ChessComp extends JComponent
 	}
 
 	return "These are invalid coordinates.";
+    }
+
+    private static Color swapGraphicsColor(ChessColor c)
+    {
+	if (c == ChessColor.WHITE)
+	{
+	    return Color.BLACK;
+
+	}
+	return Color.WHITE;
+    }
+
+    private static Color getGraphicsColor(ChessColor c)
+    {
+	if (c == ChessColor.WHITE)
+	{
+	    return Color.WHITE;
+	}
+	return Color.BLACK;
     }
 }

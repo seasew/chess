@@ -38,15 +38,22 @@ public class ChessGame
 	board = new Board();
 
 	white = new Piece[NPIECES];
+	black = new Piece[NPIECES];
+
+	// pawns
+	for (int i = 0; i < 8; i++)
+	{
+	    white[i] = new Pawn(ChessColor.WHITE, ChessColor.WHITE + "P" + (i + 1));
+	    black[i] = new Pawn(ChessColor.BLACK, ChessColor.BLACK + "P" + (i + 1));
+	}
+
+	// Rooks, knights, bishops
+	for (int i = 0; i < 2; i++)
+	{
+	    white[i] = new Rook(ChessColor.WHITE, ChessColor.WHITE + "R" + (i + 1));
+	}
+
 	// initalize white pieces
-	white[0] = new Pawn(ChessColor.WHITE, "WP1");
-	white[1] = new Pawn(ChessColor.WHITE, "WP2");
-	white[2] = new Pawn(ChessColor.WHITE, "WP3");
-	white[3] = new Pawn(ChessColor.WHITE, "WP4");
-	white[4] = new Pawn(ChessColor.WHITE, "WP5");
-	white[5] = new Pawn(ChessColor.WHITE, "WP6");
-	white[6] = new Pawn(ChessColor.WHITE, "WP7");
-	white[7] = new Pawn(ChessColor.WHITE, "WP8");
 	white[8] = new Rook(ChessColor.WHITE, "WR1");
 	white[9] = new Knight(ChessColor.WHITE, "WN1");
 	white[10] = new Bishop(ChessColor.WHITE, "WB1");
@@ -56,16 +63,7 @@ public class ChessGame
 	white[14] = new Knight(ChessColor.WHITE, "WN2");
 	white[15] = new Rook(ChessColor.WHITE, "WR2");
 
-	black = new Piece[NPIECES];
 	// initalize black pieces
-	black[0] = new Pawn(ChessColor.BLACK, "BP1");
-	black[1] = new Pawn(ChessColor.BLACK, "BP2");
-	black[2] = new Pawn(ChessColor.BLACK, "BP3");
-	black[3] = new Pawn(ChessColor.BLACK, "BP4");
-	black[4] = new Pawn(ChessColor.BLACK, "BP5");
-	black[5] = new Pawn(ChessColor.BLACK, "BP6");
-	black[6] = new Pawn(ChessColor.BLACK, "BP7");
-	black[7] = new Pawn(ChessColor.BLACK, "BP8");
 	black[8] = new Rook(ChessColor.BLACK, "BR1");
 	black[9] = new Knight(ChessColor.BLACK, "BN1");
 	black[10] = new Bishop(ChessColor.BLACK, "BB1");
@@ -81,10 +79,6 @@ public class ChessGame
 	int curCol = 0;
 	for (int i = 0; i < NPIECES; i++)
 	{
-	    board.putPiece(white[i], new Position(curWRow, curCol));
-	    board.putPiece(black[i], new Position(curBRow, curCol));
-
-	    curCol = (curCol + 1) % 8;
 
 	    // when it is the second row
 	    if (i >= NPIECES / 2)
@@ -92,6 +86,11 @@ public class ChessGame
 		curWRow++;
 		curBRow--;
 	    }
+	    board.putPiece(white[i], new Position(curWRow, curCol));
+	    board.putPiece(black[i], new Position(curBRow, curCol));
+
+	    curCol = (curCol + 1) % 8;
+
 	}
     }
 
