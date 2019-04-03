@@ -43,14 +43,15 @@ public class ChessGame
 	// pawns
 	for (int i = 0; i < 8; i++)
 	{
-	    white[i] = new Pawn(ChessColor.WHITE, ChessColor.WHITE + "P" + (i + 1));
+	    white[i] = new Pawn(ChessColor.WHITE, ChessColor.WHITE + Pawn.ABBREV + (i + 1));
 	    black[i] = new Pawn(ChessColor.BLACK, ChessColor.BLACK + "P" + (i + 1));
 	}
 
 	// Rooks, knights, bishops
 	for (int i = 0; i < 2; i++)
 	{
-	    white[i] = new Rook(ChessColor.WHITE, ChessColor.WHITE + "R" + (i + 1));
+	    white[8] = new Rook(ChessColor.WHITE, ChessColor.WHITE + "R" + (i + 1));
+	    white[9] = new Knight(ChessColor.WHITE, ChessColor.WHITE + "N" )
 	}
 
 	// initalize white pieces

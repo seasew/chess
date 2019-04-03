@@ -2,6 +2,7 @@
 public class Bishop extends Piece
 {
 
+    public static final String ABBREV = "B";
     public static final String ID = "Bishop";
 
     /**

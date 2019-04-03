@@ -2,6 +2,7 @@
 public class Rook extends Piece
 {
 
+    public static final String ABBREV = "R";
     public static final String ID = "Rook";
 
     /**
