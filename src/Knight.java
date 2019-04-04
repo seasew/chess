@@ -30,9 +30,9 @@ public class Knight extends Piece
 	// check that p1 has a piece on it & both positions are valid
 	if (Board.isValid(p1) && Board.isValid(p2) && !board.isEmpty(p1))
 	{
-	    Position twoMoves = board.moveNorth(p1, 2);
+	    Position twoMoves = Board.moveNorth(p1, 2);
 	    // check 1W and 1E for North
-	    if (p2.equals(board.moveWest(twoMoves, 1)) || p2.equals(board.moveEast(twoMoves, 1)))
+	    if (p2.equals(Board.moveWest(twoMoves, 1)) || p2.equals(Board.moveEast(twoMoves, 1)))
 	    {
 		if (isValidMove > 0)
 		{
@@ -40,9 +40,9 @@ public class Knight extends Piece
 		}
 	    }
 
-	    twoMoves = board.moveSouth(p1, 2);
+	    twoMoves = Board.moveSouth(p1, 2);
 	    // check 1W and 1E for South
-	    if (p2.equals(board.moveWest(twoMoves, 1)) || p2.equals(board.moveEast(twoMoves, 1)))
+	    if (p2.equals(Board.moveWest(twoMoves, 1)) || p2.equals(Board.moveEast(twoMoves, 1)))
 	    {
 		if (isValidMove > 0)
 		{
@@ -50,9 +50,9 @@ public class Knight extends Piece
 		}
 	    }
 
-	    twoMoves = board.moveEast(p1, 2);
+	    twoMoves = Board.moveEast(p1, 2);
 	    // check 1N and 1S for East
-	    if (p2.equals(board.moveNorth(twoMoves, 1)) || p2.equals(board.moveSouth(twoMoves, 1)))
+	    if (p2.equals(Board.moveNorth(twoMoves, 1)) || p2.equals(Board.moveSouth(twoMoves, 1)))
 	    {
 		if (isValidMove > 0)
 		{
@@ -60,9 +60,9 @@ public class Knight extends Piece
 		}
 	    }
 
-	    twoMoves = board.moveWest(p1, 2);
+	    twoMoves = Board.moveWest(p1, 2);
 	    // check 1N and 1S for West
-	    if (p2.equals(board.moveNorth(twoMoves, 1)) || p2.equals(board.moveSouth(twoMoves, 1)))
+	    if (p2.equals(Board.moveNorth(twoMoves, 1)) || p2.equals(Board.moveSouth(twoMoves, 1)))
 	    {
 		if (isValidMove > 0)
 		{

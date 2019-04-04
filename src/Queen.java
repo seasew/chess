@@ -18,7 +18,7 @@ public class Queen extends Piece
 	super(color, id);
     }
 
-    public boolean canMove(Board board, Position p1, Position p2)
+    public int canMove(Board board, Position p1, Position p2)
     {
 	// for moving to an empty spot or an occupied spot
 	// check that p1 has a piece on it & both positions are valid
@@ -26,16 +26,22 @@ public class Queen extends Piece
 	{
 	    Rook lateral = new Rook(getChessColor(), "rook used for queen");
 	    Bishop diagonal = new Bishop(getChessColor(), "bishop used for queen");
+	    int latOut = lateral.canMove(board, p1, p2);
+	    int diaOut = diagonal.canMove(board, p1, p2);
 
 	    // if this move is valid for a Rook or a Bishop
 	    // then it is valid for a queen
-	    if (lateral.canMove(board, p1, p2) || diagonal.canMove(board, p1, p2))
+	    if (latOut > 0)
 	    {
-		return true;
+		return latOut;
+	    }
+	    if (diaOut > 0)
+	    {
+		return diaOut;
 	    }
 	}
 
-	return false;
+	return -1;
     }
 
 }

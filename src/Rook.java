@@ -19,7 +19,7 @@ public class Rook extends Piece
 	// TODO Auto-generated constructor stub
     }
 
-    public boolean canMove(Board board, Position p1, Position p2)
+    public int canMove(Board board, Position p1, Position p2)
     {
 	// for moving to an empty spot or an occupied spot
 	// check that p1 has a piece on it & both positions are valid
@@ -36,18 +36,18 @@ public class Rook extends Piece
 	    while (x < Board.SIZE)
 	    {
 		// current positions for all 4 directions
-		Position north = board.moveNorth(p1, x);
-		Position east = board.moveEast(p1, x);
-		Position south = board.moveSouth(p1, x);
-		Position west = board.moveWest(p1, x);
+		Position north = Board.moveNorth(p1, x);
+		Position east = Board.moveEast(p1, x);
+		Position south = Board.moveSouth(p1, x);
+		Position west = Board.moveWest(p1, x);
 
 		// if the position matches and the selec ted path is empty
 		if ((p2.equals(north) && npath) || (p2.equals(east) && epath) || (p2.equals(south) && spath)
 			|| (p2.equals(west) && wpath))
 		{
-		    if (isValidMove(board, p1, p2))
+		    if (isValidMove(board, p1, p2) > 0)
 		    {
-			return true;
+			return isValidMove(board, p1, p2);
 		    }
 		}
 
@@ -83,6 +83,6 @@ public class Rook extends Piece
 
 	    }
 	}
-	return false;
+	return -1;
     }
 }

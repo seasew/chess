@@ -39,10 +39,10 @@ public class Bishop extends Piece
 	    while (x < Board.SIZE)
 	    {
 		// the current positions for the 4 directions
-		Position ne = board.moveNorth(board.moveEast(p1, x), x);
-		Position nw = board.moveNorth(board.moveWest(p1, x), x);
-		Position se = board.moveSouth(board.moveEast(p1, x), x);
-		Position sw = board.moveSouth(board.moveWest(p1, x), x);
+		Position ne = Board.moveNE(p1, x);
+		Position nw = Board.moveNW(p1, x);
+		Position se = Board.moveSE(p1, x);
+		Position sw = Board.moveSW(p1, x);
 
 		// if the position matches a path and the selected path is
 		// empty(excluding the last piece)
