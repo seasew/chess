@@ -4,6 +4,7 @@ public class Pawn extends Piece
     public static final String ABBREV = "P";
     public static final String ID = "Pawn";
     private boolean isFirst;
+    private Position prevPawnMove;
 
     /**
      * Constructs a Pawn. <br>
@@ -22,6 +23,7 @@ public class Pawn extends Piece
     {
 	super(color, id);
 	isFirst = true;
+	prevPawnMove = null;
     }
 
     public boolean canMove(Board board, Position p1, Position p2)
@@ -84,6 +86,20 @@ public class Pawn extends Piece
     public void toggleFirst()
     {
 	isFirst = !isFirst;
+    }
+
+    /**
+     * Sets previous pawn move position to given postion.<br>
+     * The value is null if the previous move was not a pawn's double step. <br>
+     * The value is the position of the pawn after double step if the move was a
+     * double step.
+     * 
+     * @param pos
+     *            the position to set
+     */
+    public void setPrevPawnMove(Position pos)
+    {
+	prevPawnMove = pos;
     }
 
 }

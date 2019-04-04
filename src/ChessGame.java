@@ -8,6 +8,10 @@ public class ChessGame
     private Piece[] white;
     private Piece[] black;
 
+    // null if the prev move was not a 2-step pawn move
+    // if it was a 2-pawn, record where it moved to
+    private Position prevPawnMove;
+
     private ChessColor curChessColor;
 
     /**
@@ -31,6 +35,7 @@ public class ChessGame
      */
     public ChessGame()
     {
+	prevPawnMove = null;
 	curChessColor = ChessColor.WHITE;
 	// initalize a default board
 	board = new Board();
@@ -128,6 +133,14 @@ public class ChessGame
 	// First, check the default move method for the piece
 	boolean valid = piece1.canMove(board, p1, p2);
 
+	// Is it en passant?
+	if (piece1.ID.equals(Pawn.ID) && piece2.ID.equals(Pawn.ID) && prevPawnMove != null)
+	{
+	    // if the move is diagonal
+	    // if the move's destination p2 is 1 square north or south from
+	    // prevPawnMove
+	}
+
 	// The king is in check, so this move must be a move to block, kill, or
 	// move out of the way from the Check.
 	if (checks.length > 0)
@@ -149,7 +162,7 @@ public class ChessGame
 		    } else
 		    {
 			// EXIT
-			return "Error: " + p2 + " is being attacked. " + piece1 + " cannot move there.";
+			return "Error: " + p2 + " is currently attacked. " + piece1 + " cannot move there.";
 		    }
 		}
 		// Option 2: The move blocks or captures the piece that is
@@ -157,16 +170,19 @@ public class ChessGame
 		// This means there can only be one piece checking the king
 		else
 		{
-
 		    // if this move captures checking piece, if there is only
 		    // one piece checking, and if the move done is valid
 		    if (checks.length == 1 && board.getPos(checks[0]).equals(p2))
 		    {
 			// move piece with status update
 			out = board.movePiece(p1, p2);
+		    } else
+		    {
+			return "Error: The move from " + p1 + " to " + p2 + " does not block or capture the check.";
 		    }
 
 		}
+
 	    }
 	    // if the move is invalid
 	    else
@@ -178,8 +194,13 @@ public class ChessGame
 
 	// If not in check...
 	else
-
 	{
+	    // is it castling?
+	    // is it en passant?
+
+	    // move the piece if it is valid
+
+	    // update prevPawnMove if needed
 	}
 
 	// Promotion?
