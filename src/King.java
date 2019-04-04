@@ -25,10 +25,12 @@ public class King extends Piece
 	// check that p1 has a piece on it & both positions are valid
 	if (Board.isValid(p1) && Board.isValid(p2) && !board.isEmpty(p1))
 	{
-	    // king can only move N1, E1, S1, or W1
+	    // king can only move N1, E1, S1, W1, NE1, SE1, SW1, NW1
 	    // if p2 is any of these, then this is a valid move
-	    if (p2.equals(board.moveNorth(p1, 1)) || p2.equals(board.moveEast(p1, 1))
-		    || p2.equals(board.moveSouth(p1, 1)) || p2.equals(board.moveWest(p1, 1)))
+	    if (p2.equals(Board.moveNorth(p1, 1)) || p2.equals(Board.moveEast(p1, 1))
+		    || p2.equals(Board.moveSouth(p1, 1)) || p2.equals(Board.moveWest(p1, 1))
+		    || p2.equals(Board.moveNE(p1, 1)) || p2.equals(Board.moveSE(p1, 1))
+		    || p2.equals(Board.moveSW(p1, 1)) || p2.equals(Board.moveNW(p1, 1)))
 	    {
 		if (isValidMove(board, p1, p2) > 0)
 		{
