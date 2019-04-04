@@ -265,24 +265,60 @@ public class Board
 	return newPos;
     }
 
+    /**
+     * Returns the new Position if the given position was moved NE by x.
+     * 
+     * @param p
+     *            the position to move
+     * @param x
+     *            the amount to move
+     * @return the new position after moving west by x
+     */
     public static Position moveNE(Position p, int x)
     {
 	Position newPos = moveEast(moveNorth(p, x), x);
 	return newPos;
     }
 
+    /**
+     * Returns the new Position if the given position was moved SE by x.
+     * 
+     * @param p
+     *            the position to move
+     * @param x
+     *            the amount to move
+     * @return the new position after moving west by x
+     */
     public static Position moveSE(Position p, int x)
     {
 	Position newPos = moveEast(moveSouth(p, x), x);
 	return newPos;
     }
 
+    /**
+     * Returns the new Position if the given position was moved SW by x.
+     * 
+     * @param p
+     *            the position to move
+     * @param x
+     *            the amount to move
+     * @return the new position after moving west by x
+     */
     public static Position moveSW(Position p, int x)
     {
 	Position newPos = moveWest(moveSouth(p, x), x);
 	return newPos;
     }
 
+    /**
+     * Returns the new Position if the given position was moved NW by x.
+     * 
+     * @param p
+     *            the position to move
+     * @param x
+     *            the amount to move
+     * @return the new position after moving west by x
+     */
     public static Position moveNW(Position p, int x)
     {
 	Position newPos = moveWest(moveNorth(p, x), x);
