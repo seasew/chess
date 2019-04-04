@@ -74,7 +74,7 @@ public class ChessComp extends JComponent
 		if (curPiece != null)
 		{
 		    g2.setColor(swapGraphicsColor(color));
-		    g2.drawString(curPiece.getID(), (int) x + 20, (int) y + 40);
+		    g2.drawString(curPiece.toString(), (int) x + 20, (int) y + 40);
 		}
 
 		// update x value

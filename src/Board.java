@@ -115,7 +115,7 @@ public class Board
 	    for (int j = 0; j < SIZE; j++)
 	    {
 		Position cur = new Position(i, j);
-		if ((pieceAtPos(cur)).getID().equals(piece.getID()))
+		if ((pieceAtPos(cur)).equals(piece))
 		{
 		    return new Position(i, j);
 		}
@@ -159,24 +159,30 @@ public class Board
 
     /**
      * Moves a piece at the first position to the second. <br>
-     * Only if both positions are valid and p1 has a piece.<br>
+     * Returns a String in Standard Algebraic Notation describing the move. Only
+     * if both positions are valid and p1 has a piece.<br>
      * 
      * @param p1
      *            the Position corresponding to Piece to move
      * @param p2
      *            the new Position of the Piece
      */
-    public void movePiece(Position p1, Position p2)
+    public String movePiece(Position p1, Position p2)
     {
 	// check that the positions are on the board
 	// check that p1 has a piece on it
 	if (isValid(p1) && !isEmpty(p1))
 	{
-	    // moves the piece at p1 to p2
-	    putPiece(pieceAtPos(p1), p2);
+	    Piece piece1 = pieceAtPos(p1);
+	    // if p2 was moves the piece at p1 to p2
+	    putPiece(piece1, p2);
 	    putPiece(null, p1);
 
+	    return piece1 + " moved from " + p1 + " to " + p2
+		    + (isEmpty(p2) ? "." : ", capturing " + pieceAtPos(p2) + ".");
+
 	}
+	return "Error: Invalid move";
     }
 
     /**
@@ -287,7 +293,7 @@ public class Board
 		String buffer = "     ";
 		if (pieceboard[i][j] != null)
 		{
-		    id = pieceAtPos(cur).getID();
+		    id = pieceAtPos(cur).toString();
 		    // calculate the amount of extra space needed
 		    // if the id is too long, shorten it
 		    if (id.length() > 5)

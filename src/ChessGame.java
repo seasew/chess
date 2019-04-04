@@ -8,7 +8,6 @@ public class ChessGame
     private Piece[] white;
     private Piece[] black;
 
-    private boolean check;
     private ChessColor curChessColor;
 
     /**
@@ -32,7 +31,6 @@ public class ChessGame
      */
     public ChessGame()
     {
-	check = false;
 	curChessColor = ChessColor.WHITE;
 	// initalize a default board
 	board = new Board();
@@ -116,37 +114,36 @@ public class ChessGame
      */
     public String movePiece(Position p1, Position p2)
     {
-	String out = "ERROR: Blank String for movePiece(p1, p2)";
+	String out = "ERROR";
 
 	Piece piece1 = board.pieceAtPos(p1);
 	Piece piece2 = board.pieceAtPos(p2);
 
 	// find the position of the current color's king
 	Position kingPos = board.getPos(new King(curChessColor, curChessColor + "K"));
+	// if the curChessColor king is being checked right now
+	Piece[] checks = inCheck(kingPos, board.swapChessColor(curChessColor));
 
 	// Is it a valid move?
 	// First, check the default move method for the piece
 	boolean valid = piece1.canMove(board, p1, p2);
 
-	// is the move castling?
-
-	// is the move en passant?
-
-	// if the curChessColor king is being checked right now
-	Piece[] checks = inCheck(kingPos, board.swapChessColor(curChessColor));
+	// The king is in check, so this move must be a move to block, kill, or
+	// move out of the way from the Check.
 	if (checks.length > 0)
 	{
 	    // Option 1: The king moves to a position that is not 'checked'
-	    // by moving into an empty spot
-	    // or capturing a piece that is checking it
-	    // if the starting position refers to the current king
-	    if (p1.equals(kingPos))
+	    // -King moves into unchecked spot: the move must still be valid
+	    // ???: is the king being moved? is it a valid king move?
+	    if (p1.equals(kingPos) && valid)
 	    {
 		// then, see if p2 is a position that is not checked
 		if (inCheck(p2, board.swapChessColor(curChessColor)).length == 0)
 		{
 		    // king is allowed to move there
 		    board.movePiece(p1, p2);
+		    // return status update
+
 		}
 	    }
 
@@ -156,12 +153,6 @@ public class ChessGame
 	// If not in check...
 	else
 	{
-	    // move the piece if the move is valid
-	    if (valid)
-	    {
-		board.movePiece(p1, p2);
-		out = piece1.getID() + " moved from " + p1 + " to " + p2;
-	    }
 	}
 
 	// Promotion?
