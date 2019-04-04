@@ -52,28 +52,52 @@ public class Pawn extends Piece
 		}
 	    }
 	}
-
 	// this part is for killing an opponent in a diagonal spot
-	if (Board.isValid(p1) && !board.isEmpty(p2) && !board.isEmpty(p1))
+	else if (Board.isValid(p1) && Board.isValid(p2) && !board.isEmpty(p2) && !board.isEmpty(p1))
 	{
-	    // if it is a white pawn and p2 equals 1 move NE or 1 move NW
-	    if ((getChessColor() == ChessColor.WHITE) && (p2.equals(board.moveNorth(board.moveEast(p1, 1), 1))
-		    || p2.equals(board.moveNorth(board.moveWest(p1, 1), 1))))
+	    if (isDiagonalMove(board, p1, p2))
 	    {
-		if (isValidMove(board, p1, p2))
-		{
-		    return true;
-		}
+		return true;
 	    }
-
-	    // if it is a black pawn and p2 equals 1 move SE or 1 move SW
-	    if ((getChessColor() == ChessColor.BLACK) && (p2.equals(board.moveSouth(board.moveEast(p1, 1), 1))
-		    || p2.equals(board.moveSouth(board.moveWest(p1, 1), 1))))
+	}
+	// this part is for en passant
+	// p2 is empty, p1 has a pawn on it
+	else if (board.isEmpty(p2) && !board.isEmpty(p1) && Board.isValid(p1) && prevPawnMove != null
+		&& isDiagonalMove(board, p1, p2))
+	{
+	    // the color of the piece that may be captured
+	    ChessColor pieceColor = board.pieceAtPos(prevPawnMove).getChessColor();
+	    // if piece to capture is white, then it is north of p2
+	    // if piece to capture is black, then it is south of p2
+	    if ((pieceColor == ChessColor.WHITE && prevPawnMove.equals(board.moveNorth(p2, 1)))
+		    || (pieceColor == ChessColor.BLACK && prevPawnMove.equals(board.moveSouth(p2, 1))))
 	    {
-		if (isValidMove(board, p1, p2))
-		{
-		    return true;
-		}
+		//
+	    }
+	}
+
+	return false;
+    }
+
+    private boolean isDiagonalMove(Board board, Position p1, Position p2)
+    {
+	// if it is a white pawn and p2 equals 1 move NE or 1 move NW
+	if ((getChessColor() == ChessColor.WHITE) && (p2.equals(board.moveNorth(board.moveEast(p1, 1), 1))
+		|| p2.equals(board.moveNorth(board.moveWest(p1, 1), 1))))
+	{
+	    if (isValidMove(board, p1, p2))
+	    {
+		return true;
+	    }
+	}
+
+	// if it is a black pawn and p2 equals 1 move SE or 1 move SW
+	if ((getChessColor() == ChessColor.BLACK) && (p2.equals(board.moveSouth(board.moveEast(p1, 1), 1))
+		|| p2.equals(board.moveSouth(board.moveWest(p1, 1), 1))))
+	{
+	    if (isValidMove(board, p1, p2))
+	    {
+		return true;
 	    }
 	}
 
