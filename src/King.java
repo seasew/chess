@@ -30,14 +30,14 @@ public class King extends Piece
 	    if (p2.equals(board.moveNorth(p1, 1)) || p2.equals(board.moveEast(p1, 1))
 		    || p2.equals(board.moveSouth(p1, 1)) || p2.equals(board.moveWest(p1, 1)))
 	    {
-		if (isValidMove(board, p1, p2))
+		if (isValidMove(board, p1, p2) > 0)
 		{
-		    return true;
+		    return isValidMove(board, p1, p2);
 		}
 	    }
 	}
 
-	return false;
+	return -1;
     }
 
 }

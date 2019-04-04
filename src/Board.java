@@ -210,7 +210,7 @@ public class Board
      *            the amount to move
      * @return the new position after moving north by x
      */
-    public Position moveNorth(Position p, int x)
+    public static Position moveNorth(Position p, int x)
     {
 	// calculate the new position after moving North on board by x
 	Position newPos = new Position(p.getI() - x, p.getJ());
@@ -226,7 +226,7 @@ public class Board
      *            the amount to move
      * @return the new position after moving east by x
      */
-    public Position moveEast(Position p, int x)
+    public static Position moveEast(Position p, int x)
     {
 	// calculate the new position after moving East on board by x
 	Position newPos = new Position(p.getI(), p.getJ() + x);
@@ -242,7 +242,7 @@ public class Board
      *            the amount to move
      * @return the new position after moving south by x
      */
-    public Position moveSouth(Position p, int x)
+    public static Position moveSouth(Position p, int x)
     {
 	// calculate the new position after moving South on board by x
 	Position newPos = new Position(p.getI() + x, p.getJ());
@@ -258,10 +258,34 @@ public class Board
      *            the amount to move
      * @return the new position after moving west by x
      */
-    public Position moveWest(Position p, int x)
+    public static Position moveWest(Position p, int x)
     {
 	// calculate the new position after moving West on board by x
 	Position newPos = new Position(p.getI(), p.getJ() - x);
+	return newPos;
+    }
+
+    public static Position moveNE(Position p, int x)
+    {
+	Position newPos = moveEast(moveNorth(p, x), x);
+	return newPos;
+    }
+
+    public static Position moveSE(Position p, int x)
+    {
+	Position newPos = moveEast(moveSouth(p, x), x);
+	return newPos;
+    }
+
+    public static Position moveSW(Position p, int x)
+    {
+	Position newPos = moveWest(moveSouth(p, x), x);
+	return newPos;
+    }
+
+    public static Position moveNW(Position p, int x)
+    {
+	Position newPos = moveWest(moveNorth(p, x), x);
 	return newPos;
     }
 
