@@ -114,7 +114,7 @@ public class ChessGame
      */
     public String movePiece(Position p1, Position p2)
     {
-	String out = "ERROR";
+	String out = "Error";
 
 	Piece piece1 = board.pieceAtPos(p1);
 	Piece piece2 = board.pieceAtPos(p2);
@@ -135,20 +135,37 @@ public class ChessGame
 	    // Option 1: The king moves to a position that is not 'checked'
 	    // -King moves into unchecked spot: the move must still be valid
 	    // ???: is the king being moved? is it a valid king move?
-	    if (p1.equals(kingPos) && valid)
+	    if (p1.equals(kingPos))
 	    {
-		// then, see if p2 is a position that is not checked
-		if (inCheck(p2, board.swapChessColor(curChessColor)).length == 0)
+		if (valid)
 		{
-		    // king is allowed to move there
-		    board.movePiece(p1, p2);
-		    // return status update
-
+		    // then, see if p2 is a position that is not checked
+		    if (inCheck(p2, board.swapChessColor(curChessColor)).length == 0)
+		    {
+			// king is allowed to move there
+			board.movePiece(p1, p2);
+			// return status update
+			out = board.movePiece(p1, p2);
+		    } else
+		    {
+			return "Error: " + p2 + " is being attacked. " + piece1 + " cannot move there.";
+		    }
+		} else
+		{
+		    return "Error: " + p1 + " to " + p2 + " is an invalid move for " + piece1 + ".";
 		}
 	    }
-
 	    // Option 2: The move blocks or captures the piece that is checking
 	    // the king
+	    else
+	    {
+		// for each of the pieces that are checking the king
+		for (int i = 0; i < checks.length; i++)
+		{
+		    // if the checking piece has the same position as the destination for this move
+		    if ()
+		}
+	    }
 	}
 	// If not in check...
 	else
@@ -162,13 +179,14 @@ public class ChessGame
 
 	}
 
-	// Is there check after this move?
-	// Is there a checkmate after this move?
+	// Is the other color in check?
+	// If so, can the other color play any moves to get out of check?
+	//
 
 	// change color
 	curChessColor = board.swapChessColor(curChessColor);
 
-	return null;
+	return out;
     }
 
     /**
