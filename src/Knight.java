@@ -23,8 +23,9 @@ public class Knight extends Piece
 	// TODO Auto-generated constructor stub
     }
 
-    public boolean canMove(Board board, Position p1, Position p2)
+    public int canMove(Board board, Position p1, Position p2)
     {
+	int isValidMove = isValidMove(board, p1, p2);
 	// for moving to an empty spot or an occupied spot
 	// check that p1 has a piece on it & both positions are valid
 	if (Board.isValid(p1) && Board.isValid(p2) && !board.isEmpty(p1))
@@ -33,9 +34,9 @@ public class Knight extends Piece
 	    // check 1W and 1E for North
 	    if (p2.equals(board.moveWest(twoMoves, 1)) || p2.equals(board.moveEast(twoMoves, 1)))
 	    {
-		if (isValidMove(board, p1, p2))
+		if (isValidMove > 0)
 		{
-		    return true;
+		    return isValidMove;
 		}
 	    }
 
@@ -43,9 +44,9 @@ public class Knight extends Piece
 	    // check 1W and 1E for South
 	    if (p2.equals(board.moveWest(twoMoves, 1)) || p2.equals(board.moveEast(twoMoves, 1)))
 	    {
-		if (isValidMove(board, p1, p2))
+		if (isValidMove > 0)
 		{
-		    return true;
+		    return isValidMove;
 		}
 	    }
 
@@ -53,9 +54,9 @@ public class Knight extends Piece
 	    // check 1N and 1S for East
 	    if (p2.equals(board.moveNorth(twoMoves, 1)) || p2.equals(board.moveSouth(twoMoves, 1)))
 	    {
-		if (isValidMove(board, p1, p2))
+		if (isValidMove > 0)
 		{
-		    return true;
+		    return isValidMove;
 		}
 	    }
 
@@ -63,12 +64,12 @@ public class Knight extends Piece
 	    // check 1N and 1S for West
 	    if (p2.equals(board.moveNorth(twoMoves, 1)) || p2.equals(board.moveSouth(twoMoves, 1)))
 	    {
-		if (isValidMove(board, p1, p2))
+		if (isValidMove > 0)
 		{
-		    return true;
+		    return isValidMove;
 		}
 	    }
 	}
-	return false;
+	return -1;
     }
 }

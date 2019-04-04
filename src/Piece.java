@@ -20,8 +20,15 @@ public abstract class Piece
     }
 
     /**
-     * Returns whether or not a Piece can move to the new position, given the
-     * Piece's specific requirements.
+     * Returns a positive integer if a Piece can move to the new position, given
+     * the Piece's specific requirements.<br>
+     * The integer can be: <br>
+     * -1: cannot move there<br>
+     * 0: can move, into an empty spot<br>
+     * 1: can move, to capture<br>
+     * For Pawns:<br>
+     * 2: can move, is a double-step <br>
+     * 3: can move, is en passant
      * 
      * @param board
      *            the board that the Positions are on
@@ -31,7 +38,7 @@ public abstract class Piece
      *            the position that the piece should move to
      * @return true if the move is valid for the piece, false if not
      */
-    public abstract boolean canMove(Board board, Position p1, Position p2);
+    public abstract int canMove(Board board, Position p1, Position p2);
 
     /**
      * Returns the color of the piece.
@@ -62,7 +69,7 @@ public abstract class Piece
      *            the second position refering to the place to move to
      * @return true if the above requirements are met, false if not
      */
-    protected boolean isValidMove(Board board, Position p1, Position p2)
+    protected int isValidMove(Board board, Position p1, Position p2)
     {
 	// it can capture when...
 	// p1 is occupied and p2 is occupied
@@ -76,16 +83,16 @@ public abstract class Piece
 	    // if the colors are opposite
 	    if (board.pieceAtPos(p1).getChessColor() == board.swapChessColor(board.pieceAtPos(p2).getChessColor()))
 	    {
-		return true;
+		return 1;
 	    }
 	}
 	// if this move is into an empty spot, then return true
 	else
 	{
-	    return true;
+	    return 0;
 	}
 
-	return false;
+	return -1;
     }
 
     @Override

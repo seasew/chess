@@ -195,12 +195,20 @@ public class ChessGame
 	// If not in check...
 	else
 	{
-	    // is it castling?
-	    // is it en passant?
+	    Position ppm = null;
+	    
+	    if (valid && )
+
+	    // castling? 	
 
 	    // move the piece if it is valid
 
 	    // update prevPawnMove if needed
+	    for (int i = 0; i < Board.SIZE; i++)
+	    {
+		((Pawn) white[i]).setPrevPawnMove();
+		((Pawn) white[i]).setPrevPawnMove();
+	    }
 	}
 
 	// Promotion?

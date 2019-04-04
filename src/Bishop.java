@@ -19,7 +19,7 @@ public class Bishop extends Piece
 	// TODO Auto-generated constructor stub
     }
 
-    public boolean canMove(Board board, Position p1, Position p2)
+    public int canMove(Board board, Position p1, Position p2)
     {
 	// for moving to an empty spot or an occupied spot
 	// p1 has a piece on it and both positions are valid
@@ -49,9 +49,9 @@ public class Bishop extends Piece
 		if ((p2.equals(ne) && nepath) || (p2.equals(nw) && nwpath) || (p2.equals(se) && sepath)
 			|| (p2.equals(sw) && swpath))
 		{
-		    if (isValidMove(board, p1, p2))
+		    if (isValidMove(board, p1, p2) > 0)
 		    {
-			return true;
+			return isValidMove(board, p1, p2);
 		    }
 		}
 
@@ -87,7 +87,7 @@ public class Bishop extends Piece
 	    }
 	}
 
-	return false;
+	return -1;
     }
 
 }

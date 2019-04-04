@@ -19,7 +19,7 @@ public class King extends Piece
 	// TODO Auto-generated constructor stub
     }
 
-    public boolean canMove(Board board, Position p1, Position p2)
+    public int canMove(Board board, Position p1, Position p2)
     {
 	// for moving to an empty spot or an occupied spot
 	// check that p1 has a piece on it & both positions are valid
