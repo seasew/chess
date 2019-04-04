@@ -132,43 +132,53 @@ public class ChessGame
 	// move out of the way from the Check.
 	if (checks.length > 0)
 	{
-	    // Option 1: The king moves to a position that is not 'checked'
-	    // -King moves into unchecked spot: the move must still be valid
-	    // ???: is the king being moved? is it a valid king move?
-	    if (p1.equals(kingPos))
+	    // for this, all moves must be valid because there is no castling
+	    // when the king is in check
+	    if (valid)
 	    {
-		if (valid)
+		// Option 1: The king moves to a position that is not 'checked'
+		// -King moves into unchecked spot: the move must still be valid
+		// ???: is the king being moved? is it a valid king move?
+		if (p1.equals(kingPos))
 		{
 		    // then, see if p2 is a position that is not checked
 		    if (inCheck(p2, board.swapChessColor(curChessColor)).length == 0)
 		    {
-			// king is allowed to move there
-			board.movePiece(p1, p2);
-			// return status update
+			// move piece with status update
 			out = board.movePiece(p1, p2);
 		    } else
 		    {
+			// EXIT
 			return "Error: " + p2 + " is being attacked. " + piece1 + " cannot move there.";
 		    }
-		} else
+		}
+		// Option 2: The move blocks or captures the piece that is
+		// checking the king
+		// This means there can only be one piece checking the king
+		else
 		{
-		    return "Error: " + p1 + " to " + p2 + " is an invalid move for " + piece1 + ".";
+
+		    // if this move captures checking piece, if there is only
+		    // one piece checking, and if the move done is valid
+		    if (checks.length == 1 && board.getPos(checks[0]).equals(p2))
+		    {
+			// move piece with status update
+			out = board.movePiece(p1, p2);
+		    }
+
 		}
 	    }
-	    // Option 2: The move blocks or captures the piece that is checking
-	    // the king
+	    // if the move is invalid
 	    else
 	    {
-		// for each of the pieces that are checking the king
-		for (int i = 0; i < checks.length; i++)
-		{
-		    // if the checking piece has the same position as the destination for this move
-		    if ()
-		}
+		// EXIT
+		return "Error: " + p1 + " to " + p2 + " is an invalid move for " + piece1 + ".";
 	    }
 	}
+
 	// If not in check...
 	else
+
 	{
 	}
 
