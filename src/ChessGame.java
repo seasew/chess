@@ -205,9 +205,11 @@ public class ChessGame
 			&& ((King) piece1).isFirst())
 		{
 		    Position rookPos;
+		    Position addPos;
 		    // if the king is moving to the left
 		    if (p2.getJ() < Board.SIZE / 2)
 		    {
+			addPos = new Position(0, -1);
 			if (curChessColor == ChessColor.WHITE)
 			{
 			    rookPos = new Position(Board.SIZE - 1, 0);
@@ -219,6 +221,7 @@ public class ChessGame
 		    // if the king is moving to the right
 		    else
 		    {
+			addPos = new Position(0, 1);
 			if (curChessColor == ChessColor.WHITE)
 			{
 			    rookPos = new Position(Board.SIZE - 1, Board.SIZE - 1);
@@ -232,7 +235,21 @@ public class ChessGame
 		    // also check that it is the first move of Rook
 		    if (board.pieceAtPos(rookPos).ID.equals(Rook.ID) && ((Rook) board.pieceAtPos(rookPos)).isFirst())
 		    {
+			// Check the two squares between
+			boolean canCastle = true;
+			Position cur = p1;
+			for (int i = 0; i < 2; i++)
+			{
+			    // check the next square
+			    cur = Position.addPos(cur, addPos);
 
+			    // is it empty?
+			    // is it in check?
+			    if (!(board.isEmpty(cur) && inCheck(cur, board.swapChessColor(curChessColor)).length == 0))
+			    {
+
+			    }
+			}
 		    } else
 		    {
 			return errorMsg;

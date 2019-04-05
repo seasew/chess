@@ -192,7 +192,7 @@ public class Board
      *            the color to change
      * @return the new color
      */
-    public ChessColor swapChessColor(ChessColor c)
+    public static ChessColor swapChessColor(ChessColor c)
     {
 	if (c == ChessColor.WHITE)
 	{
