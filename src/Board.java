@@ -115,7 +115,7 @@ public class Board
 	    for (int j = 0; j < SIZE; j++)
 	    {
 		Position cur = new Position(i, j);
-		if ((pieceAtPos(cur)).equals(piece))
+		if (pieceAtPos(cur) != null && (pieceAtPos(cur)).equals(piece))
 		{
 		    return new Position(i, j);
 		}
@@ -159,8 +159,8 @@ public class Board
 
     /**
      * Moves a piece at the first position to the second. <br>
-     * Returns a String in Standard Algebraic Notation describing the move. Only
-     * if both positions are valid and p1 has a piece.<br>
+     * Returns a String describing the move. Only if both positions are valid
+     * and p1 has a piece.<br>
      * 
      * @param p1
      *            the Position corresponding to Piece to move
@@ -174,12 +174,14 @@ public class Board
 	if (isValid(p1) && !isEmpty(p1))
 	{
 	    Piece piece1 = pieceAtPos(p1);
-	    // if p2 was moves the piece at p1 to p2
+
+	    String out = piece1 + " moved from " + p1 + " to " + p2
+		    + (isEmpty(p2) ? "." : ", capturing " + pieceAtPos(p2) + ".");
+
 	    putPiece(piece1, p2);
 	    putPiece(null, p1);
 
-	    return piece1 + " moved from " + p1 + " to " + p2
-		    + (isEmpty(p2) ? "." : ", capturing " + pieceAtPos(p2) + ".");
+	    return out;
 
 	}
 	return "Error: Invalid move";
@@ -331,20 +333,13 @@ public class Board
 	String spacer = "  +-----+-----+-----+-----+-----+-----+-----+-----+\n";
 	String out = "";
 
-	// add the numbers for the col
-	for (int i = 0; i < SIZE; i++)
-	{
-	    out += "     " + i;
-	}
-	out += "\n";
-
 	// add the first line
 	out += spacer;
 
 	for (int i = 0; i < SIZE; i++)
 	{
 	    // add the row label
-	    out += i + " |";
+	    out += (new Position(i, 0).iToString()) + " |";
 	    for (int j = 0; j < SIZE; j++)
 	    {
 		Position cur = new Position(i, j);
@@ -373,6 +368,12 @@ public class Board
 
 	    // add a line
 	    out += "\n" + spacer;
+	}
+
+	// add the numbers for the col
+	for (int j = 0; j < SIZE; j++)
+	{
+	    out += "     " + (new Position(0, j).jToString());
 	}
 
 	return out + "\n";

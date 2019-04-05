@@ -131,7 +131,7 @@ public class ChessGame
 	}
 
 	// find the position of the current color's king
-	Position kingPos = board.getPos(new King(curChessColor, curChessColor + "K"));
+	Position kingPos = board.getPos(new King(curChessColor, curChessColor.getAbbrev() + "K"));
 	// if the curChessColor king is being checked right now
 	Piece[] checks = inCheck(kingPos, Board.swapChessColor(curChessColor));
 
