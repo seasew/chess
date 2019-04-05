@@ -124,6 +124,14 @@ public class ChessGame
 	Piece piece1 = board.pieceAtPos(p1);
 	Piece piece2 = board.pieceAtPos(p2);
 
+	String errorMsg = "Error: " + p1 + " to " + p2 + " is an invalid move for " + piece1 + ".";
+
+	// basic checks
+	if (board.isEmpty(p1))
+	{
+	    return "Error: Please select a square with a piece on it.";
+	}
+
 	// find the position of the current color's king
 	Position kingPos = board.getPos(new King(curChessColor, curChessColor + "K"));
 	// if the curChessColor king is being checked right now
@@ -180,7 +188,7 @@ public class ChessGame
 	    else
 	    {
 		// EXIT
-		return "Error: " + p1 + " to " + p2 + " is an invalid move for " + piece1 + ".";
+		return errorMsg;
 	    }
 	}
 
@@ -189,10 +197,54 @@ public class ChessGame
 	{
 	    Position prevPawnMove = null;
 
-	    // castling
+	    // castling is a 2 square movement for the king
+	    if (valid < 0)
+	    {
+		// the piece being moved is the king
+		if ((p1.equals(Board.moveEast(p2, 2)) || p1.equals(Board.moveWest(p2, 2))) && piece1.ID.equals(King.ID)
+			&& ((King) piece1).isFirst())
+		{
+		    Position rookPos;
+		    // if the king is moving to the left
+		    if (p2.getJ() < Board.SIZE / 2)
+		    {
+			if (curChessColor == ChessColor.WHITE)
+			{
+			    rookPos = new Position(Board.SIZE - 1, 0);
+			} else
+			{
+			    rookPos = new Position(0, 0);
+			}
+		    }
+		    // if the king is moving to the right
+		    else
+		    {
+			if (curChessColor == ChessColor.WHITE)
+			{
+			    rookPos = new Position(Board.SIZE - 1, Board.SIZE - 1);
+			} else
+			{
+			    rookPos = new Position(0, Board.SIZE - 1);
+			}
+		    }
 
+		    // check if the piece at rookPos is a Rook
+		    // also check that it is the first move of Rook
+		    if (board.pieceAtPos(rookPos).ID.equals(Rook.ID) && ((Rook) board.pieceAtPos(rookPos)).isFirst())
+		    {
+
+		    } else
+		    {
+			return errorMsg;
+		    }
+
+		} else
+		{
+		    return errorMsg;
+		}
+	    }
 	    // move the piece if it is valid
-	    if (valid > 0)
+	    else if (valid > 0)
 	    {
 		out = board.movePiece(p1, p2);
 
@@ -208,9 +260,7 @@ public class ChessGame
 		if (valid == 3)
 		{
 		    // set the captured piece to null
-		    // movePiece only will move the attacking pawn into the
-		    // empty spot
-
+		    board.putPiece(null, Pawn.getEnPassant(board, p2));
 		}
 	    }
 
@@ -224,14 +274,13 @@ public class ChessGame
 
 	// Promotion?
 	// if the piece moved was a pawn
-	if ((piece1.ID == Pawn.ID))
+	if (piece1.ID == Pawn.ID)
 	{
 
 	}
 
 	// Is the other color in check?
 	// If so, can the other color play any moves to get out of check?
-	//
 
 	// change color
 	curChessColor = board.swapChessColor(curChessColor);

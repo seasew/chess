@@ -4,6 +4,7 @@ public class King extends Piece
 
     public static final String ABBREV = "K";
     public static final String ID = "King";
+    private boolean isFirst;
 
     /**
      * Constructs a new King. <br>
@@ -16,7 +17,7 @@ public class King extends Piece
     public King(ChessColor color, String id)
     {
 	super(color, id);
-	// TODO Auto-generated constructor stub
+	isFirst = true;
     }
 
     public int canMove(Board board, Position p1, Position p2)
@@ -42,4 +43,21 @@ public class King extends Piece
 	return -1;
     }
 
+    /**
+     * Changes the value of isFirst.
+     */
+    public void toggleFirst()
+    {
+	isFirst = !isFirst;
+    }
+
+    /**
+     * Returns isFirst.
+     * 
+     * @return isFirst
+     */
+    public boolean isFirst()
+    {
+	return isFirst;
+    }
 }

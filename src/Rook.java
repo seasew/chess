@@ -5,6 +5,8 @@ public class Rook extends Piece
     public static final String ABBREV = "R";
     public static final String ID = "Rook";
 
+    private boolean isFirst;
+
     /**
      * Constructs a new Rook. <br>
      * Moving Requirements: It can move up, down, left, or right<br>
@@ -16,7 +18,7 @@ public class Rook extends Piece
     public Rook(ChessColor color, String id)
     {
 	super(color, id);
-	// TODO Auto-generated constructor stub
+	isFirst = true;
     }
 
     public int canMove(Board board, Position p1, Position p2)
@@ -84,5 +86,23 @@ public class Rook extends Piece
 	    }
 	}
 	return -1;
+    }
+
+    /**
+     * Changes the value of isFirst.
+     */
+    public void toggleFirst()
+    {
+	isFirst = !isFirst;
+    }
+
+    /**
+     * Returns isFirst.
+     * 
+     * @return isFirst
+     */
+    public boolean isFirst()
+    {
+	return isFirst;
     }
 }

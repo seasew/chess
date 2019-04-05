@@ -59,6 +59,19 @@ public class Position
     }
 
     /**
+     * Adds this position with the given position.
+     * 
+     * @param pos1
+     *            the first position
+     * @param pos2
+     *            the second position
+     */
+    public static Position addPos(Position pos1, Position pos2)
+    {
+	return new Position(pos1.getI() + pos2.getI(), pos1.getJ() + pos2.getJ());
+    }
+
+    /**
      * Returns the string representation of i (row number).<br>
      * 1 to 8
      * 
