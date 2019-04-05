@@ -131,15 +131,7 @@ public class ChessGame
 
 	// Is it a valid move?
 	// First, check the default move method for the piece
-	boolean valid = piece1.canMove(board, p1, p2);
-
-	// Is it en passant?
-	if (piece1.ID.equals(Pawn.ID) && piece2.ID.equals(Pawn.ID) && prevPawnMove != null)
-	{
-	    // if the move is diagonal
-	    // if the move's destination p2 is 1 square north or south from
-	    // prevPawnMove
-	}
+	int valid = piece1.canMove(board, p1, p2);
 
 	// The king is in check, so this move must be a move to block, kill, or
 	// move out of the way from the Check.
@@ -147,7 +139,7 @@ public class ChessGame
 	{
 	    // for this, all moves must be valid because there is no castling
 	    // when the king is in check
-	    if (valid)
+	    if (valid > 0)
 	    {
 		// Option 1: The king moves to a position that is not 'checked'
 		// -King moves into unchecked spot: the move must still be valid
@@ -195,19 +187,38 @@ public class ChessGame
 	// If not in check...
 	else
 	{
-	    Position ppm = null;
-	    
-	    if (valid && )
+	    Position prevPawnMove = null;
 
-	    // castling? 	
+	    // castling
 
 	    // move the piece if it is valid
+	    if (valid > 0)
+	    {
+		out = board.movePiece(p1, p2);
+
+		// if the move was a pawn's double-step
+		if (valid == 2)
+		{
+		    // update ppm
+		    prevPawnMove = p2;
+		    ((Pawn) piece1).toggleFirst();
+		}
+
+		// if the move was en passant
+		if (valid == 3)
+		{
+		    // set the captured piece to null
+		    // movePiece only will move the attacking pawn into the
+		    // empty spot
+
+		}
+	    }
 
 	    // update prevPawnMove if needed
 	    for (int i = 0; i < Board.SIZE; i++)
 	    {
-		((Pawn) white[i]).setPrevPawnMove();
-		((Pawn) white[i]).setPrevPawnMove();
+		((Pawn) white[i]).setPrevPawnMove(prevPawnMove);
+		((Pawn) white[i]).setPrevPawnMove(prevPawnMove);
 	    }
 	}
 
@@ -267,7 +278,7 @@ public class ChessGame
 	for (int i = 0; i < NPIECES; i++)
 	{
 	    // if it can move to pos, then the position is in check
-	    if (pieces[i].canMove(board, board.getPos(pieces[i]), pos))
+	    if (pieces[i].canMove(board, board.getPos(pieces[i]), pos) > 0)
 	    {
 		list.add(pieces[i]);
 	    }

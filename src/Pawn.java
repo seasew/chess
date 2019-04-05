@@ -114,6 +114,34 @@ public class Pawn extends Piece
     }
 
     /**
+     * Returns the position of the pawn that en passant captures.<br>
+     * Uses p2 (the destination of the en passant move) to calculate the pawn to
+     * capture.<br>
+     * En passant move must have already been done.
+     * 
+     * @param board
+     *            the board
+     * @param p2
+     *            the destination of the en pasant
+     * @return the position of the captured pawn
+     */
+    public static Position getEnPassant(Board board, Position p2)
+    {
+	// if the attacking color is white
+	if (board.pieceAtPos(p2).getChessColor() == ChessColor.WHITE)
+	{
+	    // the captured piece is 1 South of p2
+	    return Board.moveSouth(p2, 1);
+	}
+	// if the attacking color is black
+	else
+	{
+	    // the captured piece is 1 North of p2
+	    return Board.moveNorth(p2, 1);
+	}
+    }
+
+    /**
      * Changes the value of isFirst.
      */
     public void toggleFirst()
