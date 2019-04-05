@@ -375,6 +375,6 @@ public class Board
 	    out += "\n" + spacer;
 	}
 
-	return out;
+	return out + "\n";
     }
 }

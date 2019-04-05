@@ -84,9 +84,7 @@ public class ChessGame
 	    }
 	    board.putPiece(white[i], new Position(curWRow, curCol));
 
-	    System.out.println(new Position(curWRow, curCol));
 	    board.putPiece(black[i], new Position(curBRow, curCol));
-	    System.out.println(new Position(curBRow, curCol));
 
 	    curCol = (curCol + 1) % 8;
 
@@ -418,5 +416,12 @@ public class ChessGame
     public static int getBoardSize()
     {
 	return Board.SIZE;
+    }
+
+    @Override
+    public String toString()
+    {
+	String out = "Current Color: " + curChessColor + "\n";
+	return out + board;
     }
 }
