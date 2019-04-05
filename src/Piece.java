@@ -81,7 +81,7 @@ public abstract class Piece
 	if (!board.isEmpty(p2))
 	{
 	    // if the colors are opposite
-	    if (board.pieceAtPos(p1).getChessColor() == board.swapChessColor(board.pieceAtPos(p2).getChessColor()))
+	    if (board.pieceAtPos(p1).getChessColor() == Board.swapChessColor(board.pieceAtPos(p2).getChessColor()))
 	    {
 		return 1;
 	    }

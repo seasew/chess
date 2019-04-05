@@ -135,7 +135,7 @@ public class ChessGame
 	// find the position of the current color's king
 	Position kingPos = board.getPos(new King(curChessColor, curChessColor + "K"));
 	// if the curChessColor king is being checked right now
-	Piece[] checks = inCheck(kingPos, board.swapChessColor(curChessColor));
+	Piece[] checks = inCheck(kingPos, Board.swapChessColor(curChessColor));
 
 	// Is it a valid move?
 	// First, check the default move method for the piece
@@ -155,7 +155,7 @@ public class ChessGame
 		if (p1.equals(kingPos))
 		{
 		    // then, see if p2 is a position that is not checked
-		    if (inCheck(p2, board.swapChessColor(curChessColor)).length == 0)
+		    if (inCheck(p2, Board.swapChessColor(curChessColor)).length == 0)
 		    {
 			// move piece with status update
 			out = board.movePiece(p1, p2);
@@ -243,13 +243,25 @@ public class ChessGame
 			    // check the next square
 			    cur = Position.addPos(cur, addPos);
 
-			    // is it empty?
-			    // is it in check?
-			    if (!(board.isEmpty(cur) && inCheck(cur, board.swapChessColor(curChessColor)).length == 0))
+			    // if both conditions are not met
+			    if (!(board.isEmpty(cur) && inCheck(cur, Board.swapChessColor(curChessColor)).length == 0))
 			    {
-
+				canCastle = false;
+				break;
 			    }
 			}
+
+			if (canCastle)
+			{
+			    // move the rook to 1 right or 1 left of the King
+			    board.movePiece(rookPos, Position.addPos(addPos, p1));
+			    // move the king to 2 addPos of the cur king
+			    board.movePiece(p1, Position.addPos(Position.addPos(addPos, addPos), p1));
+			} else
+			{
+			    return errorMsg;
+			}
+
 		    } else
 		    {
 			return errorMsg;
@@ -300,7 +312,7 @@ public class ChessGame
 	// If so, can the other color play any moves to get out of check?
 
 	// change color
-	curChessColor = board.swapChessColor(curChessColor);
+	curChessColor = Board.swapChessColor(curChessColor);
 
 	return out;
     }
