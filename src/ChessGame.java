@@ -165,7 +165,7 @@ public class ChessGame
 					if (inCheck(p2, Board.swapChessColor(curChessColor)).length == 0)
 					{
 						// move piece with status update
-						out = getMoveMsg(p1, p2, false);
+						out = getMoveMsg(p1, p2, false) + ".";
 					} else
 					{
 						// EXIT
@@ -265,7 +265,7 @@ public class ChessGame
 							// move the king to 2 addPos of the cur king
 							board.movePiece(p1, Position.addPos(Position.addPos(addPos, addPos), p1));
 
-							out = getMoveMsg(p1, p2, false) + ", castling with " + board.pieceAtPos(rookPos);
+							out = getMoveMsg(p1, p2, false) + ", castling with " + board.pieceAtPos(rookPos) + ".";
 						} else
 						{
 							return ERROR_MSG;
@@ -334,7 +334,7 @@ public class ChessGame
 		// capturing message
 		if (enPassant || !board.isEmpty(p2))
 		{
-			return out + ", capturing the pawn";
+			return out + ", capturing the pawn.";
 		}
 
 		// moving into empty spot message
