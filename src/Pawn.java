@@ -95,7 +95,7 @@ public class Pawn extends Piece
 	// if it is a white pawn and p2 equals 1 move NE or 1 move NW
 	if ((getChessColor() == ChessColor.WHITE) && (p2.equals(Board.moveNE(p1, 1)) || p2.equals(Board.moveNW(p1, 1))))
 	{
-	    if (isValidMove(board, p1, p2) > 0)
+	    if (isValidMove(board, p1, p2) >= 0)
 	    {
 		return true;
 	    }
@@ -104,7 +104,7 @@ public class Pawn extends Piece
 	// if it is a black pawn and p2 equals 1 move SE or 1 move SW
 	if ((getChessColor() == ChessColor.BLACK) && (p2.equals(Board.moveSE(p1, 1)) || p2.equals(Board.moveSW(p1, 1))))
 	{
-	    if (isValidMove(board, p1, p2) > 0)
+	    if (isValidMove(board, p1, p2) >= 0)
 	    {
 		return true;
 	    }
