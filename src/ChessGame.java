@@ -126,7 +126,6 @@ public class ChessGame
 		}
 
 		Piece piece1 = board.pieceAtPos(p1);
-		Piece piece2 = board.pieceAtPos(p2);
 
 		// basic checks
 		if (board.isEmpty(p1))
@@ -166,7 +165,7 @@ public class ChessGame
 					if (inCheck(p2, Board.swapChessColor(curChessColor)).length == 0)
 					{
 						// move piece with status update
-						out = board.movePiece(p1, p2);
+						out = getMoveMsg(p1, p2, false);
 					} else
 					{
 						// EXIT
@@ -183,7 +182,7 @@ public class ChessGame
 					if (checks.length == 1 && board.getPos(checks[0]).equals(p2))
 					{
 						// move piece with status update
-						out = board.movePiece(p1, p2);
+						out = getMoveMsg(p1, p2, false);
 					} else
 					{
 						return "Error: The move from " + p1 + " to " + p2 + " does not block or capture the check.";
@@ -265,6 +264,8 @@ public class ChessGame
 							board.movePiece(rookPos, Position.addPos(addPos, p1));
 							// move the king to 2 addPos of the cur king
 							board.movePiece(p1, Position.addPos(Position.addPos(addPos, addPos), p1));
+
+							out = getMoveMsg(p1, p2, false) + ", castling with " + board.pieceAtPos(rookPos);
 						} else
 						{
 							return ERROR_MSG;
@@ -283,7 +284,7 @@ public class ChessGame
 			// move the piece if it is valid
 			else if (valid >= 0)
 			{
-				out = board.movePiece(p1, p2);
+				out = getMoveMsg(p1, p2, false);
 
 				// if the move was a pawn's double-step
 				if (valid == 2)
@@ -298,6 +299,7 @@ public class ChessGame
 				{
 					// set the captured piece to null
 					board.putPiece(null, Pawn.getEnPassant(board, p2));
+					out = getMoveMsg(p1, p2, true);
 				}
 			}
 
@@ -313,16 +315,35 @@ public class ChessGame
 		// if the piece moved was a pawn
 		if (piece1.ID == Pawn.ID)
 		{
-
+			// TODO
 		}
 
-		// Is the other color in check?
+		// Is the other color in check now?
 		// If so, can the other color play any moves to get out of check?
 
 		// change color
 		curChessColor = Board.swapChessColor(curChessColor);
 
 		return out;
+	}
+
+	private String getMoveMsg(Position p1, Position p2, boolean enPassant)
+	{
+		String out = board.pieceAtPos(p1) + " moved from " + p1 + " to " + p2;
+
+		// capturing message
+		if (enPassant || !board.isEmpty(p2))
+		{
+			return out + ", capturing the pawn";
+		}
+
+		// moving into empty spot message
+		if (board.isEmpty(p2))
+		{
+			return out;
+		}
+
+		return "Error while getting the message for the move";
 	}
 
 	/**
