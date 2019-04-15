@@ -120,7 +120,7 @@ public class ChessGame
 		String out = "Error: ";
 
 		// basic checks
-		if (Board.isValid(p1) && Board.isValid(p2))
+		if (!Board.isValid(p1) || !Board.isValid(p2))
 		{
 			return out + "Please choose a position on the board.";
 		}
