@@ -1,5 +1,5 @@
-import java.awt.Dimension;
-import java.awt.Toolkit;
+import java.awt.event.ComponentEvent;
+import java.awt.event.ComponentListener;
 
 import javax.swing.JFrame;
 
@@ -13,11 +13,47 @@ public class ChessViewer
 		frame.setExtendedState(JFrame.MAXIMIZED_BOTH);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
-		// get the size of window
-		Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();
-
-		ChessComp comp = new ChessComp(dim.getWidth(), dim.getHeight());
+		ChessComp comp = new ChessComp(frame.getWidth(), frame.getHeight());
 		frame.add(comp);
+
+		// Resize listener for frame
+		class ResizeListener implements ComponentListener
+		{
+			private ChessComp comp;
+
+			public ResizeListener(ChessComp comp)
+			{
+				this.comp = comp;
+			}
+
+			@Override
+			public void componentResized(ComponentEvent e)
+			{
+				comp.resizeBoard(frame.getWidth(), frame.getHeight());
+			}
+
+			@Override
+			public void componentMoved(ComponentEvent e)
+			{
+				/* do nothing */
+			};
+
+			@Override
+			public void componentShown(ComponentEvent e)
+			{
+				/* do nothing */
+			};
+
+			@Override
+			public void componentHidden(ComponentEvent e)
+			{
+				/* do nothing */
+			};
+
+		}
+
+		ResizeListener resizeL = new ResizeListener(comp);
+		frame.addComponentListener(resizeL);
 
 		// Mouse Listener for clicking the squares
 		ClickListener clickL = new ClickListener();

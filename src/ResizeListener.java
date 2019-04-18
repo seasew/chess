@@ -17,27 +17,27 @@ public class ResizeListener implements ComponentListener
 	@Override
 	public void componentResized(ComponentEvent e)
 	{
-
+		comp.resizeBoard(frame.getWidth(), frame.getHeight());
 	}
 
 	@Override
 	public void componentMoved(ComponentEvent e)
 	{
-		// TODO Auto-generated method stub
+		// do nothing
 
 	}
 
 	@Override
 	public void componentShown(ComponentEvent e)
 	{
-		// TODO Auto-generated method stub
+		// do nothing
 
 	}
 
 	@Override
 	public void componentHidden(ComponentEvent e)
 	{
-		// TODO Auto-generated method stub
+		// do nothing
 
 	}
 
