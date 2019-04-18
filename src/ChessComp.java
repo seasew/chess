@@ -131,7 +131,7 @@ public class ChessComp extends JComponent
 	 */
 	public void resizeBoard(double frameWidth, double frameHeight)
 	{
-		final double BUFFER = 100;
+		final double BUFFER = 120;
 		// if frame is too small
 		if (frameWidth < X - BUFFER || frameHeight < Y - BUFFER)
 		{
@@ -139,7 +139,7 @@ public class ChessComp extends JComponent
 			squareSize = 50;
 		}
 		this.squareSize = Math.min((frameWidth - X - BUFFER) / ChessGame.getBoardSize(),
-				(frameWidth - Y - BUFFER) / ChessGame.getBoardSize());
+				(frameHeight - Y - BUFFER) / ChessGame.getBoardSize());
 	}
 
 	private static Color swapGraphicsColor(ChessColor c)
