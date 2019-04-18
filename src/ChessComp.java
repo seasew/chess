@@ -24,10 +24,12 @@ public class ChessComp extends JComponent
 	 * This displays the chessboard and the corresponding piece images, as well
 	 * as a title and descriptions of the moves.
 	 */
-	public ChessComp(double squareSize)
+	public ChessComp(double frameWidth, double frameHeight)
 	{
 		game = new ChessGame();
-		this.squareSize = squareSize;
+
+		this.resizeBoard(frameWidth, frameHeight);
+
 	}
 
 	@Override
@@ -117,6 +119,27 @@ public class ChessComp extends JComponent
 		}
 
 		return "These are invalid coordinates.";
+	}
+
+	/**
+	 * Resizes the board based on the frame width and height.
+	 * 
+	 * @param frameWidth
+	 *                    the width of the frame
+	 * @param frameHeight
+	 *                    the height of the frame
+	 */
+	public void resizeBoard(double frameWidth, double frameHeight)
+	{
+		final double BUFFER = 100;
+		// if frame is too small
+		if (frameWidth < X - BUFFER || frameHeight < Y - BUFFER)
+		{
+			// default squareSize
+			squareSize = 50;
+		}
+		this.squareSize = Math.min((frameWidth - X - BUFFER) / ChessGame.getBoardSize(),
+				(frameWidth - Y - BUFFER) / ChessGame.getBoardSize());
 	}
 
 	private static Color swapGraphicsColor(ChessColor c)

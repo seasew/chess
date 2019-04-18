@@ -16,7 +16,7 @@ public class ChessViewer
 		// get the size of window
 		Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();
 
-		ChessComp comp = new ChessComp();
+		ChessComp comp = new ChessComp(dim.getWidth(), dim.getHeight());
 		frame.add(comp);
 
 		// Mouse Listener for clicking the squares
