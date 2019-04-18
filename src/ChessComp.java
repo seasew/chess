@@ -11,7 +11,7 @@ public class ChessComp extends JComponent
 	private static final long serialVersionUID = 1L;
 
 	// the size (in pixels) of the squares of the board
-	public static final double SQUARE_SIZE = 80;
+	public double squareSize;
 
 	// the pixel coordinates of the top left corner of the chessboard
 	public static final double X = 50;
@@ -24,9 +24,10 @@ public class ChessComp extends JComponent
 	 * This displays the chessboard and the corresponding piece images, as well
 	 * as a title and descriptions of the moves.
 	 */
-	public ChessComp()
+	public ChessComp(double squareSize)
 	{
 		game = new ChessGame();
+		this.squareSize = squareSize;
 	}
 
 	@Override
@@ -40,17 +41,17 @@ public class ChessComp extends JComponent
 
 		// print the coordinates
 		double xRanks = X / 2;
-		double yRanks = Y + SQUARE_SIZE / 2;
-		double xFiles = X + SQUARE_SIZE / 2;
-		double yFiles = Y + SQUARE_SIZE * ChessGame.getBoardSize() + 30;
+		double yRanks = Y + squareSize / 2;
+		double xFiles = X + squareSize / 2;
+		double yFiles = Y + squareSize * ChessGame.getBoardSize() + 30;
 		for (int a = 0; a < ChessGame.getBoardSize(); a++)
 		{
 			// draw the ranks' number
 			g2.drawString((new Position(a, 0)).iToString(), (int) xRanks, (int) yRanks);
-			yRanks += SQUARE_SIZE;
+			yRanks += squareSize;
 			// draw files letter
 			g2.drawString((new Position(0, a)).jToString(), (int) xFiles, (int) yFiles);
-			xFiles += SQUARE_SIZE;
+			xFiles += squareSize;
 		}
 
 		// print the chessboard & pieces images
@@ -64,7 +65,7 @@ public class ChessComp extends JComponent
 				ChessColor color = game.colorAtPos(cur);
 
 				// get the color and piece
-				Rectangle2D.Double square = new Rectangle2D.Double(x, y, SQUARE_SIZE, SQUARE_SIZE);
+				Rectangle2D.Double square = new Rectangle2D.Double(x, y, squareSize, squareSize);
 
 				g2.setColor(getGraphicsColor(color));
 
@@ -78,10 +79,10 @@ public class ChessComp extends JComponent
 				}
 
 				// update x value
-				x += SQUARE_SIZE;
+				x += squareSize;
 			}
 
-			y += SQUARE_SIZE;
+			y += squareSize;
 		}
 	}
 
@@ -106,8 +107,8 @@ public class ChessComp extends JComponent
 	public String movePiece(int pixelX1, int pixelY1, int pixelX2, int pixelY2)
 	{
 		// converts the pixels to i and j (row and col)
-		Position p1 = new Position((int) ((pixelX1 - X) / SQUARE_SIZE), (int) ((pixelY1 - Y) / SQUARE_SIZE));
-		Position p2 = new Position((int) ((pixelX2 - X) / SQUARE_SIZE), (int) ((pixelY2 - Y) / SQUARE_SIZE));
+		Position p1 = new Position((int) ((pixelX1 - X) / squareSize), (int) ((pixelY1 - Y) / squareSize));
+		Position p2 = new Position((int) ((pixelX2 - X) / squareSize), (int) ((pixelY2 - Y) / squareSize));
 
 		// if both positions are valid
 		if (Board.isValid(p1) && Board.isValid(p2))
