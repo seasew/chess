@@ -13,6 +13,11 @@ public class ChessViewer
 		ChessComp comp = new ChessComp();
 		frame.add(comp);
 
+		// Mouse Listener for clicking the squares
+		ClickListener clickL = new ClickListener();
+
+		frame.addMouseListener(clickL);
+
 		frame.setVisible(true);
 
 	}
