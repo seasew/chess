@@ -10,6 +10,9 @@ public class ChessViewer
 		frame.setExtendedState(JFrame.MAXIMIZED_BOTH);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
+		ChessComp comp = new ChessComp();
+		frame.add(comp);
+
 		frame.setVisible(true);
 
 	}

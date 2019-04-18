@@ -88,7 +88,7 @@ public class ChessComp extends JComponent
 	/**
 	 * Moves the piece at pixelX to pixelY if the move is valid based on the
 	 * requirements from ChessGame.<br>
-	 * Returns a description of what occured, using standard chess lingo :)
+	 * Returns a description of what occured.
 	 * 
 	 * @param pixelX1
 	 *                the amount of pixels in the x direction of the starting
