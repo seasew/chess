@@ -1,4 +1,4 @@
-public class Tester
+public class ChessViewer
 {
 
 	public static void main(String[] args)
