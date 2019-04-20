@@ -31,26 +31,22 @@ public class ChessViewer
 			public void componentResized(ComponentEvent e)
 			{
 				comp.resizeBoard(frame.getWidth(), frame.getHeight());
-				System.out.println(frame.getWidth() + ", " + frame.getHeight());
 			}
 
 			@Override
 			public void componentMoved(ComponentEvent e)
 			{
-				/* do nothing */
-			};
+			}
 
 			@Override
 			public void componentShown(ComponentEvent e)
 			{
-				/* do nothing */
-			};
+			}
 
 			@Override
 			public void componentHidden(ComponentEvent e)
 			{
-				/* do nothing */
-			};
+			}
 
 		}
 
@@ -58,7 +54,8 @@ public class ChessViewer
 		frame.addComponentListener(resizeL);
 
 		// Mouse Listener for clicking the squares
-		ClickListener clickL = new ClickListener();
+		ClickListener clickL = new ClickListener(comp);
+		comp.addMouseListener(clickL);
 
 		frame.addMouseListener(clickL);
 

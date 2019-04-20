@@ -17,7 +17,7 @@ public class ChessComp extends JComponent
 	public static final double X = 50;
 	public static final double Y = 100;
 
-	public static final double DEFAULT_SIZE = 80;
+	public static final double DEFAULT_SIZE = 40;
 
 	private ChessGame game;
 
@@ -70,6 +70,7 @@ public class ChessComp extends JComponent
 
 				// get the color and piece
 				Rectangle2D.Double square = new Rectangle2D.Double(x, y, squareSize, squareSize);
+				System.out.println(square);
 
 				g2.setColor(getGraphicsColor(color));
 
