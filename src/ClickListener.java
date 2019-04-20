@@ -29,6 +29,12 @@ public class ClickListener implements MouseListener
 		description = "";
 	}
 
+	/**
+	 * Returns the description of ClickListener.<br>
+	 * The description is an empty string if in the middle of the next move.
+	 * 
+	 * @return the description
+	 */
 	public String getDescription()
 	{
 		return description;
