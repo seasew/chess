@@ -11,6 +11,15 @@ public class ClickListener implements MouseListener
 
 	private String description;
 
+	/**
+	 * Constructs a ClickListener with the given ChessComp.
+	 * <br>
+	 * The first click is recorded, then the second click. After the second click, a
+	 * description of the move is avaliable until the next first click.
+	 * 
+	 * @param comp
+	 *             the chess component
+	 */
 	public ClickListener(ChessComp comp)
 	{
 		firstClick = true;
