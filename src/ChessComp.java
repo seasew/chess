@@ -17,6 +17,8 @@ public class ChessComp extends JComponent
 	public static final double X = 50;
 	public static final double Y = 100;
 
+	public static final double DEFAULT_SIZE = 50;
+
 	private ChessGame game;
 
 	/**
@@ -122,7 +124,9 @@ public class ChessComp extends JComponent
 	}
 
 	/**
-	 * Resizes the board based on the frame width and height.
+	 * Resizes the board based on the frame width and height.<br>
+	 * If the frame is too small for a board with square size 50 pixels, it uses the
+	 * default size of 50.
 	 * 
 	 * @param frameWidth
 	 *                    the width of the frame
@@ -132,14 +136,17 @@ public class ChessComp extends JComponent
 	public void resizeBoard(double frameWidth, double frameHeight)
 	{
 		final double BUFFER = 120;
+
 		// if frame is too small
-		if (frameWidth < X - BUFFER || frameHeight < Y - BUFFER)
+		if (frameWidth - (X + BUFFER) < DEFAULT_SIZE * ChessGame.getBoardSize()
+				|| frameHeight - (Y + BUFFER) < DEFAULT_SIZE * ChessGame.getBoardSize())
 		{
 			// default squareSize
-			squareSize = 50;
+			squareSize = DEFAULT_SIZE;
 		}
 		this.squareSize = Math.min((frameWidth - X - BUFFER) / ChessGame.getBoardSize(),
 				(frameHeight - Y - BUFFER) / ChessGame.getBoardSize());
+		this.repaint();
 	}
 
 	private static Color swapGraphicsColor(ChessColor c)

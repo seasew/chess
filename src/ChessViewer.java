@@ -30,6 +30,7 @@ public class ChessViewer
 			public void componentResized(ComponentEvent e)
 			{
 				comp.resizeBoard(frame.getWidth(), frame.getHeight());
+				System.out.println(frame.getWidth() + ", " + frame.getHeight());
 			}
 
 			@Override
