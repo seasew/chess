@@ -17,7 +17,7 @@ public class ChessComp extends JComponent
 	public static final double X = 50;
 	public static final double Y = 100;
 
-	public static final double DEFAULT_SIZE = 50;
+	public static final double DEFAULT_SIZE = 80;
 
 	private ChessGame game;
 
@@ -143,9 +143,11 @@ public class ChessComp extends JComponent
 		{
 			// default squareSize
 			squareSize = DEFAULT_SIZE;
+		} else
+		{
+			this.squareSize = Math.min((frameWidth - X - BUFFER) / ChessGame.getBoardSize(),
+					(frameHeight - Y - BUFFER) / ChessGame.getBoardSize());
 		}
-		this.squareSize = Math.min((frameWidth - X - BUFFER) / ChessGame.getBoardSize(),
-				(frameHeight - Y - BUFFER) / ChessGame.getBoardSize());
 		this.repaint();
 	}
 
