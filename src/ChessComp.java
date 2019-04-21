@@ -1,6 +1,7 @@
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
+import java.awt.geom.Ellipse2D;
 import java.awt.geom.Rectangle2D;
 
 import javax.swing.JComponent;
@@ -21,6 +22,8 @@ public class ChessComp extends JComponent
 
 	private ChessGame game;
 
+	private Ellipse2D.Double click2;
+
 	/**
 	 * Constructs a ChessComp with a default ChessGame.<br>
 	 * This displays the chessboard and the corresponding piece images, as well
@@ -30,6 +33,8 @@ public class ChessComp extends JComponent
 	{
 		game = new ChessGame();
 
+		click2 = new Ellipse2D.Double();
+
 		this.resizeBoard(frameWidth, frameHeight);
 
 	}
@@ -38,6 +43,7 @@ public class ChessComp extends JComponent
 	public void paint(Graphics g)
 	{
 		Graphics2D g2 = (Graphics2D) g;
+
 		// print text at the (0, 0)
 		g2.drawString("Welcome to Chess! Click on a " + game.getCurChessColor()
 				+ " piece to move it. Then, click on the desired location.", 10, 40);
@@ -70,7 +76,6 @@ public class ChessComp extends JComponent
 
 				// get the color and piece
 				Rectangle2D.Double square = new Rectangle2D.Double(x, y, squareSize, squareSize);
-				System.out.println(square);
 
 				g2.setColor(getGraphicsColor(color));
 
@@ -89,6 +94,11 @@ public class ChessComp extends JComponent
 
 			y += squareSize;
 		}
+
+		Color orig = g2.getColor();
+		g2.setColor(Color.pink);
+		g2.draw(click2);
+		g2.setColor(orig);
 	}
 
 	/**
@@ -115,6 +125,11 @@ public class ChessComp extends JComponent
 		Position p1 = new Position((int) ((pixelX1 - X) / squareSize), (int) ((pixelY1 - Y) / squareSize));
 		Position p2 = new Position((int) ((pixelX2 - X) / squareSize), (int) ((pixelY2 - Y) / squareSize));
 
+		click2 = new Ellipse2D.Double(pixelX2, pixelY2, 20, 20);
+		repaint();
+
+		System.out.println(p1);
+		System.out.println(p2);
 		// if both positions are valid
 		if (Board.isValid(p1) && Board.isValid(p2))
 		{
@@ -127,7 +142,7 @@ public class ChessComp extends JComponent
 	/**
 	 * Resizes the board based on the frame width and height.<br>
 	 * If the frame is too small for a board with square size 50 pixels, it uses the
-	 * default size of 50.
+	 * DEFAULTSIZE value.
 	 * 
 	 * @param frameWidth
 	 *                    the width of the frame

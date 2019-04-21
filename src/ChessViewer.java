@@ -47,7 +47,6 @@ public class ChessViewer
 			public void componentHidden(ComponentEvent e)
 			{
 			}
-
 		}
 
 		ResizeListener resizeL = new ResizeListener(comp);
