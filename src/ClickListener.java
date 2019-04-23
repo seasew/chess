@@ -53,7 +53,7 @@ public class ClickListener implements MouseListener
 		// move if second click
 		else
 		{
-			description = comp.movePiece(firstPixelX, firstPixelY, e.getXOnScreen(), e.getYOnScreen());
+			description = comp.movePiece(firstPixelX, firstPixelY, e.getX(), e.getY());
 			System.out.println(description);
 		}
 
