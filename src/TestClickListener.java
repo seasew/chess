@@ -21,8 +21,7 @@ public class TestClickListener implements MouseListener
 		int ys = e.getYOnScreen();
 		System.out.println("(" + x + ", " + y + ")");
 		System.out.println("(" + xs + ", " + ys + ")");
-		c.drawCircle(x, y);
-		c.drawCircle(xs, ys);
+		c.drawCircle(x, y, xs, ys);
 	}
 
 	@Override

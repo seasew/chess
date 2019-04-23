@@ -14,7 +14,7 @@ public class TestViewer
 		frame.add(comp);
 
 		TestClickListener cl = new TestClickListener(comp);
-		frame.addMouseListener(cl);
+		comp.addMouseListener(cl);
 
 		frame.setVisible(true);
 	}
