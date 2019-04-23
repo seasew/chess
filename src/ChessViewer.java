@@ -56,8 +56,6 @@ public class ChessViewer
 		ClickListener clickL = new ClickListener(comp);
 		comp.addMouseListener(clickL);
 
-		frame.addMouseListener(clickL);
-
 		frame.setVisible(true);
 
 	}
