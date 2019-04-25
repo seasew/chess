@@ -11,7 +11,7 @@ public class ChessViewer
 
 		JFrame frame = new JFrame();
 		// frame.setExtendedState(JFrame.MAXIMIZED_BOTH);
-		frame.setSize(339, 417);
+		frame.setSize(600, 600);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
 		ChessComp comp = new ChessComp(frame.getWidth(), frame.getHeight());

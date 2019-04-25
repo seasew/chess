@@ -125,8 +125,8 @@ public class ChessComp extends JComponent
 	public String movePiece(int pixelX1, int pixelY1, int pixelX2, int pixelY2)
 	{
 		// converts the pixels to i and j (row and col)
-		Position p1 = new Position((int) ((pixelX1 - X) / squareSize), (int) ((pixelY1 - Y) / squareSize));
-		Position p2 = new Position((int) ((pixelX2 - X) / squareSize), (int) ((pixelY2 - Y) / squareSize));
+		Position p1 = new Position((int) ((pixelY1 - Y) / squareSize), (int) ((pixelX1 - X) / squareSize));
+		Position p2 = new Position((int) ((pixelY2 - Y) / squareSize), (int) ((pixelX2 - X) / squareSize));
 
 		click1 = new Ellipse2D.Double(pixelX1, pixelY1, 10, 10);
 		click2 = new Ellipse2D.Double(pixelX2, pixelY2, 10, 10);
