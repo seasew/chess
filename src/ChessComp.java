@@ -22,6 +22,7 @@ public class ChessComp extends JComponent
 
 	private ChessGame game;
 
+	private Ellipse2D.Double click1;
 	private Ellipse2D.Double click2;
 
 	/**
@@ -33,6 +34,7 @@ public class ChessComp extends JComponent
 	{
 		game = new ChessGame();
 
+		click1 = new Ellipse2D.Double();
 		click2 = new Ellipse2D.Double();
 
 		this.resizeBoard(frameWidth, frameHeight);
@@ -97,6 +99,7 @@ public class ChessComp extends JComponent
 
 		Color orig = g2.getColor();
 		g2.setColor(Color.pink);
+		g2.draw(click1);
 		g2.draw(click2);
 		g2.setColor(orig);
 	}
@@ -125,7 +128,8 @@ public class ChessComp extends JComponent
 		Position p1 = new Position((int) ((pixelX1 - X) / squareSize), (int) ((pixelY1 - Y) / squareSize));
 		Position p2 = new Position((int) ((pixelX2 - X) / squareSize), (int) ((pixelY2 - Y) / squareSize));
 
-		click2 = new Ellipse2D.Double(pixelX2, pixelY2, 20, 20);
+		click1 = new Ellipse2D.Double(pixelX1, pixelY1, 10, 10);
+		click2 = new Ellipse2D.Double(pixelX2, pixelY2, 10, 10);
 		repaint();
 
 		System.out.println(p1);
