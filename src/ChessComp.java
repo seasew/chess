@@ -90,18 +90,74 @@ public class ChessComp extends JComponent
 				Position cur = new Position(i, j);
 				ChessColor color = game.colorAtPos(cur);
 
-				// get the color and piece
+				// draw square
 				Rectangle2D.Double square = new Rectangle2D.Double(x, y, squareSize, squareSize);
 
 				g2.setColor(getGraphicsColor(color));
 
 				g2.fill(square);
 				g2.draw(square);
+
+				// draw piece image
 				Piece curPiece = game.pieceAtPos(cur);
 				if (curPiece != null)
 				{
-					g2.setColor(swapGraphicsColor(color));
-					g2.drawString(curPiece.toString(), (int) x + 20, (int) y + 40);
+					String imgLoc;
+					// white pieces
+					if (curPiece.getChessColor() == ChessColor.WHITE)
+					{
+						switch (curPiece.ID)
+						{
+						case Pawn.ID:
+							imgLoc = WPAWN_IMG;
+							break;
+						case King.ID:
+							imgLoc = WKING_IMG;
+							break;
+						case Queen.ID:
+							imgLoc = WQUEEN_IMG;
+							break;
+						case Bishop.ID:
+							imgLoc = WBISHOP_IMG;
+							break;
+						case Rook.ID:
+							imgLoc = WROOK_IMG;
+							break;
+						case Knight.ID:
+							imgLoc = WKNIGHT_IMG;
+							break;
+						default:
+							imgLoc = "";
+						}
+
+					}
+					// black pieces
+					else
+					{
+						switch (curPiece.ID)
+						{
+						case Pawn.ID:
+							imgLoc = BPAWN_IMG;
+							break;
+						case King.ID:
+							imgLoc = BKING_IMG;
+							break;
+						case Queen.ID:
+							imgLoc = BQUEEN_IMG;
+							break;
+						case Bishop.ID:
+							imgLoc = BBISHOP_IMG;
+							break;
+						case Rook.ID:
+							imgLoc = BROOK_IMG;
+							break;
+						case Knight.ID:
+							imgLoc = BKNIGHT_IMG;
+							break;
+						default:
+							imgLoc = "";
+						}
+					}
 				}
 
 				// update x value
