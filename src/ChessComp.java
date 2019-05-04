@@ -98,6 +98,9 @@ public class ChessComp extends JComponent
 				g2.fill(square);
 				g2.draw(square);
 
+				// swap color for the next square
+				color = swapChessColor(color);
+
 				// draw piece image
 				Piece curPiece = game.pieceAtPos(cur);
 				if (curPiece != null)
@@ -241,14 +244,14 @@ public class ChessComp extends JComponent
 		this.repaint();
 	}
 
-	private static Color swapGraphicsColor(ChessColor c)
+	private static ChessColor swapChessColor(ChessColor c)
 	{
 		if (c == ChessColor.WHITE)
 		{
-			return Color.BLACK;
+			return ChessColor.BLACK;
 
 		}
-		return Color.WHITE;
+		return ChessColor.WHITE;
 	}
 
 	private static Color getGraphicsColor(ChessColor c)
