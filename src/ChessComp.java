@@ -4,8 +4,8 @@ import java.awt.Graphics2D;
 import java.awt.geom.Ellipse2D;
 import java.awt.geom.Rectangle2D;
 import java.awt.image.BufferedImage;
-import java.io.File;
 import java.io.IOException;
+import java.net.URL;
 
 import javax.imageio.ImageIO;
 import javax.swing.JComponent;
@@ -26,6 +26,20 @@ public class ChessComp extends JComponent
 	public static final String BBISHOP_IMG = "C:/ChessIcons/blackBishop.png";
 	public static final String BROOK_IMG = "C:/ChessIcons/blackRook.png";
 	public static final String BKNIGHT_IMG = "C:/ChessIcons/blackKnight.png";
+
+	public static final String WPAWN_URL = "https://github.com/pinkbluesky/chess/blob/master/ChessIcons/blackPawn.png";
+	public static final String WKING_URL = "https://github.com/pinkbluesky/chess/blob/master/ChessIcons/whiteKing.png";
+	public static final String WQUEEN_URL = "https://github.com/pinkbluesky/chess/blob/master/ChessIcons/whiteQueen.png";
+	public static final String WBISHOP_URL = "https://github.com/pinkbluesky/chess/blob/master/ChessIcons/whiteBishop.png";
+	public static final String WROOK_URL = "https://github.com/pinkbluesky/chess/blob/master/ChessIcons/whiteRook.png";
+	public static final String WKNIGHT_URL = "https://github.com/pinkbluesky/chess/blob/master/ChessIcons/whiteKnight.png";
+
+	public static final String BPAWN_URL = "https://github.com/pinkbluesky/chess/blob/master/ChessIcons/blackPawn.png";
+	public static final String BKING_URL = "https://github.com/pinkbluesky/chess/blob/master/ChessIcons/blackKing.png";
+	public static final String BQUEEN_URL = "https://github.com/pinkbluesky/chess/blob/master/ChessIcons/blackQueen.png";
+	public static final String BBISHOP_URL = "https://github.com/pinkbluesky/chess/blob/master/ChessIcons/blackBishop.png";
+	public static final String BROOK_URL = "https://github.com/pinkbluesky/chess/blob/master/ChessIcons/blackRook.png";
+	public static final String BKNIGHT_URL = "https://github.com/pinkbluesky/chess/blob/master/ChessIcons/blackKnight.png";
 
 	private static final long serialVersionUID = 1L;
 
@@ -116,22 +130,22 @@ public class ChessComp extends JComponent
 						switch (curPiece.ID)
 						{
 						case Pawn.ID:
-							imgLoc = WPAWN_IMG;
+							imgLoc = WPAWN_URL;
 							break;
 						case King.ID:
-							imgLoc = WKING_IMG;
+							imgLoc = WKING_URL;
 							break;
 						case Queen.ID:
-							imgLoc = WQUEEN_IMG;
+							imgLoc = WQUEEN_URL;
 							break;
 						case Bishop.ID:
-							imgLoc = WBISHOP_IMG;
+							imgLoc = WBISHOP_URL;
 							break;
 						case Rook.ID:
-							imgLoc = WROOK_IMG;
+							imgLoc = WROOK_URL;
 							break;
 						case Knight.ID:
-							imgLoc = WKNIGHT_IMG;
+							imgLoc = WKNIGHT_URL;
 							break;
 						default:
 							imgLoc = "";
@@ -145,22 +159,22 @@ public class ChessComp extends JComponent
 						switch (curPiece.ID)
 						{
 						case Pawn.ID:
-							imgLoc = BPAWN_IMG;
+							imgLoc = BPAWN_URL;
 							break;
 						case King.ID:
-							imgLoc = BKING_IMG;
+							imgLoc = BKING_URL;
 							break;
 						case Queen.ID:
-							imgLoc = BQUEEN_IMG;
+							imgLoc = BQUEEN_URL;
 							break;
 						case Bishop.ID:
-							imgLoc = BBISHOP_IMG;
+							imgLoc = BBISHOP_URL;
 							break;
 						case Rook.ID:
-							imgLoc = BROOK_IMG;
+							imgLoc = BROOK_URL;
 							break;
 						case Knight.ID:
-							imgLoc = BKNIGHT_IMG;
+							imgLoc = BKNIGHT_URL;
 							break;
 						default:
 							imgLoc = "";
@@ -173,7 +187,7 @@ public class ChessComp extends JComponent
 					try
 					{
 						// read image
-						inputImg = ImageIO.read(new File(imgLoc));
+						inputImg = ImageIO.read(new URL(imgLoc));
 					} catch (IOException e)
 					{
 						e.printStackTrace();
