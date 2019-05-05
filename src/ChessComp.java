@@ -135,6 +135,7 @@ public class ChessComp extends JComponent
 							break;
 						default:
 							imgLoc = "";
+							break;
 						}
 
 					}
@@ -163,6 +164,7 @@ public class ChessComp extends JComponent
 							break;
 						default:
 							imgLoc = "";
+							break;
 						}
 					}
 
