@@ -3,7 +3,11 @@ import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.geom.Ellipse2D;
 import java.awt.geom.Rectangle2D;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
 
+import javax.imageio.ImageIO;
 import javax.swing.JComponent;
 
 public class ChessComp extends JComponent
@@ -161,6 +165,23 @@ public class ChessComp extends JComponent
 							imgLoc = "";
 						}
 					}
+
+					// create buffered image
+					BufferedImage inputImg = null;
+					try
+					{
+						// read image
+						inputImg = ImageIO.read(new File(imgLoc));
+					} catch (IOException e)
+					{
+						e.printStackTrace();
+					}
+
+					// output image with desired size
+					BufferedImage outputImg = new BufferedImage((int) squareSize, (int) squareSize, inputImg.getType());
+					// draw inputImg with outputImg's graphics
+					Graphics2D g2Img = outputImg.createGraphics();
+					g2Img.drawImage(inputImg, null, (int) x, (int) y);
 				}
 
 				// update x value
