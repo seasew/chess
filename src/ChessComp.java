@@ -13,19 +13,19 @@ import javax.swing.JComponent;
 public class ChessComp extends JComponent
 {
 
-	public static final String WPAWN_IMG = "C:\\ChessIcons\\whitePawn.png";
-	public static final String WKING_IMG = "C:\\ChessIcons\\whiteKing.png";
-	public static final String WQUEEN_IMG = "C:\\ChessIcons\\whiteQueen.png";
-	public static final String WBISHOP_IMG = "C:\\ChessIcons\\whiteBishop.png";
-	public static final String WROOK_IMG = "C:\\ChessIcons\\whiteRook.png";
-	public static final String WKNIGHT_IMG = "C:\\ChessIcons\\whiteKnight.png";
+	public static final String WPAWN_IMG = "C:/ChessIcons/whitePawn.png";
+	public static final String WKING_IMG = "C:/ChessIcons/whiteKing.png";
+	public static final String WQUEEN_IMG = "C:/ChessIcons/whiteQueen.png";
+	public static final String WBISHOP_IMG = "C:/ChessIcons/whiteBishop.png";
+	public static final String WROOK_IMG = "C:/ChessIcons/whiteRook.png";
+	public static final String WKNIGHT_IMG = "C:/ChessIcons/whiteKnight.png";
 
-	public static final String BPAWN_IMG = "C:\\ChessIcons\\blackPawn.png";
-	public static final String BKING_IMG = "C:\\ChessIcons\\blackKing.png";
-	public static final String BQUEEN_IMG = "C:\\ChessIcons\\blackQueen.png";
-	public static final String BBISHOP_IMG = "C:\\ChessIcons\\blackBishop.png";
-	public static final String BROOK_IMG = "C:\\ChessIcons\\blackRook.png";
-	public static final String BKNIGHT_IMG = "C:\\ChessIcons\\blackKnight.png";
+	public static final String BPAWN_IMG = "C:/ChessIcons/blackPawn.png";
+	public static final String BKING_IMG = "C:/ChessIcons/blackKing.png";
+	public static final String BQUEEN_IMG = "C:/ChessIcons/blackQueen.png";
+	public static final String BBISHOP_IMG = "C:/ChessIcons/blackBishop.png";
+	public static final String BROOK_IMG = "C:/ChessIcons/blackRook.png";
+	public static final String BKNIGHT_IMG = "C:/ChessIcons/blackKnight.png";
 
 	private static final long serialVersionUID = 1L;
 
@@ -182,6 +182,7 @@ public class ChessComp extends JComponent
 					// draw inputImg with outputImg's graphics
 					Graphics2D g2Img = outputImg.createGraphics();
 					g2Img.drawImage(inputImg, null, (int) x, (int) y);
+					g2Img.dispose();
 				}
 
 				// update x value
