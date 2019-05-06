@@ -2,7 +2,6 @@ public class Pawn extends Piece
 {
 
 	public static final String ABBREV = "P";
-	public static final String ID = "Pawn";
 	private boolean isFirst;
 	private Position prevPawnMove;
 
@@ -161,6 +160,12 @@ public class Pawn extends Piece
 	public void setPrevPawnMove(Position pos)
 	{
 		prevPawnMove = pos;
+	}
+
+	@Override
+	public static String getPieceName()
+	{
+		return "Pawn";
 	}
 
 }

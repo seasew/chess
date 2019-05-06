@@ -3,7 +3,6 @@ public class Bishop extends Piece
 {
 
 	public static final String ABBREV = "B";
-	public static final String ID = "Bishop";
 
 	/**
 	 * Constructs a new Bishop. <br>
@@ -88,6 +87,12 @@ public class Bishop extends Piece
 		}
 
 		return -1;
+	}
+
+	@Override
+	public static String getPieceName()
+	{
+		return "Bishop";
 	}
 
 }

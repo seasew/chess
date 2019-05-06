@@ -3,7 +3,6 @@ public class Rook extends Piece
 {
 
 	public static final String ABBREV = "R";
-	public static final String ID = "Rook";
 
 	private boolean isFirst;
 
@@ -104,5 +103,11 @@ public class Rook extends Piece
 	public boolean isFirst()
 	{
 		return isFirst;
+	}
+
+	@Override
+	public static String getPieceName()
+	{
+		return "Rook";
 	}
 }

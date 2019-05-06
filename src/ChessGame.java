@@ -208,8 +208,8 @@ public class ChessGame
 			if (valid < 0)
 			{
 				// the piece being moved is the king
-				if ((p1.equals(Board.moveEast(p2, 2)) || p1.equals(Board.moveWest(p2, 2))) && piece1.ID.equals(King.ID)
-						&& ((King) piece1).isFirst())
+				if ((p1.equals(Board.moveEast(p2, 2)) || p1.equals(Board.moveWest(p2, 2)))
+						&& piece1.getPieceName().equals(King.ID) && ((King) piece1).isFirst())
 				{
 					Position rookPos;
 					Position addPos;
@@ -240,7 +240,8 @@ public class ChessGame
 
 					// check if the piece at rookPos is a Rook
 					// also check that it is the first move of Rook
-					if (board.pieceAtPos(rookPos).ID.equals(Rook.ID) && ((Rook) board.pieceAtPos(rookPos)).isFirst())
+					if (board.pieceAtPos(rookPos).getPieceName().equals(Rook.getPieceName())
+							&& ((Rook) board.pieceAtPos(rookPos)).isFirst())
 					{
 						// Check the two squares between
 						boolean canCastle = true;
@@ -313,7 +314,7 @@ public class ChessGame
 
 		// Promotion?
 		// if the piece moved was a pawn
-		if (piece1.ID == Pawn.ID)
+		if (piece1.getPieceName() == Pawn.ID)
 		{
 			// TODO
 		}

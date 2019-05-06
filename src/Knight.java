@@ -3,7 +3,6 @@ public class Knight extends Piece
 {
 
 	public static final String ABBREV = "N";
-	public static final String ID = "Knight";
 
 	/**
 	 * Constructs a Knight.<br>
@@ -71,5 +70,11 @@ public class Knight extends Piece
 			}
 		}
 		return -1;
+	}
+
+	@Override
+	public static String getPieceName()
+	{
+		return "Knight";
 	}
 }

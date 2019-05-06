@@ -27,19 +27,19 @@ public class ChessComp extends JComponent
 	public static final String BROOK_IMG = "C:/ChessIcons/blackRook.png";
 	public static final String BKNIGHT_IMG = "C:/ChessIcons/blackKnight.png";
 
-	public static final String WPAWN_URL = "https://github.com/pinkbluesky/chess/blob/master/ChessIcons/blackPawn.png";
-	public static final String WKING_URL = "https://github.com/pinkbluesky/chess/blob/master/ChessIcons/whiteKing.png";
-	public static final String WQUEEN_URL = "https://github.com/pinkbluesky/chess/blob/master/ChessIcons/whiteQueen.png";
-	public static final String WBISHOP_URL = "https://github.com/pinkbluesky/chess/blob/master/ChessIcons/whiteBishop.png";
-	public static final String WROOK_URL = "https://github.com/pinkbluesky/chess/blob/master/ChessIcons/whiteRook.png";
-	public static final String WKNIGHT_URL = "https://github.com/pinkbluesky/chess/blob/master/ChessIcons/whiteKnight.png";
+	public static final String WPAWN_URL = "http://github.com/pinkbluesky/chess/blob/master/ChessIcons/blackPawn.png";
+	public static final String WKING_URL = "http://github.com/pinkbluesky/chess/blob/master/ChessIcons/whiteKing.png";
+	public static final String WQUEEN_URL = "http://github.com/pinkbluesky/chess/blob/master/ChessIcons/whiteQueen.png";
+	public static final String WBISHOP_URL = "http://github.com/pinkbluesky/chess/blob/master/ChessIcons/whiteBishop.png";
+	public static final String WROOK_URL = "http://github.com/pinkbluesky/chess/blob/master/ChessIcons/whiteRook.png";
+	public static final String WKNIGHT_URL = "http://github.com/pinkbluesky/chess/blob/master/ChessIcons/whiteKnight.png";
 
-	public static final String BPAWN_URL = "https://github.com/pinkbluesky/chess/blob/master/ChessIcons/blackPawn.png";
-	public static final String BKING_URL = "https://github.com/pinkbluesky/chess/blob/master/ChessIcons/blackKing.png";
-	public static final String BQUEEN_URL = "https://github.com/pinkbluesky/chess/blob/master/ChessIcons/blackQueen.png";
-	public static final String BBISHOP_URL = "https://github.com/pinkbluesky/chess/blob/master/ChessIcons/blackBishop.png";
-	public static final String BROOK_URL = "https://github.com/pinkbluesky/chess/blob/master/ChessIcons/blackRook.png";
-	public static final String BKNIGHT_URL = "https://github.com/pinkbluesky/chess/blob/master/ChessIcons/blackKnight.png";
+	public static final String BPAWN_URL = "http://github.com/pinkbluesky/chess/blob/master/ChessIcons/blackPawn.png";
+	public static final String BKING_URL = "http://github.com/pinkbluesky/chess/blob/master/ChessIcons/blackKing.png";
+	public static final String BQUEEN_URL = "http://github.com/pinkbluesky/chess/blob/master/ChessIcons/blackQueen.png";
+	public static final String BBISHOP_URL = "http://github.com/pinkbluesky/chess/blob/master/ChessIcons/blackBishop.png";
+	public static final String BROOK_URL = "http://github.com/pinkbluesky/chess/blob/master/ChessIcons/blackRook.png";
+	public static final String BKNIGHT_URL = "http://github.com/pinkbluesky/chess/blob/master/ChessIcons/blackKnight.png";
 
 	private static final long serialVersionUID = 1L;
 
@@ -124,63 +124,64 @@ public class ChessComp extends JComponent
 				if (curPiece != null)
 				{
 					String imgLoc;
+					String name = curPiece.getPieceName();
 					// white pieces
 					if (curPiece.getChessColor() == ChessColor.WHITE)
 					{
-						switch (curPiece.ID)
+						if (name.equals(Pawn.getPieceName()))
 						{
-						case Pawn.ID:
 							imgLoc = WPAWN_URL;
-							break;
-						case King.ID:
+						} else if (name.equals(King.getPieceName()))
+						{
 							imgLoc = WKING_URL;
-							break;
-						case Queen.ID:
+						} else if (name.equals(Queen.getPieceName()))
+						{
 							imgLoc = WQUEEN_URL;
-							break;
-						case Bishop.ID:
+						} else if (name.equals(Bishop.getPieceName()))
+						{
 							imgLoc = WBISHOP_URL;
-							break;
-						case Rook.ID:
+						} else if (name.equals(Rook.getPieceName()))
+						{
 							imgLoc = WROOK_URL;
-							break;
-						case Knight.ID:
+						} else if (name.equals(Knight.getPieceName()))
+						{
 							imgLoc = WKNIGHT_URL;
-							break;
-						default:
+						} else
+						{
 							imgLoc = "";
-							break;
 						}
-
 					}
+
 					// black pieces
 					else
 					{
-						switch (curPiece.ID)
+						if (name.equals(Pawn.getPieceName()))
 						{
-						case Pawn.ID:
 							imgLoc = BPAWN_URL;
-							break;
-						case King.ID:
+						} else if (name.equals(King.getPieceName()))
+						{
 							imgLoc = BKING_URL;
-							break;
-						case Queen.ID:
+						} else if (name.equals(Queen.getPieceName()))
+						{
 							imgLoc = BQUEEN_URL;
-							break;
-						case Bishop.ID:
+						} else if (name.equals(Bishop.getPieceName()))
+						{
 							imgLoc = BBISHOP_URL;
-							break;
-						case Rook.ID:
+						} else if (name.equals(Rook.getPieceName()))
+						{
 							imgLoc = BROOK_URL;
-							break;
-						case Knight.ID:
+						} else if (name.equals(Knight.getPieceName()))
+						{
 							imgLoc = BKNIGHT_URL;
-							break;
-						default:
+						} else
+						{
 							imgLoc = "";
-							break;
 						}
 					}
+
+					System.out.println(Rook.getPieceName() + ", cur=" + curPiece.getPieceName());
+
+					System.out.println(imgLoc);
 
 					// create buffered image
 					BufferedImage inputImg = null;

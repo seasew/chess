@@ -2,7 +2,6 @@ public abstract class Piece
 {
 
 	public static final String ABBREV = "X";
-	public static final String ID = "Piece";
 
 	private ChessColor color;
 	private String id;
@@ -99,5 +98,10 @@ public abstract class Piece
 	public String toString()
 	{
 		return id;
+	}
+
+	public static String getPieceName()
+	{
+		return "Piece";
 	}
 }

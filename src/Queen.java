@@ -3,7 +3,6 @@ public class Queen extends Piece
 {
 
 	public static final String ABBREV = "Q";
-	public static final String ID = "Queen";
 
 	/**
 	 * Constructs a new Queen.<br>
@@ -42,6 +41,12 @@ public class Queen extends Piece
 		}
 
 		return -1;
+	}
+
+	@Override
+	public static String getPieceName()
+	{
+		return "Queen";
 	}
 
 }

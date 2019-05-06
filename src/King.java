@@ -3,7 +3,6 @@ public class King extends Piece
 {
 
 	public static final String ABBREV = "K";
-	public static final String ID = "King";
 	private boolean isFirst;
 
 	/**
@@ -59,5 +58,11 @@ public class King extends Piece
 	public boolean isFirst()
 	{
 		return isFirst;
+	}
+
+	@Override
+	public static String getPieceName()
+	{
+		return "King";
 	}
 }
