@@ -209,7 +209,7 @@ public class ChessGame
 			{
 				// the piece being moved is the king
 				if ((p1.equals(Board.moveEast(p2, 2)) || p1.equals(Board.moveWest(p2, 2)))
-						&& piece1.getPieceName().equals(King.ID) && ((King) piece1).isFirst())
+						&& piece1.getPieceName().equals(King.getPieceName()) && ((King) piece1).isFirst())
 				{
 					Position rookPos;
 					Position addPos;
@@ -314,7 +314,7 @@ public class ChessGame
 
 		// Promotion?
 		// if the piece moved was a pawn
-		if (piece1.getPieceName() == Pawn.ID)
+		if (piece1.getPieceName() == Pawn.getPieceName())
 		{
 			// TODO
 		}
