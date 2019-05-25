@@ -60,7 +60,6 @@ public class King extends Piece
 		return isFirst;
 	}
 
-	@Override
 	public static String getPieceName()
 	{
 		return "King";

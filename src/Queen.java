@@ -43,7 +43,6 @@ public class Queen extends Piece
 		return -1;
 	}
 
-	@Override
 	public static String getPieceName()
 	{
 		return "Queen";

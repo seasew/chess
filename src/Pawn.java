@@ -162,7 +162,6 @@ public class Pawn extends Piece
 		prevPawnMove = pos;
 	}
 
-	@Override
 	public static String getPieceName()
 	{
 		return "Pawn";
