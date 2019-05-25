@@ -192,6 +192,7 @@ public class ChessComp extends JComponent
 					} catch (IOException e)
 					{
 						e.printStackTrace();
+						System.out.println("THIS IS NOT WORKING");
 					}
 
 					// output image with desired size
