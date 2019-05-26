@@ -191,8 +191,9 @@ public class ChessComp extends JComponent
 						inputImg = ImageIO.read(new URL(imgLoc));
 					} catch (IOException e)
 					{
-						e.printStackTrace();
-						System.out.println("THIS IS NOT WORKING");
+
+						System.out.println(imgLoc);
+						throw new RuntimeException(e);
 					}
 
 					// output image with desired size
