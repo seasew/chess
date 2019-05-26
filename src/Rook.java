@@ -105,7 +105,8 @@ public class Rook extends Piece
 		return isFirst;
 	}
 
-	public static String getPieceName()
+	@Override
+	public String getPieceName()
 	{
 		return "Rook";
 	}

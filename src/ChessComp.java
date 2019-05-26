@@ -123,65 +123,7 @@ public class ChessComp extends JComponent
 				Piece curPiece = game.pieceAtPos(cur);
 				if (curPiece != null)
 				{
-					String imgLoc;
-					String name = curPiece.getPieceName();
-					// white pieces
-					if (curPiece.getChessColor() == ChessColor.WHITE)
-					{
-						if (name.equals(Pawn.getPieceName()))
-						{
-							imgLoc = WPAWN_URL;
-						} else if (name.equals(King.getPieceName()))
-						{
-							imgLoc = WKING_URL;
-						} else if (name.equals(Queen.getPieceName()))
-						{
-							imgLoc = WQUEEN_URL;
-						} else if (name.equals(Bishop.getPieceName()))
-						{
-							imgLoc = WBISHOP_URL;
-						} else if (name.equals(Rook.getPieceName()))
-						{
-							imgLoc = WROOK_URL;
-						} else if (name.equals(Knight.getPieceName()))
-						{
-							imgLoc = WKNIGHT_URL;
-						} else
-						{
-							imgLoc = "";
-						}
-					}
-
-					// black pieces
-					else
-					{
-						if (name.equals(Pawn.getPieceName()))
-						{
-							imgLoc = BPAWN_URL;
-						} else if (name.equals(King.getPieceName()))
-						{
-							imgLoc = BKING_URL;
-						} else if (name.equals(Queen.getPieceName()))
-						{
-							imgLoc = BQUEEN_URL;
-						} else if (name.equals(Bishop.getPieceName()))
-						{
-							imgLoc = BBISHOP_URL;
-						} else if (name.equals(Rook.getPieceName()))
-						{
-							imgLoc = BROOK_URL;
-						} else if (name.equals(Knight.getPieceName()))
-						{
-							imgLoc = BKNIGHT_URL;
-						} else
-						{
-							imgLoc = "";
-						}
-					}
-
-					System.out.println(Rook.getPieceName() + ", cur=" + curPiece.getPieceName());
-
-					System.out.println("Image Location is..." + imgLoc);
+					String imgLoc = curPiece.getImgURL();
 
 					// create buffered image
 					BufferedImage inputImg = null;

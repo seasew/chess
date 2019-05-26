@@ -100,5 +100,5 @@ public abstract class Piece
 		return id;
 	}
 
-	public abstract String getPieceName();
+	public abstract String getImgURL();
 }
