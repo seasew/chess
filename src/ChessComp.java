@@ -181,7 +181,7 @@ public class ChessComp extends JComponent
 
 					System.out.println(Rook.getPieceName() + ", cur=" + curPiece.getPieceName());
 
-					System.out.println(imgLoc);
+					System.out.println("Image Location is..." + imgLoc);
 
 					// create buffered image
 					BufferedImage inputImg = null;
@@ -192,7 +192,6 @@ public class ChessComp extends JComponent
 					} catch (IOException e)
 					{
 
-						System.out.println(imgLoc);
 						throw new RuntimeException(e);
 					}
 

@@ -100,8 +100,5 @@ public abstract class Piece
 		return id;
 	}
 
-	public static String getPieceName()
-	{
-		return "Piece";
-	}
+	public abstract String getPieceName();
 }
