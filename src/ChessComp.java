@@ -27,20 +27,6 @@ public class ChessComp extends JComponent
 	public static final String BROOK_IMG = "C:/ChessIcons/blackRook.png";
 	public static final String BKNIGHT_IMG = "C:/ChessIcons/blackKnight.png";
 
-	public static final String WPAWN_URL = "http://github.com/pinkbluesky/chess/blob/master/ChessIcons/blackPawn.png";
-	public static final String WKING_URL = "http://github.com/pinkbluesky/chess/blob/master/ChessIcons/whiteKing.png";
-	public static final String WQUEEN_URL = "http://github.com/pinkbluesky/chess/blob/master/ChessIcons/whiteQueen.png";
-	public static final String WBISHOP_URL = "http://github.com/pinkbluesky/chess/blob/master/ChessIcons/whiteBishop.png";
-	public static final String WROOK_URL = "http://github.com/pinkbluesky/chess/blob/master/ChessIcons/whiteRook.png";
-	public static final String WKNIGHT_URL = "http://github.com/pinkbluesky/chess/blob/master/ChessIcons/whiteKnight.png";
-
-	public static final String BPAWN_URL = "http://github.com/pinkbluesky/chess/blob/master/ChessIcons/blackPawn.png";
-	public static final String BKING_URL = "http://github.com/pinkbluesky/chess/blob/master/ChessIcons/blackKing.png";
-	public static final String BQUEEN_URL = "http://github.com/pinkbluesky/chess/blob/master/ChessIcons/blackQueen.png";
-	public static final String BBISHOP_URL = "http://github.com/pinkbluesky/chess/blob/master/ChessIcons/blackBishop.png";
-	public static final String BROOK_URL = "http://github.com/pinkbluesky/chess/blob/master/ChessIcons/blackRook.png";
-	public static final String BKNIGHT_URL = "http://github.com/pinkbluesky/chess/blob/master/ChessIcons/blackKnight.png";
-
 	private static final long serialVersionUID = 1L;
 
 	// the size (in pixels) of the squares of the board

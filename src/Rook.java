@@ -4,6 +4,9 @@ public class Rook extends Piece
 
 	public static final String ABBREV = "R";
 
+	public static final String WROOK_URL = "http://github.com/pinkbluesky/chess/blob/master/ChessIcons/whiteRook.png";
+	public static final String BROOK_URL = "http://github.com/pinkbluesky/chess/blob/master/ChessIcons/blackRook.png";
+
 	private boolean isFirst;
 
 	/**
@@ -106,8 +109,14 @@ public class Rook extends Piece
 	}
 
 	@Override
-	public String getPieceName()
+	public String getImgURL()
 	{
-		return "Rook";
+		if (this.getChessColor() == ChessColor.WHITE)
+		{
+			return WROOK_URL;
+		} else
+		{
+			return BROOK_URL;
+		}
 	}
 }
