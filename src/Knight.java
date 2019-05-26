@@ -4,6 +4,9 @@ public class Knight extends Piece
 
 	public static final String ABBREV = "N";
 
+	public static final String WKNIGHT_URL = "http://github.com/pinkbluesky/chess/blob/master/ChessIcons/whiteKnight.png";
+	public static final String BKNIGHT_URL = "http://github.com/pinkbluesky/chess/blob/master/ChessIcons/blackKnight.png";
+
 	/**
 	 * Constructs a Knight.<br>
 	 * Moving requirements: <br>
@@ -72,8 +75,15 @@ public class Knight extends Piece
 		return -1;
 	}
 
-	public static String getPieceName()
+	@Override
+	public String getImgURL()
 	{
-		return "Knight";
+		if (this.getChessColor() == ChessColor.WHITE)
+		{
+			return WKNIGHT_URL;
+		} else
+		{
+			return BKNIGHT_URL;
+		}
 	}
 }

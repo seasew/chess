@@ -4,6 +4,9 @@ public class Queen extends Piece
 
 	public static final String ABBREV = "Q";
 
+	public static final String WQUEEN_URL = "http://github.com/pinkbluesky/chess/blob/master/ChessIcons/whiteQueen.png";
+	public static final String BQUEEN_URL = "http://github.com/pinkbluesky/chess/blob/master/ChessIcons/blackQueen.png";
+
 	/**
 	 * Constructs a new Queen.<br>
 	 * Moving Requirements: A queen can move anywhere diagonally, up, down,
@@ -43,9 +46,16 @@ public class Queen extends Piece
 		return -1;
 	}
 
-	public static String getPieceName()
+	@Override
+	public String getImgURL()
 	{
-		return "Queen";
+		if (this.getChessColor() == ChessColor.WHITE)
+		{
+			return WQUEEN_URL;
+		} else
+		{
+			return BQUEEN_URL;
+		}
 	}
 
 }

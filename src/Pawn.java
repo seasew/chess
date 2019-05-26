@@ -2,6 +2,10 @@ public class Pawn extends Piece
 {
 
 	public static final String ABBREV = "P";
+
+	public static final String WPAWN_URL = "http://github.com/pinkbluesky/chess/blob/master/ChessIcons/whitePawn.png";
+	public static final String BPAWN_URL = "http://github.com/pinkbluesky/chess/blob/master/ChessIcons/blackPawn.png";
+
 	private boolean isFirst;
 	private Position prevPawnMove;
 
@@ -162,9 +166,16 @@ public class Pawn extends Piece
 		prevPawnMove = pos;
 	}
 
-	public static String getPieceName()
+	@Override
+	public String getImgURL()
 	{
-		return "Pawn";
+		if (this.getChessColor() == ChessColor.WHITE)
+		{
+			return WPAWN_URL;
+		} else
+		{
+			return BPAWN_URL;
+		}
 	}
 
 }
