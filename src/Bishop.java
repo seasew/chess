@@ -88,7 +88,7 @@ public class Bishop extends Piece
 			}
 		}
 
-		return -1;
+		return Piece.INVALID_MOVE;
 	}
 
 	@Override

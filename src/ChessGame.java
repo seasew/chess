@@ -154,7 +154,7 @@ public class ChessGame
 		{
 			// for this, all moves must be valid because there is no castling
 			// when the king is in check
-			if (valid > 0)
+			if (valid > Piece.INVALID_MOVE)
 			{
 				// Option 1: The king moves to a position that is not 'checked'
 				// -King moves into unchecked spot: the move must still be valid
@@ -205,7 +205,7 @@ public class ChessGame
 			Position prevPawnMove = null;
 
 			// castling is a 2 square movement for the king
-			if (valid < 0)
+			if (valid == Piece.INVALID_MOVE)
 			{
 				// the piece being moved is the king
 				if ((p1.equals(Board.moveEast(p2, 2)) || p1.equals(Board.moveWest(p2, 2))) && (piece1 instanceof King)
@@ -240,8 +240,7 @@ public class ChessGame
 
 					// check if the piece at rookPos is a Rook
 					// also check that it is the first move of Rook
-					if ((board.pieceAtPos(rookPos) instanceof Rook)
-							&& ((Rook) board.pieceAtPos(rookPos)).isFirst())
+					if ((board.pieceAtPos(rookPos) instanceof Rook) && ((Rook) board.pieceAtPos(rookPos)).isFirst())
 					{
 						// Check the two squares between
 						boolean canCastle = true;
@@ -261,10 +260,16 @@ public class ChessGame
 
 						if (canCastle)
 						{
+							// CASTLE!
+
 							// move the rook to 1 right or 1 left of the King
 							board.movePiece(rookPos, Position.addPos(addPos, p1));
 							// move the king to 2 addPos of the cur king
 							board.movePiece(p1, Position.addPos(Position.addPos(addPos, addPos), p1));
+
+							// toggle first for rook and king
+							((Rook) board.pieceAtPos(rookPos)).toggleFirst();
+							((King) board.pieceAtPos(kingPos)).toggleFirst();
 
 							out = getMoveMsg(p1, p2, false) + ", castling with " + board.pieceAtPos(rookPos) + ".";
 						} else
@@ -283,12 +288,15 @@ public class ChessGame
 				}
 			}
 			// move the piece if it is valid
-			else if (valid >= 0)
+			else if (valid > Piece.INVALID_MOVE)
 			{
 				out = getMoveMsg(p1, p2, false);
 
+				// move the piece
+				board.movePiece(p1, p2);
+
 				// if the move was a pawn's double-step
-				if (valid == 2)
+				if (valid == Pawn.DOUBLE_STEP_MOVE)
 				{
 					// update ppm
 					prevPawnMove = p2;
@@ -296,7 +304,7 @@ public class ChessGame
 				}
 
 				// if the move was en passant
-				if (valid == 3)
+				if (valid == Pawn.EN_PASSANT_MOVE)
 				{
 					// set the captured piece to null
 					board.putPiece(null, Pawn.getEnPassant(board, p2));

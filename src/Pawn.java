@@ -6,6 +6,9 @@ public class Pawn extends Piece
 	public static final String WPAWN_URL = "http://github.com/pinkbluesky/chess/blob/master/ChessIcons/whitePawn.png";
 	public static final String BPAWN_URL = "http://github.com/pinkbluesky/chess/blob/master/ChessIcons/blackPawn.png";
 
+	public static final int DOUBLE_STEP_MOVE = 2;
+	public static final int EN_PASSANT_MOVE = 3;
+
 	private boolean isFirst;
 	private Position prevPawnMove;
 
@@ -40,14 +43,14 @@ public class Pawn extends Piece
 			if ((getChessColor() == ChessColor.WHITE) && (p2.equals(Board.moveNorth(p1, 1)))
 					|| (getChessColor() == ChessColor.BLACK) && (p2.equals(Board.moveSouth(p1, 1))))
 			{
-				return 0;
+				return Piece.EMPTY_MOVE;
 			}
 			// if it is a white pawn and the move is 2 north
 			// if it is a black pawn and the move is 2 south
 			if (isFirst && (getChessColor() == ChessColor.WHITE && p2.equals(Board.moveNorth(p1, 2)))
 					|| (getChessColor() == ChessColor.BLACK && p2.equals(Board.moveSouth(p1, 2))))
 			{
-				return 2;
+				return Pawn.DOUBLE_STEP_MOVE;
 			}
 
 			// this part is for en passant
@@ -62,7 +65,7 @@ public class Pawn extends Piece
 						|| (pieceColor == ChessColor.BLACK && prevPawnMove.equals(Board.moveSouth(p2, 1))))
 				{
 					// then, that means this move is en passant
-					return 3;
+					return Pawn.EN_PASSANT_MOVE;
 				}
 			}
 		}
@@ -78,7 +81,7 @@ public class Pawn extends Piece
 			}
 		}
 
-		return -1;
+		return Piece.INVALID_MOVE;
 	}
 
 	/**

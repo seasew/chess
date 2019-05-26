@@ -3,6 +3,10 @@ public abstract class Piece
 
 	public static final String ABBREV = "X";
 
+	public static final int INVALID_MOVE = -1;
+	public static final int EMPTY_MOVE = 0;
+	public static final int CAPTURE_MOVE = 1;
+
 	private ChessColor color;
 	private String id;
 
@@ -82,16 +86,16 @@ public abstract class Piece
 			// if the colors are opposite
 			if (board.pieceAtPos(p1).getChessColor() == Board.swapChessColor(board.pieceAtPos(p2).getChessColor()))
 			{
-				return 1;
+				return Piece.CAPTURE_MOVE;
 			}
 		}
 		// if this move is into an empty spot, then return true
 		else
 		{
-			return 0;
+			return Piece.EMPTY_MOVE;
 		}
 
-		return -1;
+		return Piece.INVALID_MOVE;
 	}
 
 	@Override
