@@ -1,3 +1,10 @@
+import java.awt.Image;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
+
+import javax.imageio.ImageIO;
+
 public abstract class Piece
 {
 
@@ -103,6 +110,25 @@ public abstract class Piece
 	{
 		return id;
 	}
+
+	public Image defaultResizeImg(String filePath, int newSize)
+	{
+		BufferedImage inputImg = null;
+		try
+		{
+			inputImg = ImageIO.read(new File(filePath));
+		} catch (IOException e)
+		{
+			throw new RuntimeException(e);
+		}
+
+		// output image with desired size
+		return inputImg.getScaledInstance((int) newSize, (int) newSize, Image.SCALE_DEFAULT);
+	}
+
+	public abstract void resizeImg(int newSize);
+
+	public abstract Image getImage();
 
 	public abstract String getFilePath();
 }

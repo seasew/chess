@@ -1,6 +1,7 @@
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
+import java.awt.Image;
 import java.awt.geom.Ellipse2D;
 import java.awt.geom.Rectangle2D;
 import java.awt.image.BufferedImage;
@@ -13,20 +14,6 @@ import javax.swing.JComponent;
 public class ChessComp extends JComponent
 {
 
-	public static final String WPAWN_IMG = "C:\\ChessIcons\\whitePawn.png";
-	public static final String WKING_IMG = "C:\\ChessIcons\\whiteKing.png";
-	public static final String WQUEEN_IMG = "C:\\ChessIcons\\whiteQueen.png";
-	public static final String WBISHOP_IMG = "C:\\ChessIcons\\whiteBishop.png";
-	public static final String WROOK_IMG = "C:\\ChessIcons\\whiteRook.png";
-	public static final String WKNIGHT_IMG = "C:\\ChessIcons\\whiteKnight.png";
-
-	public static final String BPAWN_IMG = "C:\\ChessIcons\\blackPawn.png";
-	public static final String BKING_IMG = "C:\\ChessIcons\\blackKing.png";
-	public static final String BQUEEN_IMG = "C:\\ChessIcons\\blackQueen.png";
-	public static final String BBISHOP_IMG = "C:\\ChessIcons\\blackBishop.png";
-	public static final String BROOK_IMG = "C:\\ChessIcons\\blackRook.png";
-	public static final String BKNIGHT_IMG = "C:\\ChessIcons\\blackKnight.png";
-
 	private static final long serialVersionUID = 1L;
 
 	// the size (in pixels) of the squares of the board
@@ -36,6 +23,7 @@ public class ChessComp extends JComponent
 	public static final double X = 50;
 	public static final double Y = 100;
 
+	// the default square size
 	public static final double DEFAULT_SIZE = 40;
 
 	private ChessGame game;
@@ -50,6 +38,7 @@ public class ChessComp extends JComponent
 	 */
 	public ChessComp(double frameWidth, double frameHeight)
 	{
+		// initialize the ChessGame
 		game = new ChessGame();
 
 		click1 = new Ellipse2D.Double();
@@ -121,11 +110,9 @@ public class ChessComp extends JComponent
 					}
 
 					// output image with desired size
-					BufferedImage outputImg = new BufferedImage((int) squareSize, (int) squareSize, inputImg.getType());
+					Image newImg = inputImg.getScaledInstance((int) squareSize, (int) squareSize, Image.SCALE_DEFAULT);
 					// draw inputImg with outputImg's graphics
-					Graphics2D g2Img = outputImg.createGraphics();
-					g2Img.drawImage(inputImg, null, (int) x, (int) y);
-					g2Img.dispose();
+					g2.drawImage(newImg, (int) x, (int) y, null);
 				}
 
 				// update x value
@@ -183,8 +170,9 @@ public class ChessComp extends JComponent
 
 	/**
 	 * Resizes the board based on the frame width and height.<br>
-	 * If the frame is too small for a board with square size 50 pixels, it uses the
-	 * DEFAULTSIZE value.
+	 * Updates the images' size.<br>
+	 * If the new frame size requires a board with square size smaller than
+	 * DEFAULT_SIZE, the square size is automatically set to DEFAULT_SIZE.
 	 * 
 	 * @param frameWidth
 	 *                    the width of the frame
@@ -206,6 +194,7 @@ public class ChessComp extends JComponent
 			this.squareSize = Math.min((frameWidth - X - BUFFER) / ChessGame.getBoardSize(),
 					(frameHeight - Y - BUFFER) / ChessGame.getBoardSize());
 		}
+
 		this.repaint();
 	}
 

@@ -1,3 +1,10 @@
+import java.awt.Image;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
+
+import javax.imageio.ImageIO;
+
 public class Pawn extends Piece
 {
 
@@ -8,6 +15,9 @@ public class Pawn extends Piece
 
 	public static final int DOUBLE_STEP_MOVE = 2;
 	public static final int EN_PASSANT_MOVE = 3;
+
+	private Image wPawnImg;
+	private Image bPawnImg;
 
 	private boolean isFirst;
 	private Position prevPawnMove;
@@ -30,6 +40,7 @@ public class Pawn extends Piece
 		super(color, id);
 		isFirst = true;
 		prevPawnMove = null;
+
 	}
 
 	public int canMove(Board board, Position p1, Position p2)
@@ -167,6 +178,48 @@ public class Pawn extends Piece
 	public void setPrevPawnMove(Position pos)
 	{
 		prevPawnMove = pos;
+	}
+
+	@Override
+	public void resizeImg(int newSize)
+	{
+		BufferedImage inputImg = null;
+
+		String filePath;
+		if (super.getChessColor() == ChessColor.WHITE)
+		{
+			filePath = WPAWN_IMG;
+		} else
+		{
+			filePath = BPAWN_IMG;
+		}
+
+		try
+		{
+			inputImg = ImageIO.read(new File(filePath));
+		} catch (IOException e)
+		{
+			throw new RuntimeException(e);
+		}
+
+		// output image with desired size
+		Image newImg = inputImg.getScaledInstance((int) newSize, (int) newSize, Image.SCALE_DEFAULT);
+
+		if (super.getChessColor() == ChessColor.WHITE)
+		{
+			wPawnImg = newImg;
+			bPawnImg = newImg;
+		}
+	}
+
+	@Override
+	public Image getImage()
+	{
+		if (super.getChessColor() == ChessColor.WHITE)
+		{
+			return wPawnImg;
+		}
+		return bPawnImg;
 	}
 
 	@Override
