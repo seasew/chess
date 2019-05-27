@@ -110,7 +110,8 @@ public class ChessComp extends JComponent
 				if (curPiece != null)
 				{
 					// String imgLoc = curPiece.getImgURL();
-					String imgLoc = "http://www.avajava.com/images/avajavalogo.jpg";
+					// String imgLoc = "http://www.avajava.com/images/avajavalogo.jpg";
+					String imgLoc = "http://www.github.com/pinkbluesky/chess/blob/master/ChessIcons/whitePawn.png";
 
 					BufferedImage inputImg = null;
 					URL url;
