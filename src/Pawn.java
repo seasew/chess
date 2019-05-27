@@ -1,9 +1,4 @@
 import java.awt.Image;
-import java.awt.image.BufferedImage;
-import java.io.File;
-import java.io.IOException;
-
-import javax.imageio.ImageIO;
 
 public class Pawn extends Piece
 {
@@ -183,8 +178,6 @@ public class Pawn extends Piece
 	@Override
 	public void resizeImg(int newSize)
 	{
-		BufferedImage inputImg = null;
-
 		String filePath;
 		if (super.getChessColor() == ChessColor.WHITE)
 		{
@@ -194,20 +187,13 @@ public class Pawn extends Piece
 			filePath = BPAWN_IMG;
 		}
 
-		try
-		{
-			inputImg = ImageIO.read(new File(filePath));
-		} catch (IOException e)
-		{
-			throw new RuntimeException(e);
-		}
-
-		// output image with desired size
-		Image newImg = inputImg.getScaledInstance((int) newSize, (int) newSize, Image.SCALE_DEFAULT);
+		Image newImg = Piece.defaultResizeImg(filePath, newSize);
 
 		if (super.getChessColor() == ChessColor.WHITE)
 		{
 			wPawnImg = newImg;
+		} else
+		{
 			bPawnImg = newImg;
 		}
 	}

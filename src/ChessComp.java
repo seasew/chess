@@ -1,14 +1,9 @@
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
-import java.awt.Image;
 import java.awt.geom.Ellipse2D;
 import java.awt.geom.Rectangle2D;
-import java.awt.image.BufferedImage;
-import java.io.File;
-import java.io.IOException;
 
-import javax.imageio.ImageIO;
 import javax.swing.JComponent;
 
 public class ChessComp extends JComponent
@@ -98,21 +93,7 @@ public class ChessComp extends JComponent
 				Piece curPiece = game.pieceAtPos(cur);
 				if (curPiece != null)
 				{
-					String filePath = curPiece.getFilePath();
-
-					BufferedImage inputImg = null;
-					try
-					{
-						inputImg = ImageIO.read(new File(filePath));
-					} catch (IOException e)
-					{
-						throw new RuntimeException(e);
-					}
-
-					// output image with desired size
-					Image newImg = inputImg.getScaledInstance((int) squareSize, (int) squareSize, Image.SCALE_DEFAULT);
-					// draw inputImg with outputImg's graphics
-					g2.drawImage(newImg, (int) x, (int) y, null);
+					g2.drawImage(curPiece.getImage(), (int) x, (int) y, null);
 				}
 
 				// update x value
@@ -193,6 +174,19 @@ public class ChessComp extends JComponent
 		{
 			this.squareSize = Math.min((frameWidth - X - BUFFER) / ChessGame.getBoardSize(),
 					(frameHeight - Y - BUFFER) / ChessGame.getBoardSize());
+		}
+
+		// resize the pieces
+		for (int i = 0; i < Board.SIZE; i++)
+		{
+			for (int j = 0; j < Board.SIZE; j++)
+			{
+				Piece curPiece = game.pieceAtPos(new Position(i, j));
+				if (curPiece != null)
+				{
+					curPiece.resizeImg((int) squareSize);
+				}
+			}
 		}
 
 		this.repaint();

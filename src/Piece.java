@@ -111,7 +111,7 @@ public abstract class Piece
 		return id;
 	}
 
-	public Image defaultResizeImg(String filePath, int newSize)
+	public static Image defaultResizeImg(String filePath, int newSize)
 	{
 		BufferedImage inputImg = null;
 		try
