@@ -4,8 +4,8 @@ import java.awt.Graphics2D;
 import java.awt.geom.Ellipse2D;
 import java.awt.geom.Rectangle2D;
 import java.awt.image.BufferedImage;
+import java.io.File;
 import java.io.IOException;
-import java.net.URL;
 
 import javax.imageio.ImageIO;
 import javax.swing.JComponent;
@@ -13,19 +13,19 @@ import javax.swing.JComponent;
 public class ChessComp extends JComponent
 {
 
-	public static final String WPAWN_IMG = "C:/ChessIcons/whitePawn.png";
-	public static final String WKING_IMG = "C:/ChessIcons/whiteKing.png";
-	public static final String WQUEEN_IMG = "C:/ChessIcons/whiteQueen.png";
-	public static final String WBISHOP_IMG = "C:/ChessIcons/whiteBishop.png";
-	public static final String WROOK_IMG = "C:/ChessIcons/whiteRook.png";
-	public static final String WKNIGHT_IMG = "C:/ChessIcons/whiteKnight.png";
+	public static final String WPAWN_IMG = "C:\\ChessIcons\\whitePawn.png";
+	public static final String WKING_IMG = "C:\\ChessIcons\\whiteKing.png";
+	public static final String WQUEEN_IMG = "C:\\ChessIcons\\whiteQueen.png";
+	public static final String WBISHOP_IMG = "C:\\ChessIcons\\whiteBishop.png";
+	public static final String WROOK_IMG = "C:\\ChessIcons\\whiteRook.png";
+	public static final String WKNIGHT_IMG = "C:\\ChessIcons\\whiteKnight.png";
 
-	public static final String BPAWN_IMG = "C:/ChessIcons/blackPawn.png";
-	public static final String BKING_IMG = "C:/ChessIcons/blackKing.png";
-	public static final String BQUEEN_IMG = "C:/ChessIcons/blackQueen.png";
-	public static final String BBISHOP_IMG = "C:/ChessIcons/blackBishop.png";
-	public static final String BROOK_IMG = "C:/ChessIcons/blackRook.png";
-	public static final String BKNIGHT_IMG = "C:/ChessIcons/blackKnight.png";
+	public static final String BPAWN_IMG = "C:\\ChessIcons\\blackPawn.png";
+	public static final String BKING_IMG = "C:\\ChessIcons\\blackKing.png";
+	public static final String BQUEEN_IMG = "C:\\ChessIcons\\blackQueen.png";
+	public static final String BBISHOP_IMG = "C:\\ChessIcons\\blackBishop.png";
+	public static final String BROOK_IMG = "C:\\ChessIcons\\blackRook.png";
+	public static final String BKNIGHT_IMG = "C:\\ChessIcons\\blackKnight.png";
 
 	private static final long serialVersionUID = 1L;
 
@@ -109,22 +109,15 @@ public class ChessComp extends JComponent
 				Piece curPiece = game.pieceAtPos(cur);
 				if (curPiece != null)
 				{
-					// String imgLoc = curPiece.getImgURL();
-					// String imgLoc = "http://www.avajava.com/images/avajavalogo.jpg";
-					String imgLoc = "http://www.github.com/pinkbluesky/chess/blob/master/ChessIcons/whitePawn.png";
+					String filePath = curPiece.getFilePath();
 
 					BufferedImage inputImg = null;
-					URL url;
-
 					try
 					{
-						url = new URL(imgLoc);
-						// InputStream stream = url.openStream();
-						inputImg = ImageIO.read(url);
-						System.out.println(ImageIO.read(url));
+						inputImg = ImageIO.read(new File(filePath));
 					} catch (IOException e)
 					{
-
+						throw new RuntimeException(e);
 					}
 
 					// output image with desired size

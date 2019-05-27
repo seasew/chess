@@ -3,8 +3,8 @@ public class Pawn extends Piece
 
 	public static final String ABBREV = "P";
 
-	public static final String WPAWN_URL = "http://github.com/pinkbluesky/chess/blob/master/ChessIcons/whitePawn.png";
-	public static final String BPAWN_URL = "http://github.com/pinkbluesky/chess/blob/master/ChessIcons/blackPawn.png";
+	public static final String WPAWN_IMG = "C:\\ChessIcons\\whitePawn.png";
+	public static final String BPAWN_IMG = "C:\\ChessIcons\\blackPawn.png";
 
 	public static final int DOUBLE_STEP_MOVE = 2;
 	public static final int EN_PASSANT_MOVE = 3;
@@ -170,14 +170,14 @@ public class Pawn extends Piece
 	}
 
 	@Override
-	public String getImgURL()
+	public String getFilePath()
 	{
 		if (this.getChessColor() == ChessColor.WHITE)
 		{
-			return WPAWN_URL;
+			return WPAWN_IMG;
 		} else
 		{
-			return BPAWN_URL;
+			return BPAWN_IMG;
 		}
 	}
 

@@ -4,8 +4,8 @@ public class Queen extends Piece
 
 	public static final String ABBREV = "Q";
 
-	public static final String WQUEEN_URL = "http://github.com/pinkbluesky/chess/blob/master/ChessIcons/whiteQueen.png";
-	public static final String BQUEEN_URL = "http://github.com/pinkbluesky/chess/blob/master/ChessIcons/blackQueen.png";
+	public static final String WQUEEN_IMG = "C:\\ChessIcons\\whiteQueen.png";
+	public static final String BQUEEN_IMG = "C:\\ChessIcons\\blackQueen.png";
 
 	/**
 	 * Constructs a new Queen.<br>
@@ -47,14 +47,14 @@ public class Queen extends Piece
 	}
 
 	@Override
-	public String getImgURL()
+	public String getFilePath()
 	{
 		if (this.getChessColor() == ChessColor.WHITE)
 		{
-			return WQUEEN_URL;
+			return WQUEEN_IMG;
 		} else
 		{
-			return BQUEEN_URL;
+			return BQUEEN_IMG;
 		}
 	}
 

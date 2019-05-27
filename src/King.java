@@ -4,8 +4,8 @@ public class King extends Piece
 
 	public static final String ABBREV = "K";
 
-	public static final String WKING_URL = "http://github.com/pinkbluesky/chess/blob/master/ChessIcons/whiteKing.png";
-	public static final String BKING_URL = "http://github.com/pinkbluesky/chess/blob/master/ChessIcons/blackKing.png";
+	public static final String WKING_IMG = "C:\\ChessIcons\\whiteKing.png";
+	public static final String BKING_IMG = "C:\\ChessIcons\\blackKing.png";
 
 	private boolean isFirst;
 
@@ -65,14 +65,14 @@ public class King extends Piece
 	}
 
 	@Override
-	public String getImgURL()
+	public String getFilePath()
 	{
 		if (this.getChessColor() == ChessColor.WHITE)
 		{
-			return WKING_URL;
+			return WKING_IMG;
 		} else
 		{
-			return BKING_URL;
+			return BKING_IMG;
 		}
 	}
 }

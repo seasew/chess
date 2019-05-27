@@ -3,8 +3,9 @@ public class Bishop extends Piece
 {
 
 	public static final String ABBREV = "B";
-	public static final String WBISHOP_URL = "http://github.com/pinkbluesky/chess/blob/master/ChessIcons/whiteBishop.png";
-	public static final String BBISHOP_URL = "http://github.com/pinkbluesky/chess/blob/master/ChessIcons/blackBishop.png";
+
+	public static final String WBISHOP_IMG = "C:\\ChessIcons\\whiteBishop.png";
+	public static final String BBISHOP_IMG = "C:\\ChessIcons\\blackBishop.png";
 
 	/**
 	 * Constructs a new Bishop. <br>
@@ -92,14 +93,14 @@ public class Bishop extends Piece
 	}
 
 	@Override
-	public String getImgURL()
+	public String getFilePath()
 	{
 		if (this.getChessColor() == ChessColor.WHITE)
 		{
-			return WBISHOP_URL;
+			return WBISHOP_IMG;
 		} else
 		{
-			return BBISHOP_URL;
+			return BBISHOP_IMG;
 		}
 	}
 

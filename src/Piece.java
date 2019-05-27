@@ -104,5 +104,5 @@ public abstract class Piece
 		return id;
 	}
 
-	public abstract String getImgURL();
+	public abstract String getFilePath();
 }
