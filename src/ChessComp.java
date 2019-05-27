@@ -109,15 +109,18 @@ public class ChessComp extends JComponent
 				Piece curPiece = game.pieceAtPos(cur);
 				if (curPiece != null)
 				{
-					String imgLoc = curPiece.getImgURL();
+					// String imgLoc = curPiece.getImgURL();
+					String imgLoc = "http://www.avajava.com/images/avajavalogo.jpg";
 
 					BufferedImage inputImg = null;
+					URL url;
 
 					try
 					{
-						URL url = new URL(imgLoc);
+						url = new URL(imgLoc);
 						// InputStream stream = url.openStream();
 						inputImg = ImageIO.read(url);
+						System.out.println(ImageIO.read(url));
 					} catch (IOException e)
 					{
 
