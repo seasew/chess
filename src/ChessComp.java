@@ -5,6 +5,7 @@ import java.awt.geom.Ellipse2D;
 import java.awt.geom.Rectangle2D;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
+import java.io.InputStream;
 import java.net.URL;
 
 import javax.imageio.ImageIO;
@@ -111,16 +112,16 @@ public class ChessComp extends JComponent
 				{
 					String imgLoc = curPiece.getImgURL();
 
-					// create buffered image
 					BufferedImage inputImg = null;
+
 					try
 					{
-						// read image
-						inputImg = ImageIO.read(new URL(imgLoc));
+						URL url = new URL(imgLoc);
+						InputStream stream = url.openStream();
+						inputImg = ImageIO.read(stream);
 					} catch (IOException e)
 					{
 
-						throw new RuntimeException(e);
 					}
 
 					// output image with desired size
