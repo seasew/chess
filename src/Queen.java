@@ -1,3 +1,4 @@
+import java.awt.Image;
 
 public class Queen extends Piece
 {
@@ -6,6 +7,9 @@ public class Queen extends Piece
 
 	public static final String WQUEEN_IMG = "C:\\ChessIcons\\whiteQueen.png";
 	public static final String BQUEEN_IMG = "C:\\ChessIcons\\blackQueen.png";
+
+	private Image wQueenImg;
+	private Image bQueenImg;
 
 	/**
 	 * Constructs a new Queen.<br>
@@ -44,6 +48,39 @@ public class Queen extends Piece
 		}
 
 		return Piece.INVALID_MOVE;
+	}
+
+	@Override
+	public void resizeImg(int newSize)
+	{
+		String filePath;
+		if (super.getChessColor() == ChessColor.WHITE)
+		{
+			filePath = WQUEEN_IMG;
+		} else
+		{
+			filePath = BQUEEN_IMG;
+		}
+
+		Image newImg = Piece.defaultResizeImg(filePath, newSize);
+
+		if (super.getChessColor() == ChessColor.WHITE)
+		{
+			wQueenImg = newImg;
+		} else
+		{
+			bQueenImg = newImg;
+		}
+	}
+
+	@Override
+	public Image getImage()
+	{
+		if (super.getChessColor() == ChessColor.WHITE)
+		{
+			return wQueenImg;
+		}
+		return bQueenImg;
 	}
 
 	@Override

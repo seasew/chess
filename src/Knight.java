@@ -1,3 +1,4 @@
+import java.awt.Image;
 
 public class Knight extends Piece
 {
@@ -6,6 +7,9 @@ public class Knight extends Piece
 
 	public static final String WKNIGHT_IMG = "C:\\ChessIcons\\whiteKnight.png";
 	public static final String BKNIGHT_IMG = "C:\\ChessIcons\\blackKnight.png";
+
+	private Image wKnightImg;
+	private Image bKnightImg;
 
 	/**
 	 * Constructs a Knight.<br>
@@ -73,6 +77,39 @@ public class Knight extends Piece
 			}
 		}
 		return Piece.INVALID_MOVE;
+	}
+
+	@Override
+	public void resizeImg(int newSize)
+	{
+		String filePath;
+		if (super.getChessColor() == ChessColor.WHITE)
+		{
+			filePath = WKNIGHT_IMG;
+		} else
+		{
+			filePath = BKNIGHT_IMG;
+		}
+
+		Image newImg = Piece.defaultResizeImg(filePath, newSize);
+
+		if (super.getChessColor() == ChessColor.WHITE)
+		{
+			wKnightImg = newImg;
+		} else
+		{
+			bKnightImg = newImg;
+		}
+	}
+
+	@Override
+	public Image getImage()
+	{
+		if (super.getChessColor() == ChessColor.WHITE)
+		{
+			return wKnightImg;
+		}
+		return bKnightImg;
 	}
 
 	@Override

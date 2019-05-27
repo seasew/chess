@@ -1,3 +1,4 @@
+import java.awt.Image;
 
 public class Bishop extends Piece
 {
@@ -6,6 +7,9 @@ public class Bishop extends Piece
 
 	public static final String WBISHOP_IMG = "C:\\ChessIcons\\whiteBishop.png";
 	public static final String BBISHOP_IMG = "C:\\ChessIcons\\blackBishop.png";
+
+	private Image wBishopImg;
+	private Image bBishopImg;
 
 	/**
 	 * Constructs a new Bishop. <br>
@@ -90,6 +94,39 @@ public class Bishop extends Piece
 		}
 
 		return Piece.INVALID_MOVE;
+	}
+
+	@Override
+	public void resizeImg(int newSize)
+	{
+		String filePath;
+		if (super.getChessColor() == ChessColor.WHITE)
+		{
+			filePath = WBISHOP_IMG;
+		} else
+		{
+			filePath = BBISHOP_IMG;
+		}
+
+		Image newImg = Piece.defaultResizeImg(filePath, newSize);
+
+		if (super.getChessColor() == ChessColor.WHITE)
+		{
+			wBishopImg = newImg;
+		} else
+		{
+			bBishopImg = newImg;
+		}
+	}
+
+	@Override
+	public Image getImage()
+	{
+		if (super.getChessColor() == ChessColor.WHITE)
+		{
+			return wBishopImg;
+		}
+		return bBishopImg;
 	}
 
 	@Override

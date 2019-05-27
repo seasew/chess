@@ -1,3 +1,4 @@
+import java.awt.Image;
 
 public class Rook extends Piece
 {
@@ -6,6 +7,9 @@ public class Rook extends Piece
 
 	public static final String WROOK_IMG = "C:\\ChessIcons\\whiteRook.png";
 	public static final String BROOK_IMG = "C:\\ChessIcons\\blackRook.png";
+
+	private Image wRookImg;
+	private Image bRookImg;
 
 	private boolean isFirst;
 
@@ -106,6 +110,39 @@ public class Rook extends Piece
 	public boolean isFirst()
 	{
 		return isFirst;
+	}
+
+	@Override
+	public void resizeImg(int newSize)
+	{
+		String filePath;
+		if (super.getChessColor() == ChessColor.WHITE)
+		{
+			filePath = WROOK_IMG;
+		} else
+		{
+			filePath = BROOK_IMG;
+		}
+
+		Image newImg = Piece.defaultResizeImg(filePath, newSize);
+
+		if (super.getChessColor() == ChessColor.WHITE)
+		{
+			wRookImg = newImg;
+		} else
+		{
+			bRookImg = newImg;
+		}
+	}
+
+	@Override
+	public Image getImage()
+	{
+		if (super.getChessColor() == ChessColor.WHITE)
+		{
+			return wRookImg;
+		}
+		return bRookImg;
 	}
 
 	@Override

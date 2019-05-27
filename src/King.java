@@ -1,3 +1,4 @@
+import java.awt.Image;
 
 public class King extends Piece
 {
@@ -6,6 +7,9 @@ public class King extends Piece
 
 	public static final String WKING_IMG = "C:\\ChessIcons\\whiteKing.png";
 	public static final String BKING_IMG = "C:\\ChessIcons\\blackKing.png";
+
+	private Image wKingImg;
+	private Image bKingImg;
 
 	private boolean isFirst;
 
@@ -62,6 +66,39 @@ public class King extends Piece
 	public boolean isFirst()
 	{
 		return isFirst;
+	}
+
+	@Override
+	public void resizeImg(int newSize)
+	{
+		String filePath;
+		if (super.getChessColor() == ChessColor.WHITE)
+		{
+			filePath = WKING_IMG;
+		} else
+		{
+			filePath = BKING_IMG;
+		}
+
+		Image newImg = Piece.defaultResizeImg(filePath, newSize);
+
+		if (super.getChessColor() == ChessColor.WHITE)
+		{
+			wKingImg = newImg;
+		} else
+		{
+			bKingImg = newImg;
+		}
+	}
+
+	@Override
+	public Image getImage()
+	{
+		if (super.getChessColor() == ChessColor.WHITE)
+		{
+			return wKingImg;
+		}
+		return bKingImg;
 	}
 
 	@Override
